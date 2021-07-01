@@ -1,7 +1,7 @@
 import {authConstants, cartConstants} from "./constants";
 import axios from "../helpers/axios"
 import { Slide, toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+
 
 toast.configure();
 

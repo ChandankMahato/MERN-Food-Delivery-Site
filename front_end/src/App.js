@@ -15,7 +15,8 @@ import AdminHome from './containers/Admin/AdminHome';
 import AdminCategory from './containers/Admin/Category';
 import AdminProducts from './containers/Admin/Products';
 import AdminOrders from './containers/Admin/Orders';
-import {Bounce, Slide, toast, ToastContainer, Zoom } from 'react-toastify';
+import {toast, ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 toast.configure();
 
