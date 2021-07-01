@@ -280,7 +280,7 @@ const renderUserLoggedInLinks = () => {
 
 return (
   <>
-    <Navbar collapseOnSelect fixed="top" expand="lg" bg="dark" variant="dark" style={{zIndex: 1}}>
+    <Navbar collapseOnSelect fixed="top" expand="lg" bg="dark" variant="dark" style={{zIndex: 20}}>
         <Container fluid>
           {check ? (<Link to="/admin/home" className="navbar-brand"><img src={logo} alt="nothing" height={30} width={30}/>Admin Dashboard</Link>) 
           : (<Link to="/" className="navbar-brand"><img src={logo} alt="nothing" height={30} width={30}/>Get Your Food</Link>)}
