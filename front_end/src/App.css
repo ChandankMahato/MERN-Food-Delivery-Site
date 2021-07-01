@@ -1,0 +1,23 @@
+*{
+    font-family: 'Roboto', sans-serif;
+}
+
+body{
+    background: #f1f3f6;
+}
+
+
+@media screen and (max-width: 600px){
+    .flexRow{
+        display: block;
+    }
+}
+@media screen and (min-width: 600px){
+    .flexRow{
+        display: flex;
+    }
+}
+
+.sb{
+    justify-content: space-between;
+}

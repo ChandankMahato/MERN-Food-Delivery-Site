@@ -1,0 +1,32 @@
+.carousel{
+    margin-top: 100px;
+    color:black;
+    text-align: center;
+    background-color: rgb(33, 33, 34);
+}
+
+@media screen and (max-width: 800px) {
+    .carousel{
+        width: 90%;
+        height: 250px;
+        margin-left: 5%;
+    }
+
+    .carousel img{
+        width: 300px;
+        height: 250px;
+    }
+}
+
+@media screen and (min-width: 800px) {
+    .carousel{
+        width: 60%;
+        height: 450px;
+        margin-left: 20%;
+    }
+
+    .carousel img{
+        width: 500px;
+        height: 400px;
+    }
+}

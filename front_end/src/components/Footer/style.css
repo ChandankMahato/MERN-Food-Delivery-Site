@@ -1,0 +1,214 @@
+
+html{
+    height: 100%;
+}
+
+.footer{
+    width: 100%;
+    height: 100%;
+    background-color:#4d4d4d;
+    text-align: center;
+    color: white;
+    display: flex;
+    margin-top: auto;
+}
+
+@media screen and (max-width: 600px) {
+    .footer{
+        display: block;
+    }
+
+    .Logo{
+        width: 85%;
+    }
+
+    .textA{
+        text-align: left;
+        width: 85%;
+    }
+
+    .textB{
+        text-align: left;
+        width: 85%;
+    }
+
+    .textB h6{
+        margin-left: 15%;
+    }
+
+    .textB .b{
+        margin-left: 15%;
+    }
+
+    .social{
+        margin-left: 13%;
+        text-align: left;
+        width: 85%;
+        padding-bottom: 20px;
+    }
+}
+
+@media screen and (min-width: 600px){
+    .footer{
+        display: flex;
+    }
+
+    .Logo{
+        width: 20%;
+    }
+
+    .textA{
+        text-align: justify;
+        width: 25%;
+    }
+
+    .textB{
+        text-align: justify;
+        width: 35%;
+    }
+
+    .textB h6{
+        margin-left: 50%;
+    }
+
+    .textB .b{
+        margin-left: 50%;
+    }
+
+    .social{
+        width: 20%;
+        text-align: center;
+    }
+
+    .socialImg{
+        margin-left: 35%;
+    }
+}
+
+.Logo{
+    display: flex;
+    
+}
+
+.Logo img{
+    width: 50px;
+    height: 50px;
+    margin-top: 40px;
+    margin-left: 12.5%;
+    cursor: pointer;
+    border-radius: 25px;
+}
+
+.Logo > img:hover{
+    width: 60px;
+    height: 60px;
+    border-radius: 35px;
+}
+
+
+.Logo h5{
+    text-align: center;
+    margin-top: 50px;
+    color: #e0e0e0;
+    cursor: pointer;
+    margin-left: 5px;
+    font-size: 20px;
+}
+
+.Logo > h5:hover{
+    color:aqua;
+    font-size: 24px;
+}
+
+.textA{
+    font-size: 14px;
+    color: #e0e0e0;
+}
+.textA h6{
+    margin-left: 15%;
+    margin-bottom: 0;
+    margin-top: 20px;
+    color: #e0e0e0;
+}
+
+.textA .a{
+    margin-left: 15%;
+    margin-bottom:0;
+}
+
+.textA .a img{
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+}
+
+.copyright{
+    
+    margin-top: auto;
+    width: 100%;
+    height:15px;
+    background-color:#4d4d4d;
+}
+
+.designer{
+    
+    margin-top: auto;
+    width: 100%;
+    height:15px;
+    background-color:#4d4d4d;
+}
+
+.content{
+    width: 100%;
+    font-size: 12px;
+    text-align: center;
+    color: white;
+}
+
+.textB{
+    font-size: 14px;
+    color: #e0e0e0;
+}
+
+.textB h6{
+    margin-bottom: 0;
+    margin-top: 15px;
+    color: #e0e0e0;
+}
+
+.textB .b{
+    margin-bottom:0;
+    color: #e0e0e0;
+}
+
+.social h5{
+    margin-top: 15px;
+    font-size: 16px;
+    color: #e0e0e0;
+    cursor: pointer;
+}
+
+.social > h5:hover{
+    font-size: 20px;
+    color:aqua;
+}
+
+.socialImg{
+    width: 20px;
+    height: 20px;
+    display: flex;
+}
+
+.socialImg img{
+    width: 20px;
+    height: 20px;
+    margin: 5px;
+    object-fit: contain;
+    cursor: pointer;
+}
+
+.socialImg > img:hover, .socialImg > a > img:hover{
+    width: 25px;
+    height:25px;
+}
+

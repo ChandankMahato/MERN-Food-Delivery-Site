@@ -1,0 +1,14 @@
+
+.navbar-brand > img{
+    border-radius: 25px;
+    margin-right: 5px;
+}
+
+.nav-link{
+    color: #ffffff;
+}
+
+.nav-link:hover{
+    cursor: pointer;
+    color: #ffba6a;
+}

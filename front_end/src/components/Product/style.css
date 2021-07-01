@@ -1,0 +1,300 @@
+/* Product Display CSS */
+
+@media screen and (max-width: 800px){
+    .Container{
+       width: 90%;
+       margin-left:5%;
+       margin-top: 30px;
+       margin-bottom: 50px;
+    }
+}
+
+@media screen and (min-width: 800px){
+    .Container{
+        width: 60%;
+        margin-left: 20%;
+        margin-top: 30px;
+        margin-bottom: 50px;
+    }
+}
+
+.product{
+    width: 100%;
+    height: 30px;
+    background-color: #4d4d4d;
+    text-align: center;
+    color: #e0e0e0;
+}
+
+.product{
+    border-radius: 15px 15px 0 0;
+    box-shadow: rgba(190, 188, 188, 0.815) 0 5px 0 0;
+}
+
+.cardProduct{
+    width: 100%;
+    margin-top: 15px;
+    border-radius: 10px;
+    border: 2px solid #cecece;
+    background: #fff;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 5px 0px !important;
+    padding: 15px;
+}
+
+.insideCardProduct{
+    text-align: center;
+}
+
+.productContainer{
+    text-align: center;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.productContainer .productImgContainer{
+    overflow: hidden;
+    text-align: center;
+}
+
+.productContainer .productImgContainer img{
+    object-fit: cover;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+
+@media screen and (max-width: 600px) {
+    .productContainer{
+        width: 130px;
+    }
+    
+    .productContainer .productImgContainer{
+        width: 130px;
+        height: 130px;
+    }
+    
+    .productContainer .productImgContainer img{
+        width: 120px;
+        height: 120px;
+    }
+    
+    .productImgContainer > img:hover{
+        width: 130px;
+        height: 130px;
+    }
+}
+
+@media screen and (min-width: 600px){
+    .productContainer{
+        width: 180px;
+    }
+    
+    .productContainer .productImgContainer{
+        width: 180px;
+        height: 180px;
+    }
+    
+    .productContainer .productImgContainer img{
+        width: 170px;
+        height: 170px;
+    }
+    
+    .productImgContainer > img:hover{
+        width: 180px;
+        height: 180px;
+    }
+}
+
+.productInfo{
+    text-align: center;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.productInfo:hover{
+    font-size: 20px;
+}
+
+.productPrice{
+    font-size: 12px;
+    font-weight: bold;
+    margin: 5px 0;
+    cursor: pointer;
+}
+
+.productPrice:hover{
+    font-size: 18px;
+    font-weight: bolder;
+}
+
+
+/* modal's CSS */
+.key{
+    font-size: 15px;
+    font-weight: bold;
+    font-family: sans-serif;
+}
+
+.value{
+    font-size: 12px;
+    font-family: sans-serif;
+}
+
+
+
+.modalProductImgContainer{
+    width: 110px;
+    height: 110px;
+    overflow: hidden;
+    text-align: center;
+}
+
+.modalProductImgContainer img{
+    width: 100px;
+    height: 100px;
+    object-fit:cover;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.modalProductImgContainer > img:hover{
+    width:110px;
+    height: 110px;
+}
+
+@media screen and (max-width: 600px){
+    .productImageDiv{
+        width:80%;
+        height: 80%;
+        float:left;
+        margin-left: 10%;
+    }
+
+    .productDetailsDiv{
+        width: 80%;
+        margin-left: 10%;
+        float: left;
+    }
+
+    .modalProductImgContainer{
+        width: 80%;
+        height: 80%;
+        overflow: hidden;
+        text-align: center;
+    }
+
+    .modalProductImgContainer img{
+        width: 80%;
+        height: 80%;
+        object-fit:cover;
+        padding: 5px;
+        cursor: pointer;
+    }
+    
+    .modalProductImgContainer > img:hover{
+        width:90%;
+        height: 90%;
+    }
+}
+
+@media screen and (min-width: 600px) and (max-width: 900px){
+    .productImageDiv{
+        width:80%;
+        height:80%;
+        float: left;
+        margin-left: 10%;
+    }
+
+    .modalProductImgContainer{
+        width: 80%;
+        height: 80%;
+        overflow: hidden;
+        text-align: center;
+    }
+
+    .productDetailsDiv{
+        float: left;
+        margin-left: 10%;
+        
+    }
+
+    .modalProductImgContainer img{
+        width: 80%;
+        height: 90%;
+        object-fit:cover;
+        padding: 10px;
+        cursor: pointer;
+    }
+    
+    .modalProductImgContainer > img:hover{
+        width:90%;
+        height: 90%;
+    }
+}
+
+@media screen and (min-width: 900px) {
+    .productImageDiv{
+        width: 400px;
+        height: 400px;
+        float: left;
+    }
+
+    .modalProductImgContainer{
+        width: 110px;
+        height: 110px;
+        overflow: hidden;
+        text-align: center;
+    }
+    
+    .productDetailsDiv{
+        float: right;
+    }
+
+    .modalProductImgContainer img{
+        width: 100px;
+        height: 100px;
+        object-fit:cover;
+        padding: 10px;
+        cursor: pointer;
+    }
+    
+    .modalProductImgContainer > img:hover{
+        width:110px;
+        height: 110px;
+    }
+}
+
+.productImageDiv img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.categoryList{
+    padding: 10px;
+    margin-left: 8px;
+    width: 98%;
+}
+
+.categoryList select{
+        position: relative;
+        border: 1px solid #4d4d4d;
+        background-color: transparent;
+        color: #4d4d4d;
+        font-family: 'Reem Kufi', sans-serif;
+        font-weight: 500;
+        line-height: 20px;
+        font-size: 20px;
+        outline: none;
+        border-radius: 5px;
+        appearance: none;
+        -webkit-appearance: none;
+        text-transform: uppercase;
+        font-weight: bold;
+        letter-spacing: 1px;
+        text-align-last:center;
+        cursor: pointer;
+}
+
+

@@ -1,0 +1,29 @@
+.key{
+    font-size: 15px;
+    font-weight: bold;
+    font-family: sans-serif;
+}
+
+.value{
+    font-size: 12px;
+    font-family: sans-serif;
+}
+
+.productImgContainer{
+    width: 75px;
+    height: 75px;
+    overflow: hidden;
+    text-align: center;
+    float: left;
+    padding:10px
+}
+
+.productImgContainer img{
+    width: 100%;
+    height: 100%;
+    object-fit:cover;
+}
+
+.pName{
+    padding-left: 25px;
+}

@@ -1,0 +1,91 @@
+.cartItemContainer{
+    margin-top: 100px;
+    width: 80%;
+    margin-left: 10%;
+    display: block;
+}
+
+.emptyCart{
+    background-color: #4d4d4d;
+    text-align: center;
+    color: #ffffff;
+    padding: 10px;
+    box-shadow:3px 3px 10px 6px gray; 
+}
+
+.emptyCart h1 p{
+    height: 100%;
+}
+
+.emptyCart .add{
+    color: #faba46;
+    cursor:pointer
+}
+
+.firstContent{
+    width: 80%;
+    height: 40px;
+    text-align:center;
+    margin-left: 10%;
+}
+
+.firstContent h5{
+    margin-top: 7px;
+}
+
+.cartHeader{
+    display: flex;
+} 
+
+.rightPart{
+    border:1px solid #cecece;
+    width: 30%;
+    text-align: center;
+    display:table-cell;
+} 
+
+.rightPartHeader{
+    border-bottom: 1px solid #cecece;
+    width: 100%;
+    height: 40px;
+}
+
+.rightPartBody{
+    width: 100%;
+}
+
+.cartItems{
+    width: 95%;
+    margin-left: 2.5%;
+    margin-top: 10px;
+ }
+
+ .cartItemsDetails{
+    width: 95%;
+    margin-left: 2.5%;
+}
+
+.itemCount, .Delivery, .itemPrice{
+    display: flex;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+.itemCountOne, .DeliveryOne, .itemPriceOne{
+    width: 50%;
+    text-align: left;
+}
+
+.itemCountTwo, .DeliveryTwo, .itemPriceTwo{
+    width: 50%;
+    text-align: right;
+}
+
+.placeOrder{
+    margin-left: 82.5%;
+}
+
+.placeOrder button{
+    width: 150px;
+    height: 30px;
+}
