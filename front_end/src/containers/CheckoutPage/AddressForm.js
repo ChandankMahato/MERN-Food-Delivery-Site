@@ -11,28 +11,17 @@ import { MaterialInput, MaterialButton } from '../../components/MaterialUI';
 const AddressForm = (props) => {
     const { initialData } = props;
     const [name, setName] = useState(initialData ? initialData.name : "");
-    const [mobileNumber, setMobileNumber] = useState(
-      initialData ? initialData.mobileNumber : ""
-    );
-    const [locality, setLocality] = useState(
-      initialData ? initialData.locality : ""
-    );
-    const [address, setAddress] = useState(
-      initialData ? initialData.address : ""
-    );
-    const [landmark, setLandmark] = useState(
-      initialData ? initialData.landmark : ""
-    );
-    const [alternatePhone, setAlternatePhone] = useState(
-      initialData ? initialData.alternatePhone : ""
-    );
-    const [addressType, setAddressType] = useState(
-      initialData ? initialData.addressType : ""
-    );
+    const [mobileNumber, setMobileNumber] = useState(initialData ? initialData.mobileNumber : "");
+    const [locality, setLocality] = useState(initialData ? initialData.locality : "");
+    const [address, setAddress] = useState(initialData ? initialData.address : "");
+    const [landmark, setLandmark] = useState(initialData ? initialData.landmark : "");
+    const [alternatePhone, setAlternatePhone] = useState(initialData ? initialData.alternatePhone : "");
+    const [addressType, setAddressType] = useState(initialData ? initialData.addressType : "");
+    const [id, setId] = useState(initialData ? initialData._id : "");
+
     const dispatch = useDispatch();
     const checkout = useSelector((state) => state.checkout);
     const [submitFlag, setSubmitFlag] = useState(false);
-    const [id, setId] = useState(initialData ? initialData._id : "");
   
     const inputContainer = {
       width: "100%",
