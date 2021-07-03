@@ -4,41 +4,107 @@
     .Container{
        width: 90%;
        margin-left:5%;
-       margin-top: 30px;
-       margin-bottom: 50px;
+       margin-top: 2em;
+       margin-bottom:3em;
     }
+    .categoryContainer{
+        width: 90%;
+        margin-left: 5%;
+        margin-top: 2em;
+        margin-bottom: 2em;
+    }
+    
 }
 
 @media screen and (min-width: 800px){
     .Container{
         width: 60%;
         margin-left: 20%;
-        margin-top: 30px;
-        margin-bottom: 50px;
+        margin-top: 2em;
+        margin-bottom: 3em;
+    }
+
+    .categoryContainer{
+        width: 60%;
+        height: 200px;
+        margin-left: 20%;
+        margin-top: 2em;
+        margin-bottom: 2em;
     }
 }
 
+/* category */
+
+.category{
+    width: 100%;
+    height: 2em;
+    text-align: center;
+}
+
+.cardCategory{
+    width: 100%;
+}
+
+.insideCardCategory{
+    text-align: center;
+}
+
+.containerCategory{
+    text-align: center;
+    display: inline-block;
+    width: 25%;
+}
+
+.categroyImgContainer{
+    overflow: hidden;
+    text-align: center;
+    width: 100%;
+}
+
+.categoryImgContainer img{
+    object-fit: cover;
+    cursor: pointer;
+    border-radius: 30px;
+    width: 30%;
+    height: 30%;
+}
+
+.categoryImgContainer img:hover{
+    width: 32%;
+    height: 32%;
+}
+
+.categoryName{
+    text-align: center;
+    font-size: 0.78em;
+    font-weight: bolder;
+    cursor: pointer;
+}
+
+.categoryName:hover{
+    font-size: 0.8em;
+}
+
+/* category */
+
 .product{
     width: 100%;
-    height: 30px;
+    height: 2em;
     background-color: #4d4d4d;
     text-align: center;
     color: #e0e0e0;
-}
-
-.product{
     border-radius: 15px 15px 0 0;
     box-shadow: rgba(190, 188, 188, 0.815) 0 5px 0 0;
 }
 
 .cardProduct{
     width: 100%;
-    margin-top: 15px;
+    margin-top:1em;
     border-radius: 10px;
     border: 2px solid #cecece;
     background: #fff;
     box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 5px 0px !important;
-    padding: 15px;
+    padding: 1.2em;
 }
 
 .insideCardProduct{
@@ -48,121 +114,77 @@
 .productContainer{
     text-align: center;
     display: inline-block;
-    margin-bottom: 20px;
+    margin-bottom: 0.5em;
 }
 
 .productContainer .productImgContainer{
     overflow: hidden;
     text-align: center;
+    width: 100%;
+    height: 100%;
 }
 
 .productContainer .productImgContainer img{
     object-fit: cover;
     cursor: pointer;
     border-radius: 10px;
+    width: 90%;
+    height: 90%;
 }
 
+.productImgContainer > img:hover{
+    width: 95%;
+    height: 95%;
+}
 
 @media screen and (max-width: 600px) {
     .productContainer{
-        width: 130px;
-    }
-    
-    .productContainer .productImgContainer{
-        width: 130px;
-        height: 130px;
-    }
-    
-    .productContainer .productImgContainer img{
-        width: 120px;
-        height: 120px;
-    }
-    
-    .productImgContainer > img:hover{
-        width: 130px;
-        height: 130px;
+        width: 50%;
     }
 }
 
 @media screen and (min-width: 600px){
     .productContainer{
-        width: 180px;
-    }
-    
-    .productContainer .productImgContainer{
-        width: 180px;
-        height: 180px;
-    }
-    
-    .productContainer .productImgContainer img{
-        width: 170px;
-        height: 170px;
-    }
-    
-    .productImgContainer > img:hover{
-        width: 180px;
-        height: 180px;
+        width: 25%;
     }
 }
 
 .productInfo{
     text-align: center;
-    font-size: 15px;
+    font-size: 1em;
     cursor: pointer;
 }
 
 .productInfo:hover{
-    font-size: 20px;
+    font-size: 1.1em;
 }
 
 .productPrice{
-    font-size: 12px;
+    font-size: 0.78em;
     font-weight: bold;
     margin: 5px 0;
     cursor: pointer;
 }
 
 .productPrice:hover{
-    font-size: 18px;
+    font-size: 0.8em;
     font-weight: bolder;
 }
 
 
 /* modal's CSS */
 .key{
-    font-size: 15px;
+    font-size: 1em;
     font-weight: bold;
     font-family: sans-serif;
 }
 
 .value{
-    font-size: 12px;
+    font-size:0.9em;
     font-family: sans-serif;
 }
 
-
-
-.modalProductImgContainer{
-    width: 110px;
-    height: 110px;
-    overflow: hidden;
-    text-align: center;
-}
-
-.modalProductImgContainer img{
-    width: 100px;
-    height: 100px;
-    object-fit:cover;
-    padding: 10px;
-    cursor: pointer;
-}
-
-.modalProductImgContainer > img:hover{
-    width:110px;
-    height: 110px;
-}
-
-@media screen and (max-width: 600px){
+@media screen and (max-width: 1030px){
     .productImageDiv{
         width:80%;
         height: 80%;
@@ -187,7 +209,6 @@
         width: 80%;
         height: 80%;
         object-fit:cover;
-        padding: 5px;
         cursor: pointer;
     }
     
@@ -197,42 +218,8 @@
     }
 }
 
-@media screen and (min-width: 600px) and (max-width: 900px){
-    .productImageDiv{
-        width:80%;
-        height:80%;
-        float: left;
-        margin-left: 10%;
-    }
 
-    .modalProductImgContainer{
-        width: 80%;
-        height: 80%;
-        overflow: hidden;
-        text-align: center;
-    }
-
-    .productDetailsDiv{
-        float: left;
-        margin-left: 10%;
-        
-    }
-
-    .modalProductImgContainer img{
-        width: 80%;
-        height: 90%;
-        object-fit:cover;
-        padding: 10px;
-        cursor: pointer;
-    }
-    
-    .modalProductImgContainer > img:hover{
-        width:90%;
-        height: 90%;
-    }
-}
-
-@media screen and (min-width: 900px) {
+@media screen and (min-width: 1030px) {
     .productImageDiv{
         width: 400px;
         height: 400px;
@@ -270,31 +257,3 @@
     object-fit: cover;
     cursor: pointer;
 }
-
-.categoryList{
-    padding: 10px;
-    margin-left: 8px;
-    width: 98%;
-}
-
-.categoryList select{
-        position: relative;
-        border: 1px solid #4d4d4d;
-        background-color: transparent;
-        color: #4d4d4d;
-        font-family: 'Reem Kufi', sans-serif;
-        font-weight: 500;
-        line-height: 20px;
-        font-size: 20px;
-        outline: none;
-        border-radius: 5px;
-        appearance: none;
-        -webkit-appearance: none;
-        text-transform: uppercase;
-        font-weight: bold;
-        letter-spacing: 1px;
-        text-align-last:center;
-        cursor: pointer;
-}
-
-

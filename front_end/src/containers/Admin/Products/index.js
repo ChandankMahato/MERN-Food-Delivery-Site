@@ -3,7 +3,7 @@ import Layout from '../../../components/Admin/Layout';
 import { Container, Row, Col, Table } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import Input from '../../../components/UI/Input';
-import { addAdminProduct, deleteAdminProductById, getAdminInitialData, getAdminProducts, getAllCategory } from '../../../actions';
+import { addAdminProduct, adminUpdateProduct, deleteAdminProductById, getAdminInitialData, getAdminProducts, getAllCategory } from '../../../actions';
 import Modal from '../../../components/UI/Modal';
 import './style.css';
 import { generatePublicUrl } from '../../../urlConfig';
@@ -15,6 +15,7 @@ import { generatePublicUrl } from '../../../urlConfig';
 
 const AdminProducts = (props) => {
 
+  const [productId, setProductId] = useState('');
   const [name, setName] = useState('');
   const [quantity, setQuantity] = useState('');
   const [price, setPrice] = useState('');
@@ -22,11 +23,14 @@ const AdminProducts = (props) => {
   const [categoryId, setCategoryId] = useState('');
   const [subCategory, setSubCategory] = useState('');
   const [productPictures, setProductPictures] = useState([]);
+
   const [AddNewProductModal, setAddNewProductModal] = useState(false);
-  
+  const [productUpdateModal, setProductUpdateModal] = useState(false);
+
   const dispatch = useDispatch();
   const [productDetailsModal, setProductDetailsModal] = useState(false);
   const [productDetails, setProductDetails] = useState(null);
+
   const category = useSelector(state => state.category);
   const product = useSelector(state => state.product);
 
@@ -58,7 +62,7 @@ const AdminProducts = (props) => {
           dispatch(getAdminInitialData());
       }
   });
-
+    setAddNewProductModal(false)
     setName('');
     setQuantity('');
     setPrice('');
@@ -66,12 +70,65 @@ const AdminProducts = (props) => {
     setSubCategory('');
     setCategoryId('');
     setProductPictures([]);
-
-    setAddNewProductModal(false)
   }
 
-  const handleClose = () => { setAddNewProductModal(false) };
-  const handleShow = () => setAddNewProductModal(true);
+    
+    const updateProduct = () => {
+      
+      const form = new FormData();
+      form.append('_id', productId)
+      form.append('name', name);
+      form.append('quantity', quantity);
+      form.append('price', price);
+      form.append('description', description);
+      form.append('subCategory', subCategory);
+      form.append('category', categoryId);
+
+      dispatch(adminUpdateProduct(form))
+      .then(result => {
+        if(result){
+            dispatch(getAdminProducts());
+            dispatch(getAdminInitialData());
+        }
+    });
+
+      setName('');
+      setQuantity('');
+      setPrice('');
+      setDiscription('');
+      setSubCategory('');
+      setCategoryId('');
+      setProductPictures([]);
+
+      setProductUpdateModal(false)
+    }
+
+  const showProductUpdateModal = (product) => {
+    setProductUpdateModal(true)
+    setProductId(product._id);
+    setName(product.name);
+    setQuantity(product.quantity);
+    setSubCategory(product.subCategory);
+    setCategoryId(product.category._id);
+    setPrice(product.price);
+    setDiscription(product.description);
+  };
+
+  const closeProductUpdateModal = () => {
+    setProductUpdateModal(false);
+    setName('');
+    setQuantity('');
+    setPrice('');
+    setDiscription('');
+    setSubCategory('');
+    setCategoryId('');
+    setProductPictures([]);
+  }
+
+
+
+  const closeAddNewProductModal = () => { setAddNewProductModal(false) };
+  const showAddNewProductModal = () => setAddNewProductModal(true);
 
   const createCategoryList = (categories, options = []) => {
     for (let category of categories) {
@@ -114,8 +171,11 @@ const AdminProducts = (props) => {
                 <td>{product.subCategory}</td>
                 <td>{product.category.name}</td>
                 <td>
-                  <button onClick={() => ShowProductDetailsModal(product)}>
+                  <button onClick={() => showProductDetailsModal(product)}>
                     info
+                  </button>
+                  <button onClick={() => showProductUpdateModal(product)}>
+                    edit
                   </button>
                   <button
                     onClick={() => {
@@ -147,7 +207,7 @@ const AdminProducts = (props) => {
     return (
       <Modal
         show={AddNewProductModal}
-        close={handleClose}
+        close={closeAddNewProductModal}
         modaltitle={'Add New Products'}
         save={addNewProduct}
         btntitle={'Save Changes'}
@@ -208,11 +268,65 @@ const AdminProducts = (props) => {
     );
   }
 
+  const renderProductUpdateModal = () => {
+    return (
+      <Modal
+        show={productUpdateModal}
+        close={closeProductUpdateModal}
+        modaltitle={'Update Products'}
+        save={updateProduct}
+        btntitle={'Update'}
+      >
+        <Input
+          label="Name"
+          value={name}
+          placeholder={`Product Name`}
+          onChange={(e) => setName(e.target.value)}
+        />
+        <Input
+          label="Quantity"
+          value={quantity}
+          placeholder={`Quantity`}
+          onChange={(e) => setQuantity(e.target.value)}
+        />
+        <Input
+          label="Price"
+          value={price}
+          placeholder={`Price`}
+          onChange={(e) => setPrice(e.target.value)}
+        />
+        <Input
+          label="Description"
+          value={description}
+          placeholder={`Description`}
+          onChange={(e) => setDiscription(e.target.value)}
+        />
+
+        <Input
+          label="Sub Category"
+          value={subCategory}
+          placeholder={`Sub Category`}
+          onChange={(e) => setSubCategory(e.target.value)}
+        />
+        <select
+          className="form-control"
+          value={categoryId}
+          onChange={(e) => setCategoryId(e.target.value)}>
+          <option>select category</option>
+          {
+            createCategoryList(category.categories).map(option =>
+              <option key={option.value} value={option.value}>{option.name}</option>)
+          }
+        </select>
+      </Modal>
+    );
+  }
+
   const handleCloseProductDetailsModal = () => {
     setProductDetailsModal(false);
   }
 
-  const ShowProductDetailsModal = (product) => {
+  const showProductDetailsModal = (product) => {
     setProductDetails(product);
     setProductDetailsModal(true);
     console.log(product);
@@ -289,7 +403,7 @@ const AdminProducts = (props) => {
           <Col md={12}>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               <h3>Products</h3>
-              <button onClick={handleShow}>Add</button>
+              <button onClick={showAddNewProductModal}>Add</button>
             </div>
           </Col>
         </Row>
@@ -303,6 +417,7 @@ const AdminProducts = (props) => {
       </Container>
       {renderAddProductsModal()}
       {renderShowProductDetailsModal()}
+      {renderProductUpdateModal()}
     </Layout>
   )
 

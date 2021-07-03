@@ -27,7 +27,6 @@ const Product = (props) => {
   const [productDetailsModal, setProductDetailsModal] = useState(false);
   const [productDetails, setProductDetails] = useState(null);
   const [showImage, setShowImage] = useState(null);
-  const [categoryId, setCategoryId] = useState('');
 
   const dispatch = useDispatch();
 
@@ -40,16 +39,8 @@ const Product = (props) => {
     dispatch(getUserInitialData());
   }, []);
 
-  const createCategoryList = (categories, options = []) => {
-    for(let category of categories){
-      options.push({ value: category._id, name: category.name})
-    }
-    return options;
-  }
-
-  const displayProductByCategory = () => {
-    console.log(categoryId);
-    dispatch(getUserProductByCategory(categoryId));
+  const triggerDisplayProductByCategory = (Id) => {
+    dispatch(getUserProductByCategory(Id));
   }
   
   const showProductDetailsModal = (product) => {
@@ -123,7 +114,6 @@ const Product = (props) => {
             </div>
           </Col>
         </div>
-       
 
       </Modal>
     )
@@ -131,6 +121,38 @@ const Product = (props) => {
   }
 
   return (
+<>
+               
+    <div className="categoryContainer">
+      <div className="category">
+        <h4>
+        Categories
+        </h4>
+      </div>
+
+      <div className="cardCategory">
+        <div className="insideCardCategory">
+          {
+            category.categories.map(category =>
+              <div className="containerCategory">
+
+                  <div className="categoryImgContainer">
+                    <img src={category.categoryImage} alt="nothing"  onClick={() => {triggerDisplayProductByCategory(category._id)}}/>
+                  </div>
+
+                  <div className="categoryName">
+                    <span onClick={() => {triggerDisplayProductByCategory(category._id)}}>
+                        {category.name}
+                    </span>
+                  </div>
+                  
+              </div>)
+          }
+        </div>
+      </div>
+    </div>
+
+
     <div className="Container">
       <div className="product">
         <h4>
@@ -140,20 +162,6 @@ const Product = (props) => {
 
       <div className="cardProduct">
         <div className="insideCardProduct">
-          <div className="categoryList">
-            <select
-              onClick={displayProductByCategory}
-              className="form-control"
-              value={categoryId}
-              onChange={(e) => setCategoryId(e.target.value)}>
-              <option>Select From Categories</option>
-              {
-                createCategoryList(category.categories).map(option =>
-                  <option key={option.value} value={option.value}>{option.name}</option>)
-              }
-            </select>
-          </div>
-        
           {
             product.products.map(product =>
               <div className="productContainer">
@@ -175,6 +183,7 @@ const Product = (props) => {
       </div>
           {renderShowProductDetailsModal()}
     </div>
+</>
   )
 
 }

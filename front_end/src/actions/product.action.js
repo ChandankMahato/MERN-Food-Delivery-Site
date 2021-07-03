@@ -77,11 +77,11 @@ export const getAdminProducts = () => {
     }
 }
 
-//function to get category from database
-export const addAdminProduct = (form) => {
+export const addAdminProduct = (payload) => {
+    console.log(payload);
     return async (dispatch) => {
         dispatch({ type: productConstants.ADD_PRODUCT_REQUEST});
-        const res = await axios.post(`/product/create`,form);
+        const res = await axios.post(`/product/create`,payload);
         if(res.status === 201){
            dispatch({ type: productConstants.ADD_PRODUCT_SUCCESS});
            return true;
@@ -90,6 +90,20 @@ export const addAdminProduct = (form) => {
         }
     };
 };
+
+export const adminUpdateProduct = (payload) => {
+    console.log(payload);
+    return async (dispatch)=>{
+        dispatch({type:productConstants.PRODUCT_EDIT_REQUEST});
+        const res = await axios.post(`/Product/updateProduct`, payload);
+        if(res.status === 202){
+            dispatch({type: productConstants.PRODUCT_EDIT_SUCCESS});
+            return true;
+        }else{
+            dispatch({type: productConstants.ADD_PRODUCT_FAILURE});
+        }
+    }
+}
 
 export const deleteAdminProductById = (payload) => {
     return async(dispatch) => {

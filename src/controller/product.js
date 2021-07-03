@@ -1,8 +1,6 @@
-//imports
 const Product = require('../models/product');
 const shortid = require('shortid');
 const slugify = require('slugify');
-const Category = require('../models/category');
 
 exports.createProduct = (req, res) => {
 
@@ -11,7 +9,6 @@ exports.createProduct = (req, res) => {
     } = req.body
 
     let productPictures = [];
-
     if(req.files.length > 0){
         productPictures = req.files.map(file => {
             return {img: file.filename }
@@ -30,7 +27,6 @@ exports.createProduct = (req, res) => {
         createdBy: req.auth.id
     });
 
-    //save the product
     product.save((error, product)=> {
         if(error) return res.status(400).json({ error });
         if(product){return res.status(201).json({ product });
@@ -40,30 +36,23 @@ exports.createProduct = (req, res) => {
 
 exports.updateProducts = async (req, res) => {
 
-   const {_id, name, price, description, category} = req.body;
-
-   let productPictures = [];
-
-   if(req.files.length > 0){
-       productPictures = req.files.map(file => {
-           return { img: file.filename}
-       })
-   }
+   const {_id, name, price,quantity, description, subCategory, category} = req.body;
 
        const product = {
            _id,
            name,
            price,
+           quantity,
            description,
+           subCategory,
            category,
-           productPictures,
            updatedBy : req.auth.id
        };
        if(category !== ""){
            product.category = category;
        }
        const updatedProduct = await Product.findOneAndUpdate({ _id }, product, {new: true});
-       return res.status(201).json({ updatedProduct });
+       return res.status(202).json({ updatedProduct });
 }
 
 exports.getProduct = (req, res) => {
@@ -98,22 +87,6 @@ exports.deleteProduct = async (req, res) => {
         res.status(400).json({ error: "Params requred "});
     }
 };
-
-// exports.getProductByCategory = (req, res) => {
-//     const { categoryId } = req.params;
-//         Product.find({ category: categoryId})
-//         .select('category createdAt createdBy description name price productPictures quantity reviews slug subCategory updatedAt _id')
-//         .populate('category','name _id')
-//         .exec((error, products) => {
-//             if(error){
-//                 return res.status(400).json({error});
-//             }
-
-//             if(products){
-//                 return res.status(200).json({products});
-//             }
-//         })
-// }
 
 exports.getProductByCategory = (req, res) => {
     const { categoryId } = req.body;

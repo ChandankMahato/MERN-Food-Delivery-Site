@@ -73,7 +73,6 @@ export default (state = initState, action) => {
         case categoryConstants.UPDATE_CATEGORIES_SUCCESS:
             state = {
                 ...state,
-
                 loading: false
             }
             break;

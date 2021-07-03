@@ -127,6 +127,20 @@ const CheckoutPage = (props) => {
 
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    auth.userAuthenticate && dispatch(getAddress());
+    auth.userAuthenticate && dispatch(getCartItems());
+  }, [auth.userAuthenticate]);
+
+  useEffect(() => {
+    const address = checkout.address.map((adr) => ({
+      ...adr,
+      selected: false,
+      edit: false,
+    }));
+    setAddress(address);
+  }, [checkout.address]);
+
   const userAccountLogin = () => {
     if(mobile==='' && password===''){
       toast.dark("Enter Mobile Number and Password", {position:'top-center', transition:Zoom});
@@ -190,7 +204,6 @@ const CheckoutPage = (props) => {
     setAddress(updatedAddress);
   };
 
-
   const userOrderConfirmation = () => {
     setOrderConfirmation(true);
     setOrderSummary(false);
@@ -240,20 +253,6 @@ const CheckoutPage = (props) => {
     alert('Thank You, Your Order Received');
     history.push('/');
   };
-
-  useEffect(() => {
-    auth.userAuthenticate && dispatch(getAddress());
-    auth.userAuthenticate && dispatch(getCartItems());
-  }, [auth.userAuthenticate]);
-
-  useEffect(() => {
-    const address = checkout.address.map((adr) => ({
-      ...adr,
-      selected: false,
-      edit: false,
-    }));
-    setAddress(address);
-  }, [checkout.address]);
 
 
   return (
@@ -334,7 +333,7 @@ const CheckoutPage = (props) => {
 
           {/* AddressForm */}
           {confirmAddress ? null : newAddress ? (
-            <AddressForm onSubmitForm={onAddressSubmit} onCancel={() => { }} />
+            <AddressForm onSubmitForm={onAddressSubmit} onCancel={() => {}} />
           ) : auth.userAuthenticate ? (
             <CheckoutStep
               stepNumber={"+"}
