@@ -136,7 +136,7 @@ const Product = (props) => {
               <div className="containerCategory">
 
                   <div className="categoryImgContainer">
-                    <img src={category.categoryImage} alt="nothing"  onClick={() => {triggerDisplayProductByCategory(category._id)}}/>
+                    <img src={generatePublicUrl(category.categoryImage)} alt="nothing"  onClick={() => {triggerDisplayProductByCategory(category._id)}}/>
                   </div>
 
                   <div className="categoryName">
