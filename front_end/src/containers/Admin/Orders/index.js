@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import Layout from '../../../components/Admin/Layout';
 import {Container, Row, Col, Table} from 'react-bootstrap';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Modal from '../../../components/UI/Modal';
 import { generatePublicUrl } from '../../../urlConfig';
 import './style.css';
+import { adminUpdateOrder } from '../../../actions/order.action';
 
 /**
 * @author
@@ -16,6 +17,8 @@ const AdminOrders = (props) => {
   const [orderDetailsModal, setOrderDetailsModal] = useState(false);
   const [orderDetails, setOrderDetails] = useState(null);
   const order = useSelector(state => state.order);
+  const [type, setType] = useState("");
+  const dispatch = useDispatch();
 
   const renderProducts = () => {
 
@@ -23,6 +26,14 @@ const AdminOrders = (props) => {
       setOrderDetails(order);
       setOrderDetailsModal(true);
     }
+
+    const onOrderUpdate = (orderId) =>{
+      const payload = {
+        orderId,
+        type,
+      };
+      dispatch(adminUpdateOrder(payload));
+    };
 
     return (
       <Table style={{fontSize: '15px'}} responsive="sm">
@@ -50,6 +61,25 @@ const AdminOrders = (props) => {
                 <td>
                   <button onClick={() => showOrderDetailsModal(order)}>
                     info
+                  </button>
+                  <select onChange={(e) => setType(e.target.value)}>
+                  <option value={""}>Select Status</option>
+                    {order.orderStatus.map((status) => {
+                      return(
+                      <>
+                        {!status.isCompleted ? (
+                          <option 
+                          key={status.type} 
+                          value={status.type}
+                          >
+                            {status.type}
+                          </option>
+                        ) : null}
+                      </>)
+                    })}
+                  </select>
+                  <button onClick = {() => onOrderUpdate(order._id)}>
+                    confirm
                   </button>
                 </td>
               </tr>
