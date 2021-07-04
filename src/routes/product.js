@@ -1,10 +1,9 @@
 const express = require('express');
-const { requireSignin, adminMiddleware, userMiddleware } = require('../common-middleware');
-const { createProduct, getProductsBySlug, deleteProduct, getProduct, updateProducts, getProductDetailsById, getProductsByCategory, getProductByCategory} = require('../controller/product');
+const { requireAdminSignin, adminMiddleware} = require('../common-middleware');
+const { createProduct, deleteProduct, getProduct, updateProducts, getProductByCategory} = require('../controller/product');
 const multer = require('multer');
 const router = express.Router();
 const shortid = require('shortid');
-//bulit in libraray path.
 const path = require('path');
 
 const storage = multer.diskStorage({
@@ -18,10 +17,10 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
-router.post('/product/create', requireSignin,adminMiddleware,upload.array('productPicture'), createProduct);
-router.get('/products/getProducts', requireSignin, adminMiddleware, getProduct);
-router.post('/Product/updateProduct', requireSignin, adminMiddleware,upload.array('productPicture'), updateProducts);
-router.post('/products/delete', requireSignin, adminMiddleware, deleteProduct);
+router.post('/product/create', requireAdminSignin,adminMiddleware,upload.array('productPicture'), createProduct);
+router.get('/products/getProducts', requireAdminSignin, adminMiddleware, getProduct);
+router.post('/Product/updateProduct', requireAdminSignin, adminMiddleware,upload.array('productPicture'), updateProducts);
+router.post('/products/delete', requireAdminSignin, adminMiddleware, deleteProduct);
 router.post('/getProduct/categoryId', getProductByCategory);
 
 module.exports = router;
