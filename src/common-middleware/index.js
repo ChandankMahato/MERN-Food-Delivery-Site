@@ -23,6 +23,20 @@ exports.requireSignin = (req, res, next) => {
     //jwt.decode()
 }
 
+exports.requireAdminSignin = (req, res, next) => {
+    console.log(req.header.adminauthorization);
+    if(req.headers.adminauthorization){
+        const adminToken = req.headers.adminauthorization.split(" ")[1];
+        const adminAuth = jwt.verify(adminToken, process.env.JWT_SECRET);
+        req.adminAuth = adminAuth; 
+    }else{
+        return res.status(400).json({
+            message: 'Authrization Required'
+        })
+    }
+    next();
+}
+
 //callback function to check whether user is loggedin or not
 exports.userMiddleware = (req, res, next) => {
     if(req.auth.role !== 'user'){
@@ -35,7 +49,7 @@ exports.userMiddleware = (req, res, next) => {
 
 //function to check whether admin is loggged in or not
 exports.adminMiddleware = (req, res,next) => {
-    if(req.auth.role !== 'admin'){
+    if(req.adminAuth.role !== 'admin'){
         return res.status(400).json({
             message: 'User Access Denied'
         })
