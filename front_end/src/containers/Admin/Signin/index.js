@@ -16,7 +16,7 @@ const AdminAccountSignin = (props) => {
   
     const [mobile, setMobile] = useState('');
     const [password, setPassword] = useState('');
-    const auth = useSelector(state => state.auth);
+    const adminAuth = useSelector(state => state.adminAuth);
   
     const dispatch = useDispatch();
   
@@ -47,15 +47,15 @@ const AdminAccountSignin = (props) => {
           }
         }
       }
-      const user = {
+      const admin = {
         mobile,
         password
       }
       //passing the user object to login function.
-      dispatch(adminLogin(user));
+      dispatch(adminLogin(admin));
     }
   
-    if(auth.adminAuthenticate){
+    if(adminAuth.adminAuthenticate){
       return <Redirect to={`/admin/home`} />
     }
    

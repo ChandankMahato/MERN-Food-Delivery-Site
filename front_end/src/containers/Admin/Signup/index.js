@@ -17,7 +17,7 @@ const AdminAccountSignup = (props) => {
   const [password, setPassword] = useState('');
   const [fullName, setFullName] = useState('');
 
-  const auth = useSelector(state => state.auth);
+  const adminAuth = useSelector(state => state.adminAuth);
   const user = useSelector(state => state.user);
   const dispatch = useDispatch();
 
@@ -48,19 +48,19 @@ const AdminAccountSignup = (props) => {
         }
       }
     }
-    const user = {
+    const admin = {
       fullName,
       mobile,
       password
     }
-    dispatch(adminSignup(user));
+    dispatch(adminSignup(admin));
   }
 
-  if(auth.adminAuthenticate){
+  if(adminAuth.adminAuthenticate){
     return <Redirect to={`/admin/home`} />
   }
 
-  if(auth.loading){
+  if(adminAuth.loading){
     return <p>Loading...!</p>
   }
 
