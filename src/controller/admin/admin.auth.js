@@ -52,7 +52,7 @@ exports.signin = (req, res) => {
         if(admin){
             const isPasswordMatch = admin.authenticate(req.body.password)
             if(isPasswordMatch && admin.role === 'admin'){
-                const token = jwt.sign({id: admin._id, role: admin.role, fullName:admin.fullName}, process.env.JWT_SECRET,{expiresIn: '1h'});
+                const adminToken = jwt.sign({id: admin._id, role: admin.role, fullName:admin.fullName}, process.env.JWT_SECRET,{expiresIn: '1h'});
                 const {
                     _id,
                     fullName,
@@ -60,11 +60,11 @@ exports.signin = (req, res) => {
                     role
                 } = admin;
 
-                res.cookie('token', token, { expiresIn: '1h'});
+                res.cookie('adminToken', adminToken, { expiresIn: '1h'});
 
                 res.status(200).json({
-                    token,
-                    user: {
+                    adminToken,
+                    admin: {
                         _id,mobile, role, fullName
                     }
                 });
