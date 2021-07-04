@@ -24,7 +24,7 @@ exports.createProduct = (req, res) => {
         productPictures,
         subCategory,
         category,
-        createdBy: req.auth.id
+        createdBy: req.adminAuth.id
     });
 
     product.save((error, product)=> {
@@ -46,7 +46,7 @@ exports.updateProducts = async (req, res) => {
            description,
            subCategory,
            category,
-           updatedBy : req.auth.id
+           updatedBy : req.adminAuth.id
        };
        if(category !== ""){
            product.category = category;
@@ -56,7 +56,7 @@ exports.updateProducts = async (req, res) => {
 }
 
 exports.getProduct = (req, res) => {
-    const createdBy = req.auth.id;
+    const createdBy = req.adminAuth.id;
     if(createdBy){
         Product.find({})
         .select('category subCategory createdAt createdBy description name price productPictures quantity reviews slug updatedAt _id')
