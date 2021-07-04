@@ -1,7 +1,7 @@
 //impors
 const express = require('express');
 const { addCategory, getCategories, updateCategories, deleteCategories, getCategory} = require('../controller/category');
-const { requireSignin, adminMiddleware} = require('../common-middleware');
+const { requireAdminSignin, adminMiddleware} = require('../common-middleware');
 const router = express.Router();
 const multer = require('multer');
 const shortid = require('shortid');
@@ -20,9 +20,9 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 //api (endpoints)
-router.post('/category/create',requireSignin,adminMiddleware,upload.single('categoryImage'),addCategory);
+router.post('/category/create',requireAdminSignin,adminMiddleware,upload.single('categoryImage'),addCategory);
 router.get('/category/getCategory', getCategories);
-router.post('/category/update',requireSignin,adminMiddleware, upload.array('categoryImage'), updateCategories);
-router.post('/category/delete', requireSignin, adminMiddleware, deleteCategories);
+router.post('/category/update',requireAdminSignin,adminMiddleware, updateCategories);
+router.post('/category/delete', requireAdminSignin, adminMiddleware, deleteCategories);
 
 module.exports = router;
