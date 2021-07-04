@@ -5,9 +5,9 @@ import {Route, Redirect} from 'react-router-dom';
 const PrivateRoute = ({component: Componenet, ...rest}) => {
     return <Route {...rest} component={(props) => {
 
-        //creating const "token" that get items from localStorage
-        const token = window.localStorage.getItem('token');
-        if(token){
+        //creating const "adminToken" that get items from localStorage
+        const adminToken = window.localStorage.getItem('adminToken');
+        if(adminToken){
             return <Componenet {...props} />
         }else{
             return <Redirect to={`/admin/signin`}/>

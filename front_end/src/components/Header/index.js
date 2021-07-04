@@ -7,7 +7,7 @@ import Modal from '../../components/UI/Modal';
 import Input from '../../components/UI/Input';
 import logo from './images/Logo/logo.jpg';
 import './style.css';
-import { isUserLoggedIn, userLogin, userSignout, userSignup, isAdminLoggedIn, adminSignout} from '../../actions/auth.action';
+import { isUserLoggedIn, userLogin, userSignout, userSignup, isAdminLoggedIn, adminSignout} from '../../actions';
 import {toast, Zoom} from 'react-toastify';
 
 /**
@@ -20,6 +20,7 @@ toast.configure();
 const Header = (props) => {
   
   const auth = useSelector(state => state.auth);
+  const adminAuth = useSelector(state => state.adminAuth);
   const dispatch = useDispatch();
 
   const [mobile, setMobile] = useState('');
@@ -35,7 +36,7 @@ const Header = (props) => {
   var params = currentUrl.split('3000/')[1];
   
   useEffect(() => {
-    if(params === "admin/signin" || params === "admin/signup" || 
+    if(params === "admin/signin" || params === "admin/signup" ||
        params === "admin/home" || params === "admin/products" ||
        params === "admin/category" || params === "admin/orders"){
       setCheck(true);
@@ -289,7 +290,7 @@ return (
                <Nav className="mr-auto">
                </Nav>
                {!check ? (auth.userAuthenticate ? renderUserLoggedInLinks() : renderUserNonLoggedInLinks()):null}
-               {check ? (auth.adminAuthenticate ? renderAdminLoggedInLinks() : renderAdminNonLoggedInLinks()) : null}
+               {check ? (adminAuth.adminAuthenticate ? renderAdminLoggedInLinks() : renderAdminNonLoggedInLinks()) : null}
 
             </Navbar.Collapse>
         </Container>
