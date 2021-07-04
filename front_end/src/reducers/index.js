@@ -8,12 +8,14 @@ import productReducer from './product.reducer';
 import userReducer from './user.reducer';
 import checkoutReducer from './checkout.reducer';
 import orderReducer from './order.reducer';
+import adminAuthReducer from './adminAuth.reducer';
 
 //creating variable rootReducer
 const rootReducer = combineReducers({
     category: categoryReducer,
     product: productReducer,
     auth: authReducer,
+    adminAuth: adminAuthReducer,
     user: userReducer,
     cart: cartReducer,
     checkout: checkoutReducer,
