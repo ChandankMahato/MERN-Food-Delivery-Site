@@ -7,7 +7,7 @@ import CheckoutPage from './containers/CheckoutPage';
 import { useDispatch, useSelector } from 'react-redux';
 import About from './containers/About';
 
-import { getAdminInitialData, getCartItems, isAdminLoggedIn, isUserLoggedIn, updateCart } from './actions';
+import { getAdminInitialData, isAdminLoggedIn, isUserLoggedIn, updateCart } from './actions';
 import AdminAccountSignin from './containers/Admin/Signin';
 import AdminAccountSignup from './containers/Admin/Signup';
 import PrivateRoute from './components/Admin/HOC/PrivateRoute';
@@ -24,6 +24,7 @@ function App() {
 
   const dispatch = useDispatch( );
   const auth = useSelector(state => state.auth);
+  const adminAuth = useSelector(state => state.adminAuth);
 
   const [check, setCheck] = useState(false);
 
@@ -32,7 +33,7 @@ function App() {
   console.log('hello');
   
   useEffect(() => {
-    if(params === "admin/signin" || params === "admin/signup" || 
+    if(params === "admin/signin" || params === "admin/signup" ||
        params === "admin/home" || params === "admin/products" ||
        params === "admin/category" || params === "admin/orders"){
       setCheck(true);
@@ -40,23 +41,18 @@ function App() {
   },[params])
 
   useEffect(() => {
-    if(!auth.userAuthenticate && check === false){
+    if(!auth.userAuthenticate){
       dispatch(isUserLoggedIn());
     }
-    dispatch(updateCart());
-  }, [auth.userAuthenticate]);
+    dispatch(updateCart);
+  },[auth.userAuthenticate]);
 
   useEffect(() => {
-    if(!auth.adminAuthenticate && check === true){
+    if(!adminAuth.adminAuthenticate){
       dispatch(isAdminLoggedIn());
     }
-  }, [auth.adminAuthenticate]);
-
-  useEffect(() => {
-    if(auth.adminAuthenticate && check === true){
-      dispatch(getAdminInitialData());
-    }
-  },[auth.adminAuthenticate]);
+    dispatch(getAdminInitialData());
+  },[adminAuth.adminAuthenticate]);
   
  
   return (
