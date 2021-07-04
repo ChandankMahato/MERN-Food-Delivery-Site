@@ -1,4 +1,5 @@
-import axios from "../helpers/axios"
+import axios from "../helpers/axios";
+import adminAxios from '../helpers/adminAxios';
 import { categoryConstants } from "./constants";
 
 export const getAllCategory = () =>{
@@ -28,7 +29,7 @@ export const getAllCategory = () =>{
 export const adminAddCategory = (form) => {
     return async dispatch => {
         dispatch({ type: categoryConstants.ADD_NEW_CATEGORY_REQUEST});
-        const res = await axios.post('/category/create', form);
+        const res = await adminAxios.post('/category/create', form);
         if(res.status === 201){
             dispatch({
                 type: categoryConstants.ADD_NEW_CATEGORY_SUCCESS,
@@ -48,7 +49,7 @@ export const adminAddCategory = (form) => {
 export const adminUpdateCategories = (form) => {
     return async dispatch => {
         dispatch({type: categoryConstants.UPDATE_CATEGORIES_REQUEST});
-        const res = await axios.post(`/category/update`, form);
+        const res = await adminAxios.post(`/category/update`, form);
         if(res.status === 201){
             dispatch({ type: categoryConstants.UPDATE_CATEGORIES_SUCCESS});
             return true;
@@ -66,7 +67,7 @@ export const adminUpdateCategories = (form) => {
 export const adminDeleteCategories = (ids) => {
     return async dispatch => {
         dispatch({ type: categoryConstants.DELETE_CATEGORIES_REQUEST});
-        const res = await axios.post(`/category/delete`, {
+        const res = await adminAxios.post(`/category/delete`, {
             payload: {
                 ids
             }

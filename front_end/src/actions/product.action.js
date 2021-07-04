@@ -1,3 +1,4 @@
+import adminAxios from "../helpers/adminAxios";
 import axios from "../helpers/axios";
 import { productConstants, categoryConstants, orderConstants } from "./constants";
 
@@ -64,7 +65,7 @@ export const getUserInitialData = () => {
 export const getAdminProducts = () => {
     return async (dispatch) => {
         dispatch({ type: productConstants.GET_ALL_PRODUCTS_REQUEST});
-        const res = await axios.get(`/products/getProducts`);
+        const res = await adminAxios.get(`/products/getProducts`);
         if(res.status === 200){
             const {products} = res.data;
             dispatch({
@@ -81,7 +82,7 @@ export const addAdminProduct = (payload) => {
     console.log(payload);
     return async (dispatch) => {
         dispatch({ type: productConstants.ADD_PRODUCT_REQUEST});
-        const res = await axios.post(`/product/create`,payload);
+        const res = await adminAxios.post(`/product/create`,payload);
         if(res.status === 201){
            dispatch({ type: productConstants.ADD_PRODUCT_SUCCESS});
            return true;
@@ -95,7 +96,7 @@ export const adminUpdateProduct = (payload) => {
     console.log(payload);
     return async (dispatch)=>{
         dispatch({type:productConstants.PRODUCT_EDIT_REQUEST});
-        const res = await axios.post(`/Product/updateProduct`, payload);
+        const res = await adminAxios.post(`/Product/updateProduct`, payload);
         if(res.status === 202){
             dispatch({type: productConstants.PRODUCT_EDIT_SUCCESS});
             return true;
@@ -109,7 +110,7 @@ export const deleteAdminProductById = (payload) => {
     return async(dispatch) => {
         console.log('hello');
         dispatch({type: productConstants.DELETE_PRODUCT_BY_ID_REQUEST});
-        const res = await axios.post(`/products/delete`,{
+        const res = await adminAxios.post(`/products/delete`,{
            payload
         });
         //console.log('hello');
@@ -131,7 +132,7 @@ export const deleteAdminProductById = (payload) => {
 
 export const getAdminInitialData = () => {
     return async dispatch => {
-        const res = await axios.post(`/initialData`);
+        const res = await adminAxios.post(`/initialData`);
         if(res.status === 200){
             const { categories, products, orders} = res.data;
             dispatch({

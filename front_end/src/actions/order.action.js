@@ -1,3 +1,4 @@
+import adminAxios from "../helpers/adminAxios";
 import axios from "../helpers/axios";
 import { orderConstants } from "./constants";
 
@@ -21,17 +22,23 @@ export const adminGetCustomerOrders = () => {
     }
 }
 
-// export const adminUpdateOrder = (payload) => {
-//     dispatch({type: orderConstants.UPDATE_CUSTOMER_ORDER_REQUEST});
-//     const res = await axios.post(`/updateorder`, payload);
-//     if(res.statsu === 201){
-//         dispatch({ type: orderConstants.UPDATE_CUSTOMER_ORDER_SUCCESS});
-//         dispatch(getCustomerOrders());
-//     }else{
-//         const {error} = res.data;
-//         dispatch({
-//             type: orderConstants.UPDATE_CUSTOMER_ORDER_FAILURE,
-//             payload: {error},
-//         });
-//     }
-// }
+export const adminUpdateOrder = (payload) => {
+    return async (dispatch) => {
+        dispatch({type: orderConstants.UPDATE_CUSTOMER_ORDER_REQUEST});
+        try{
+            const res = await adminAxios.post(`/admin/order/update`, payload);
+            if(res.status === 201){
+                dispatch({ type: orderConstants.UPDATE_CUSTOMER_ORDER_SUCCESS});
+            }else{
+                const {error} = res.data;
+                dispatch({
+                    type: orderConstants.UPDATE_CUSTOMER_ORDER_FAILURE,
+                    payload: {error},
+                });
+            }
+        }catch(error){
+            console.log(error)
+        }
+    }
+    
+}
