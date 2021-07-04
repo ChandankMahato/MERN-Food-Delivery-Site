@@ -7,7 +7,7 @@ exports.addCategory = (req, res) => {
     const categoryObj = {
         name: req.body.name,
         slug: `${slugify(req.body.name)}-${shortid.generate()}`,//keeping name itself as slug
-        createdBy: req.auth.id
+        createdBy: req.adminAuth.id
     }
 
     if(req.file){
@@ -41,7 +41,7 @@ exports.updateCategories = async (req, res) => {
                 name: name[i],
                 //WORK ON SLUG WILL BE DONE LATER
                 //slug: `${slugify(req.body.name)}-${shortid.generate()}`,//keeping name itself as slug
-                updatedBy: req.auth.id
+                updatedBy: req.adminAuth.id
             };
 
             const updatedCategory= await Category.findOneAndUpdate({ _id: _id[i]}, category, {new: true});
@@ -53,7 +53,7 @@ exports.updateCategories = async (req, res) => {
         const category = {
             name,
             //slug: `${slugify(req.body.name)}-${shortid.generate()}`,//keeping name itself as slug
-            updatedBy : req.auth.id
+            updatedBy : req.adminAuth.id
         };
 
         const updatedCategory= await Category.findOneAndUpdate({ _id }, category, {new: true});
