@@ -1,0 +1,59 @@
+
+.KotContainer{
+    width: 90%;
+    margin-left: 2.5%;
+    margin-top: 2em;
+    text-align: center;
+}
+
+@media screen and (max-width: 600px){
+    .Kot{
+        display: block;
+        width: 96%;
+        margin:1%;
+    }
+}
+
+@media screen and (min-width: 600px) {
+    .KOT{
+        display: inline-block;
+        width:23%;
+    }
+}
+
+.KOT{
+    text-align: center;
+    vertical-align:top;
+    margin:1%;
+    color: #ffffff;
+    border-radius: 1em;
+    background-color: #4d4d4d;
+}
+
+.KotBill, .KotItem, .KotTime{
+    width: 100%;
+}
+.KotBill, .KotTime {
+    height: 2em;
+}
+
+
+.insideKotItem{
+    display: flex;
+    justify-content: center;
+}
+
+.orderStatus{
+    border-bottom-left-radius: 10px;
+    width: 60%;
+    height: 2em;
+    border-style: none;
+    background-color: lightgrey;
+}
+.statusBtn{
+    border-bottom-right-radius: 10px;
+    height: 2em;
+    width: 40%;
+    border-style: none;
+    background-color: lightgrey;
+}

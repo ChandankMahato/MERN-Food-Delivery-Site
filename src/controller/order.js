@@ -42,7 +42,7 @@ exports.addOrder = (req, res) => {
 exports.getOrders = (req, res) => {
 
     Order.find({ userId: req.auth.id})
-    .select('_id userId addressId totalAmount items paymentStatus paymentType orderStatus')
+    .select('_id userId addressId totalAmount items paymentStatus paymentType orderStatus, dbStatus')
     .populate('userId', '_id fullName mobile password')
     .populate('items.productId', '_id name slug price description productPictures subCategory category')
     .populate('addressId','customerAddress')

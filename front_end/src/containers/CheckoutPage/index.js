@@ -244,7 +244,8 @@ const CheckoutPage = (props) => {
       items,
       paymentStatus: "PENDING",
       paymentType: "COD",
-      orderStatus: "ORDERED"
+      orderStatus: "ORDERED",
+      dbStatus: "CR",
     };
     
     console.log(payload);

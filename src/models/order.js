@@ -28,9 +28,11 @@ const orderSchema = new mongoose.Schema({
     },
     address_landmark:{
         type: String,
+        required: true
     },
     address_alternatePhone:{
         type: Number,
+        required: true
     },
     address_addressType:{
         type: String,
@@ -70,11 +72,24 @@ const orderSchema = new mongoose.Schema({
         enum: ["COD", "CARD"],
         required: true,
     },
+    dbStatus:[
+        {
+            dbtype: {
+                type: String,
+                enum: ["CR","B1", "B2", "B3", "B4", "B5"],
+                default: "CR",
+            },
+            isSelected: {
+                type: Boolean,
+                default: false,
+            },
+        },
+    ],
     orderStatus: [
         {
             type: {
                 type: String,
-                enum: ["ORDERED", "PACKED", "SHIPPED", "DELIVERED"],
+                enum: ["ORDERED", "COOKED", "PACKED", "ON THE WAY", "DELIVERED"],
                 default: "ORDERED",
             },
             date: {

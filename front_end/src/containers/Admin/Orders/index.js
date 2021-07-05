@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Modal from '../../../components/UI/Modal';
 import { generatePublicUrl } from '../../../urlConfig';
 import './style.css';
-import { adminUpdateOrder } from '../../../actions/order.action';
+import { adminUpdateDBStatus, adminUpdateOrder } from '../../../actions/order.action';
 
 /**
 * @author
@@ -18,6 +18,7 @@ const AdminOrders = (props) => {
   const [orderDetails, setOrderDetails] = useState(null);
   const order = useSelector(state => state.order);
   const [type, setType] = useState("");
+  const [dbtype, setDBType] = useState("");
   const dispatch = useDispatch();
 
   const renderProducts = () => {
@@ -35,6 +36,13 @@ const AdminOrders = (props) => {
       dispatch(adminUpdateOrder(payload));
     };
 
+    const onDBStatusUpdate = (orderId) => {
+      const payload = {
+        orderId, 
+        dbtype,
+      };
+      dispatch(adminUpdateDBStatus(payload));
+    }
     return (
       <Table style={{fontSize: '15px'}} responsive="sm">
         <thead>
@@ -50,9 +58,9 @@ const AdminOrders = (props) => {
         </thead>
         <tbody>
           {order.orders.length > 0
-            ? order.orders.map((order) => (
+            ? order.orders.map((order, index) => (
               <tr key={order._id}>
-                <td>2</td>
+                <td>{index+1}</td>
                 <td>{order.address_name}</td>
                 <td>{order.address_mobileNumber}</td>
                 <td>{order.totalAmount}</td>
@@ -63,7 +71,7 @@ const AdminOrders = (props) => {
                     info
                   </button>
                   <select onChange={(e) => setType(e.target.value)}>
-                  <option value={""}>Select Status</option>
+                  <option value={""}>Order Status</option>
                     {order.orderStatus.map((status) => {
                       return(
                       <>
@@ -79,6 +87,26 @@ const AdminOrders = (props) => {
                     })}
                   </select>
                   <button onClick = {() => onOrderUpdate(order._id)}>
+                    confirm
+                  </button>
+
+                  <select onChange={(e) => setDBType(e.target.value)}>
+                  <option value={""}>DB Status</option>
+                    {order.dbStatus.map((status) => {
+                      return(
+                      <>
+                        {!status.isSelected ? (
+                          <option 
+                          key={status.dbtype} 
+                          value={status.dbtype}
+                          >
+                            {status.dbtype}
+                          </option>
+                         ) : null}
+                      </>)
+                    })}
+                  </select>
+                  <button onClick = {() => onDBStatusUpdate(order._id)}>
                     confirm
                   </button>
                 </td>

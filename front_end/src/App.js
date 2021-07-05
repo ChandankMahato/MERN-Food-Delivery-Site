@@ -17,6 +17,7 @@ import AdminProducts from './containers/Admin/Products';
 import AdminOrders from './containers/Admin/Orders';
 import {toast, ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import KOT from './containers/Admin/KOT';
 
 toast.configure();
 
@@ -65,6 +66,7 @@ function App() {
           <Route path="/about" component={About} />
 
           {/* admin starts here */}
+          <PrivateRoute path="/KOT" component={KOT}/>
           <PrivateRoute path="/admin/home" exact component={AdminHome}/>
           <PrivateRoute path="/admin/category" component={AdminCategory}/>
           <PrivateRoute path="/admin/products"component={AdminProducts} />

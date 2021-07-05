@@ -31,8 +31,4 @@ const categorySchema = new mongoose.Schema({
     }
 }, {timestamps: true });
 
-
-//accessing a model
-// const MyModel = mongoose.model9('ModelName', mySchema);
-
 module.exports = mongoose.model('Category', categorySchema);
