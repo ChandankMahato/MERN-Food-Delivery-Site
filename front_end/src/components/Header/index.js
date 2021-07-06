@@ -249,6 +249,12 @@ const renderAdminLoggedInLinks = () => {
             <li className="nav-item">
                 <span className="nav-link" onClick={adminLogout} >Logout</span>
             </li>
+            <li className="sidebar-item"><NavLink to={`/`} exact style={{color:'#ffba4a'}}>Home</NavLink></li>
+            <li className="sidebar-item"><NavLink to={`/category`} style={{color:'#ffba4a'}}>Category</NavLink></li>
+            <li className="sidebar-item"><NavLink to={`/products`} style={{color:'#ffba4a'}}>Products</NavLink></li>
+            <li className="sidebar-item"><NavLink to={`/orders`} style={{color:'#ffba4a'}}>Order</NavLink></li>
+            <li className="sidebar-item"><NavLink to={`/KOT`} style={{color:'#ffba4a'}}>KOT</NavLink></li>
+            <li className="sidebar-item"><NavLink to={`/BILL`} style={{color:'#ffba4a'}}>BILL</NavLink></li>
         </Nav>
     );
 }

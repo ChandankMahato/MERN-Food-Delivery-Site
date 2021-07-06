@@ -18,6 +18,7 @@ import AdminOrders from './containers/Admin/Orders';
 import {toast, ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import KOT from './containers/Admin/KOT';
+import BILL from './containers/Admin/BILL';
 
 toast.configure();
 
@@ -71,6 +72,7 @@ function App() {
           <PrivateRoute path="/admin/category" component={AdminCategory}/>
           <PrivateRoute path="/admin/products"component={AdminProducts} />
           <PrivateRoute path="/admin/orders" component={AdminOrders}/>
+          <PrivateRoute path="/BILL" component={BILL}/>
           <Route path="/admin/signin" component={AdminAccountSignin}/>
           <Route path="/admin/signup" component={AdminAccountSignup}/>
         </Switch>

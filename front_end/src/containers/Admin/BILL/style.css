@@ -15,7 +15,7 @@
 @media screen and (min-width: 600px) {
     .KOT{
         display: inline-block;
-        width:33%;
+        width:45%;
     }
 }
 
@@ -58,6 +58,17 @@
 .qtyInsideKotItem{
     width: 10%;
     float: right;
+}
+
+.customerDetailsHeading{
+    background-color: #4d4d4d;
+    width: 100%;
+    text-align: center;
+}
+
+.customerDetails{
+    background-color: gray;
+    display: flex;
 }
 
 .orderStatus{

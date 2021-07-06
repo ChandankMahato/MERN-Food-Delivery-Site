@@ -1,14 +1,18 @@
-
 .navbar-brand > img{
     border-radius: 25px;
     margin-right: 5px;
 }
 
-.nav-link{
-    color: #ffffff;
+
+@media screen and (max-width: 770px){
+    .sidebar-item{
+        display: block;
+    }
 }
 
-.nav-link:hover{
-    cursor: pointer;
-    color: #ffba6a;
+@media screen and (min-width: 770px) {
+    
+.sidebar-item{
+    display: none;
+}
 }
