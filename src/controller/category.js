@@ -29,6 +29,8 @@ exports.addCategory = (req, res) => {
 exports.updateCategories = async (req, res) => {
 
     const {_id, name} = req.body;
+    console.log(_id);
+    console.log(name);
     
     const updatedCategories = [];
 

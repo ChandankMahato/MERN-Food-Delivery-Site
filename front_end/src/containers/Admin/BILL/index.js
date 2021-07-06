@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { adminUpdateOrder } from '../../../actions';
+import {adminUpdateOrder} from '../../../actions';
 import Layout from '../../../components/Admin/Layout';
-import './style.css';
+import './Billstyle.css';
 
 /**
 * @author
@@ -17,43 +17,52 @@ const BILL = (props) => {
 
   const [base, setBase] = useState('');
   const [count, setCount] = useState(0);
+  const [temp1, setTemp1] = useState(1);
+  const [temp2, setTemp2] = useState(2);
 
   const [type, setType] = useState("");
   const dispatch = useDispatch();
 
 
   useEffect(() => {
-    const authNumber = adminAuth.user.mobile;
+    const authNumber = adminAuth.admin.mobile;
     switch (authNumber){
       case 1111111111:
-        setBase('B1');
-        setCount(1);
+          setBase('B1');
+          setCount(1);
+          setTemp1(2);
+          setTemp2(4);
         break;
       case 2222222222:
           setBase('B2');
           setCount(2);
+          setTemp1(2);
+          setTemp2(4);
         break;
       case 3333333333:
           setBase('B3');
           setCount(3);
+          setTemp1(2);
+          setTemp2(4);
           break;
       case 4444444444:
           setBase('B4');
           setCount(4);
+          setTemp1(2);
+          setTemp2(4);
           break;
       case 5555555555:
           setBase('B5');
           setCount(5);
+          setTemp1(2);
+          setTemp2(4);
           break;
       default:
-        setBase('CR');
-        setCount(0);
+          setBase('CR');
+          setCount(0);
         break;
     }
-  }, [adminAuth.user.mobile]);
-
-
-    console.log('hello', base);
+  }, [adminAuth.admin.mobile]);
   
 const showDate = (date) => {
     //converting UTC to GMT
@@ -77,40 +86,34 @@ const onOrderUpdate = (orderId) =>{
   return(
     <Layout sidebar>
        
-            <div className="KotContainer">
+            <div className="billKotContainer">
               {
                 order.orders.map((order,index) => (
-                  (order.orderStatus[2].isCompleted === true &&
-                   order.orderStatus[3].isCompleted === false && 
-                   order.orderStatus[4].isCompleted === false &&
+                  (order.orderStatus[temp1].isCompleted === true &&
+                   order.orderStatus[temp2].isCompleted === false &&
                    order.dbStatus[count].dbtype === base && 
                    order.dbStatus[count].isSelected === true 
                    ? 
-                   <div className="KOT">
-                      <div className="KotBill">
+                   <div className="billKOT">
+                      <div className="billKotBill">
                           Bill No: {index+ 1}
                       </div>
 
-                      <div className="KotItem">
+                      <div className="billKotItem">
                         <>
-                          <div className="productsQty">
-                            <span className="productsHeading">Products Name</span>
-                            <span className="QtyHeading">Qty</span>
+                          <div className="billproductsQty">
+                            <span className="billproductsHeading">Products Name</span>
+                            <span className="billQtyHeading">Qty</span>
                           </div>
 
                           {order.items.map((item, index) => (
                             
-                            <div className="itemAndQty">
+                            <div className="billitemAndQty">
                             
-                              <div className="insideKotItem">
-                                  {item.productId.subCategory}
-                                  &nbsp;
+                              <div className="billinsideKotItem">
                                   {item.productId.name} 
-                                  &nbsp;
-                                  ({item.categoryId.name})
-                                  &nbsp;
                               </div>
-                              <div className="qtyInsideKotItem">
+                              <div className="billqtyInsideKotItem">
                                   {item.purchasedQty}
                               </div>
                             </div>
@@ -118,18 +121,18 @@ const onOrderUpdate = (orderId) =>{
                         </>
                       </div>
 
-                      <div className="customerDetailsHeading">
+                      <div className="billcustomerDetailsHeading">
                         <span>Customer Details</span>
                       </div>
 
-                      <div className="customerDetails">
-                        <div className="title">
+                      <div className="billcustomerDetails">
+                        <div className="billtitle">
                             <div>Name: </div>
                             <div>Mobile: </div>
                             <div>Address: </div>
                             <div>Amount: </div>
                         </div>
-                        <div className="details">
+                        <div className="billdetails">
                           <div>&nbsp;&nbsp;{order.address_name}</div>
                           <div>&nbsp;&nbsp;{order.address_mobileNumber} / {order.address_alternatePhone}</div>
                           <div>&nbsp;&nbsp;{order.address_address},&nbsp;{order.address_locality},&nbsp;{order.address_landmark}</div>
@@ -138,12 +141,12 @@ const onOrderUpdate = (orderId) =>{
 
                       </div>
 
-                      <div className="KotTime">
+                      <div className="billKotTime">
                             {showDate(order.createdAt)}
                       </div>
 
-                      <div className="status">
-                        <select className="orderStatus" onChange={(e) => setType(e.target.value)}>
+                      <div className="billstatus">
+                        <select className="billorderStatus" onChange={(e) => setType(e.target.value)}>
                           <option value={""}>Order Status</option>
                             {order.orderStatus.map((status) => {
                               return(
@@ -159,7 +162,7 @@ const onOrderUpdate = (orderId) =>{
                               </>)
                             })}
                           </select>
-                          <button className="statusBtn" onClick = {() => onOrderUpdate(order._id)}>
+                          <button className="billstatusBtn" onClick = {() => onOrderUpdate(order._id)}>
                             confirm
                           </button>
                         </div>

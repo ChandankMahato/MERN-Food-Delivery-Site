@@ -5,8 +5,9 @@ import Bbuttons from './Button/button';
 import Price from './Price/price';
 import Items from './Item/items';
 import './style.css';
-import {useSelector } from 'react-redux';
+import {useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { getCartItems } from '../../actions';
 
 /**
 * @author
@@ -14,6 +15,12 @@ import { useHistory } from 'react-router-dom';
 **/
 
 const Cart = (props) => {
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getCartItems());
+  },[]);
 
   let history = useHistory();
   const cart = useSelector(state => state.cart);

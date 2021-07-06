@@ -1,83 +1,83 @@
 
-.KotContainer{
+.billKotContainer{
     width: 95%;
     margin-left: 2.5%;
     margin-top: 2em;
 }
 
 @media screen and (max-width: 600px){
-    .Kot{
+    .billKot{
         display: block;
         width: 100%;
     }
 }
 
 @media screen and (min-width: 600px) {
-    .KOT{
+    .billKOT{
         display: inline-block;
         width:45%;
     }
 }
 
-.KOT{
+.billKOT{
     vertical-align:top;
     color: #ffffff;
     padding: 2%; 
 }
 
-.KotBill, .KotTime {
+.billKotBill, .billKotTime {
     text-align: center;
     height: 2em;
     background-color: green;
 }
 
-.productsQty{
+.billproductsQty{
     width: 100%;
     background-color: #4d4d4d;
 }
 
-.productsHeading{
+.billproductsHeading{
     margin-left: 1em;
 }
 
-.QtyHeading{
+.billQtyHeading{
     float: right;
     margin-right: 0.8em;
 }
 
-.itemAndQty{
+.billitemAndQty{
     background-color: gray;
     display: flex;
 }
 
-.insideKotItem{
+.billinsideKotItem{
     width: 88%;
     margin-left: 1em;
 }
 
-.qtyInsideKotItem{
+.billqtyInsideKotItem{
     width: 10%;
     float: right;
 }
 
-.customerDetailsHeading{
+.billcustomerDetailsHeading{
     background-color: #4d4d4d;
     width: 100%;
     text-align: center;
 }
 
-.customerDetails{
+.billcustomerDetails{
     background-color: gray;
     display: flex;
 }
 
-.orderStatus{
+.billorderStatus{
     width: 60%;
     height: 2em;
     border-style: none;
     background-color: lightgrey;
 }
-.statusBtn{
+.billstatusBtn{
     height: 2em;
     width: 40%;
     border-style: none;

@@ -14,7 +14,6 @@ const UpdateCategoriesModal = (props) => {
         save,
         checkedArray,
         handleCategoryInput,
-        handleCategoryImage
     } = props;
 
     return (
@@ -44,10 +43,6 @@ const UpdateCategoriesModal = (props) => {
                     </Row>
                 )
             }
-            <p></p>
-
-             {/* //input for category image */}
-            <input type="file" name="categoryImage" onChange={handleCategoryImage} />
         </Modal >
     );
 }

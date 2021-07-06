@@ -9,6 +9,32 @@ exports.addOrder = (req, res) => {
         if(error) return res.status(400).json({error});
         if(result){
             req.body.userId = req.auth.id;
+            req.body.dbStatus = [
+                {
+                    dbtype: "CR",
+                    isSelected: true,
+                },
+                {
+                    dbtype: "B1",
+                    isSelected: false,
+                },
+                {
+                    dbtype: "B2",
+                    isSelected: false,
+                },
+                {
+                    dbtype: "B3",
+                    isSelected: false,
+                },
+                {
+                    dbtype: "B4",
+                    isSelected: false,
+                },
+                {
+                    dbtype: "B5",
+                    isSelected: false,
+                }
+            ];
             req.body.orderStatus = [
                 {
                     type: "ORDERED",
@@ -16,17 +42,21 @@ exports.addOrder = (req, res) => {
                     isCompleted: true,
                 },
                 {
-                    type: "PACKED",
+                    type: "COOKED",
                     isCompleted: false,
                 },
                 {
-                    type: 'SHIPPED',
+                    type: 'PACKED',
+                    isCompleted: false,
+                },
+                {
+                    type: 'ON THE WAY',
                     isCompleted: false,
                 },
                 {
                     type: 'DELIVERED',
                     isCompleted: false,
-                },
+                }
             ];
             const order = new Order(req.body);
             order.save((error, order) => {
@@ -44,7 +74,7 @@ exports.getOrders = (req, res) => {
     Order.find({ userId: req.auth.id})
     .select('_id userId addressId totalAmount items paymentStatus paymentType orderStatus, dbStatus')
     .populate('userId', '_id fullName mobile password')
-    .populate('items.productId', '_id name slug price description productPictures subCategory category')
+    .populate('items.productId', '_id name slug price description productPictures category')
     .populate('addressId','customerAddress')
     .exec((error, order) => {
         if(error) res.status(400).json({error});

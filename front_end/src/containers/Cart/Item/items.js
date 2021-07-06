@@ -26,13 +26,13 @@ const Items = (props) => {
     }, [auth.userAuthenticate]);
 
     const onQuantityIncrement = (_id, qty) => {
-        const { name, price, img, subCategory, category } = cartItems[_id];
-        dispatch(addToCart({ _id, name, price, img, subCategory, category }, 1));
+        const { name, price, img, category } = cartItems[_id];
+        dispatch(addToCart({ _id, name, price, img, category }, 1));
     }
 
     const onQuantityDecrement = (_id, qty) => {
-        const { name, price, img, subCategory, category } = cartItems[_id];
-        dispatch(addToCart({ _id, name, price, img, subCategory, category }, -1));
+        const { name, price, img, category } = cartItems[_id];
+        dispatch(addToCart({ _id, name, price, img, category }, -1));
     }
 
     const onRemoveCartItem = (_id) => {

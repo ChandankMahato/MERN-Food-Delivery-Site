@@ -70,7 +70,8 @@ export const adminSignout = () => {
         const res = await adminAxios.post(`/admin/signout`);
 
         if(res.status === 200){  
-            localStorage.clear();
+            localStorage.removeItem('admin');
+            localStorage.removeItem('adminToken');
             const {message} = res.data;
             dispatch({
                 type: authConstants.ADMIN_LOGOUT_SUCCESS,

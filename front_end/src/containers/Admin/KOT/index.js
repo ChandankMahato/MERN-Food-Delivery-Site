@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { adminUpdateOrder } from '../../../actions';
-import Layout from '../../../containers/Admin/KOT'
+import {adminUpdateOrder} from '../../../actions'
+import Layout from '../../../components/Admin/Layout'
 import './style.css';
 
 /**
@@ -63,12 +63,7 @@ const KOT = (props) => {
                               <div className="itemAndQty">
                                
                                 <div className="insideKotItem">
-                                    {item.productId.subCategory}
-                                    &nbsp;
                                     {item.productId.name} 
-                                    &nbsp;
-                                    ({item.categoryId.name})
-                                    &nbsp;
                                 </div>
                                 <div className="qtyInsideKotItem">
                                     {item.purchasedQty}
@@ -104,7 +99,8 @@ const KOT = (props) => {
                             </button>
                           </div>
   
-                      </div> : null)
+                      </div>
+                      : null)
                             
                         ))
                       }

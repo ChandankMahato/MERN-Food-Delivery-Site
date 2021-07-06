@@ -12,7 +12,7 @@ import { generatePublicUrl } from '../../../urlConfig';
 const CartItem = (props) => {
 
     const [qty, setQty] = useState(props.cartItem.qty);
-    const {_id, name, price, img, subCategory, category} = props.cartItem;
+    const {_id, name, price, img, category} = props.cartItem;
 
     const onQuantityIncrement = () => {
         setQty(qty + 1);
@@ -41,7 +41,7 @@ const CartItem = (props) => {
                   </Col>
 
                   <Col md="6" className="cartProNameContainer">
-                    {subCategory}&nbsp;{name}&nbsp;({category.name})
+                    {name}
                     <h5>Rs. {price}</h5>
                   </Col>
 

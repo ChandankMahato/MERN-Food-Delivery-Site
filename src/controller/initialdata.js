@@ -6,7 +6,7 @@ exports.initialData = async (req, res) => {
     var r=Math.floor(Math.random()*p);
 
     const products = await Product.find().limit(8).skip(r)
-    .select('_id name price quantity slug description productPictures subCategory category')
+    .select('_id name price quantity slug description productPictures category')
     .populate('category', '_id name')
     .exec();
 

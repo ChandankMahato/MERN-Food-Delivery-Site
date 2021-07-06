@@ -63,9 +63,9 @@ const Product = (props) => {
 
   const addCart = () => {
     if(auth.userAuthenticate){
-      const { _id, name, price, subCategory, category } = productDetails;
+      const { _id, name, price, category } = productDetails;
       const img = productDetails.productPictures[0].img;
-      dispatch(addToCart({_id, name,subCategory,category, price, img}));
+      dispatch(addToCart({_id, name,category, price, img}));
       history.push('/cart');
     }else{
       toast.info('Please Login First! No Account? Register',{position: "top-center",})
@@ -89,7 +89,7 @@ const Product = (props) => {
          <div className="productDetailsDiv">
           <Col>
             <label className="key">Name</label>
-            <p className="value">{productDetails.subCategory}&nbsp;{productDetails.name}&nbsp;({productDetails.category.name})</p>
+            <p className="value">{productDetails.name}</p>
           </Col>
 
           <Col>
@@ -169,7 +169,7 @@ const Product = (props) => {
                 </div>
 
                 <div className="productInfo" style={{ 'margin': '5px 0' }}>
-                  <div onClick={() => showProductDetailsModal(product)}>{product.subCategory}&nbsp;{product.name}</div>
+                  <div onClick={() => showProductDetailsModal(product)}>{product.name}</div>
                 </div>
 
                 <div className="productPrice">{product.price}</div>

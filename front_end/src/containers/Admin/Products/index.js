@@ -21,7 +21,6 @@ const AdminProducts = (props) => {
   const [price, setPrice] = useState('');
   const [description, setDiscription] = useState('');
   const [categoryId, setCategoryId] = useState('');
-  const [subCategory, setSubCategory] = useState('');
   const [productPictures, setProductPictures] = useState([]);
 
   const [AddNewProductModal, setAddNewProductModal] = useState(false);
@@ -48,7 +47,6 @@ const AdminProducts = (props) => {
     form.append('quantity', quantity);
     form.append('price', price);
     form.append('description', description);
-    form.append('subCategory', subCategory);
     form.append('category', categoryId);
 
     for (let pic of productPictures){
@@ -67,7 +65,6 @@ const AdminProducts = (props) => {
     setQuantity('');
     setPrice('');
     setDiscription('');
-    setSubCategory('');
     setCategoryId('');
     setProductPictures([]);
   }
@@ -81,7 +78,6 @@ const AdminProducts = (props) => {
       form.append('quantity', quantity);
       form.append('price', price);
       form.append('description', description);
-      form.append('subCategory', subCategory);
       form.append('category', categoryId);
 
       dispatch(adminUpdateProduct(form))
@@ -96,7 +92,6 @@ const AdminProducts = (props) => {
       setQuantity('');
       setPrice('');
       setDiscription('');
-      setSubCategory('');
       setCategoryId('');
       setProductPictures([]);
 
@@ -108,7 +103,6 @@ const AdminProducts = (props) => {
     setProductId(product._id);
     setName(product.name);
     setQuantity(product.quantity);
-    setSubCategory(product.subCategory);
     setCategoryId(product.category._id);
     setPrice(product.price);
     setDiscription(product.description);
@@ -120,7 +114,6 @@ const AdminProducts = (props) => {
     setQuantity('');
     setPrice('');
     setDiscription('');
-    setSubCategory('');
     setCategoryId('');
     setProductPictures([]);
   }
@@ -155,7 +148,6 @@ const AdminProducts = (props) => {
             <th>Name</th>
             <th>Price</th>
             <th>Quantity</th>
-            <th>Sub Category</th>
             <th>Category</th>
             <th>Actions</th>
           </tr>
@@ -168,7 +160,6 @@ const AdminProducts = (props) => {
                 <td>{product.name}</td>
                 <td>{product.price}</td>
                 <td>{product.quantity}</td>
-                <td>{product.subCategory}</td>
                 <td>{product.category.name}</td>
                 <td>
                   <button onClick={() => showProductDetailsModal(product)}>
@@ -237,14 +228,6 @@ const AdminProducts = (props) => {
           onChange={(e) => setDiscription(e.target.value)}
         />
 
-        <Input
-          label="Sub Category"
-          value={subCategory}
-          placeholder={`Sub Category`}
-          onChange={(e) => setSubCategory(e.target.value)}
-        />
-
-
         {/* select input */}
         <select
           className="form-control"
@@ -300,13 +283,6 @@ const AdminProducts = (props) => {
           value={description}
           placeholder={`Description`}
           onChange={(e) => setDiscription(e.target.value)}
-        />
-
-        <Input
-          label="Sub Category"
-          value={subCategory}
-          placeholder={`Sub Category`}
-          onChange={(e) => setSubCategory(e.target.value)}
         />
         <select
           className="form-control"
@@ -364,10 +340,6 @@ const AdminProducts = (props) => {
           <Col md="6">
             <label className="key">Category</label>
             <p className="value">{productDetails.category.name}</p>
-          </Col>
-          <Col md="6">
-            <label className="key">Sub Category</label>
-            <p className="value">{productDetails.subCategory}</p>
           </Col>
         </Row>
 

@@ -1,25 +1,21 @@
 import React, { useState } from 'react';
 import Layout from '../../../components/Admin/Layout';
 import {Container, Row, Col, Table} from 'react-bootstrap';
-import { useDispatch, useSelector } from 'react-redux';
+import {useSelector } from 'react-redux';
 import Modal from '../../../components/UI/Modal';
 import { generatePublicUrl } from '../../../urlConfig';
 import './style.css';
-import { adminUpdateDBStatus, adminUpdateOrder } from '../../../actions/order.action';
 
 /**
 * @author
-* @function AdminOrders
+* @function AdminOrderStatistics
 **/
 
-const AdminOrders = (props) => {
+const AdminOrderStatistics = (props) => {
 
   const [orderDetailsModal, setOrderDetailsModal] = useState(false);
   const [orderDetails, setOrderDetails] = useState(null);
   const order = useSelector(state => state.order);
-  const [type, setType] = useState("");
-  const [dbtype, setDBType] = useState("");
-  const dispatch = useDispatch();
 
   const renderProducts = () => {
 
@@ -28,21 +24,6 @@ const AdminOrders = (props) => {
       setOrderDetailsModal(true);
     }
 
-    const onOrderUpdate = (orderId) =>{
-      const payload = {
-        orderId,
-        type,
-      };
-      dispatch(adminUpdateOrder(payload));
-    };
-
-    const onDBStatusUpdate = (orderId) => {
-      const payload = {
-        orderId, 
-        dbtype,
-      };
-      dispatch(adminUpdateDBStatus(payload));
-    }
     return (
       <Table style={{fontSize: '15px'}} responsive="sm">
         <thead>
@@ -51,8 +32,6 @@ const AdminOrders = (props) => {
             <th>Customer Name</th>
             <th>mobileNumber</th> 
             <th>Total Price</th>
-            <th>Order Status</th>
-            <th>Payment Status</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -64,50 +43,9 @@ const AdminOrders = (props) => {
                 <td>{order.address_name}</td>
                 <td>{order.address_mobileNumber}</td>
                 <td>{order.totalAmount}</td>
-                <td>{order.orderStatus[0].type}</td>
-                <td>{order.paymentStatus}</td>
                 <td>
                   <button onClick={() => showOrderDetailsModal(order)}>
-                    info
-                  </button>
-                  <select onChange={(e) => setType(e.target.value)}>
-                  <option value={""}>Order Status</option>
-                    {order.orderStatus.map((status) => {
-                      return(
-                      <>
-                        {!status.isCompleted ? (
-                          <option 
-                          key={status.type} 
-                          value={status.type}
-                          >
-                            {status.type}
-                          </option>
-                        ) : null}
-                      </>)
-                    })}
-                  </select>
-                  <button onClick = {() => onOrderUpdate(order._id)}>
-                    confirm
-                  </button>
-
-                  <select onChange={(e) => setDBType(e.target.value)}>
-                  <option value={""}>DB Status</option>
-                    {order.dbStatus.map((status) => {
-                      return(
-                      <>
-                        {!status.isSelected ? (
-                          <option 
-                          key={status.dbtype} 
-                          value={status.dbtype}
-                          >
-                            {status.dbtype}
-                          </option>
-                         ) : null}
-                      </>)
-                    })}
-                  </select>
-                  <button onClick = {() => onDBStatusUpdate(order._id)}>
-                    confirm
+                    Details
                   </button>
                 </td>
               </tr>
@@ -181,11 +119,7 @@ const AdminOrders = (props) => {
             <label className="key">Products Name</label>
             {orderDetails.items.map((item, index) => (
               <div className="value" key={index}>
-                {item.productId.subCategory}
-                &nbsp;
                 {item.productId.name}
-                &nbsp;
-                ({item.categoryId.name})
               </div>
             ))}
           </Col>
@@ -208,11 +142,7 @@ const AdminOrders = (props) => {
                   <Row>
                     <div key={index}>
                       <Row className="pName">
-                      {item.productId.subCategory}
-                      &nbsp;
                       {item.productId.name}
-                      &nbsp;
-                      ({item.categoryId.name})
                       </Row>
                       {item.productId.productPictures.map((image,index) => (
                           <div key={index} className="productImgContainer">
@@ -234,17 +164,6 @@ const AdminOrders = (props) => {
           <Col md="6">
             <label className="key">Payment Type</label>
             <p className="value">{orderDetails.paymentType}</p>
-          </Col>
-        </Row>
-
-        <Row>
-          <Col md="6">
-            <label className="key">Payment Status</label>
-            <p className="value">{orderDetails.paymentStatus}</p>
-          </Col>
-          <Col md="6">
-            <label className="key">Order Status</label>
-            <p className="value">{orderDetails.orderStatus[0].type}</p>
           </Col>
         </Row>
 
@@ -271,4 +190,4 @@ const AdminOrders = (props) => {
 
  }
 
-export default AdminOrders
+export default AdminOrderStatistics

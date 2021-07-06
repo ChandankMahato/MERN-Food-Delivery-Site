@@ -15,7 +15,6 @@ const adminAxiosIntance = axios.create({
 
 adminAxiosIntance.interceptors.request.use((req) => {
   const {adminAuth} = store.getState();
-  console.log(adminAuth.adminToken);
   if(adminAuth.adminToken){
     req.headers.Adminauthorization = `Bearer ${adminAuth.adminToken}`;
   }

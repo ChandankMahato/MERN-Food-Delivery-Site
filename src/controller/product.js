@@ -5,7 +5,7 @@ const slugify = require('slugify');
 exports.createProduct = (req, res) => {
 
     const {
-        name, price,quantity, description, category, createdBy, subCategory
+        name, price,quantity, description, category, createdBy
     } = req.body
 
     let productPictures = [];
@@ -22,7 +22,6 @@ exports.createProduct = (req, res) => {
         quantity,
         description,
         productPictures,
-        subCategory,
         category,
         createdBy: req.adminAuth.id
     });
@@ -36,7 +35,7 @@ exports.createProduct = (req, res) => {
 
 exports.updateProducts = async (req, res) => {
 
-   const {_id, name, price,quantity, description, subCategory, category} = req.body;
+   const {_id, name, price,quantity, description, category} = req.body;
 
        const product = {
            _id,
@@ -44,7 +43,6 @@ exports.updateProducts = async (req, res) => {
            price,
            quantity,
            description,
-           subCategory,
            category,
            updatedBy : req.adminAuth.id
        };
@@ -59,7 +57,7 @@ exports.getProduct = (req, res) => {
     const createdBy = req.adminAuth.id;
     if(createdBy){
         Product.find({})
-        .select('category subCategory createdAt createdBy description name price productPictures quantity reviews slug updatedAt _id')
+        .select('category createdAt createdBy description name price productPictures quantity reviews slug updatedAt _id')
         .populate('category', 'name')
         .exec((error, products) => {
             if(error) return res.status(400).json({error});
@@ -91,7 +89,7 @@ exports.deleteProduct = async (req, res) => {
 exports.getProductByCategory = (req, res) => {
     const { categoryId } = req.body;
         Product.find({ category: categoryId})
-        .select('category createdAt createdBy description name price productPictures quantity reviews slug subCategory updatedAt _id')
+        .select('category createdAt createdBy description name price productPictures quantity reviews slug updatedAt _id')
         .populate('category','name _id')
         .exec((error, products) => {
             if(error){

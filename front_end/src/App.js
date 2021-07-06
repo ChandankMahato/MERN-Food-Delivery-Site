@@ -14,17 +14,18 @@ import PrivateRoute from './components/Admin/HOC/PrivateRoute';
 import AdminHome from './containers/Admin/AdminHome';
 import AdminCategory from './containers/Admin/Category';
 import AdminProducts from './containers/Admin/Products';
-import AdminOrders from './containers/Admin/Orders';
 import {toast, ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import KOT from './containers/Admin/KOT';
 import BILL from './containers/Admin/BILL';
+import AdminOrderStatistics from './containers/Admin/Orders/OrderStatistics_index';
+import AdminOrderAction from './containers/Admin/Orders/OrderAction_index';
 
 toast.configure();
 
 function App() {
 
-  const dispatch = useDispatch( );
+  const dispatch = useDispatch();
   const auth = useSelector(state => state.auth);
   const adminAuth = useSelector(state => state.adminAuth);
 
@@ -35,9 +36,15 @@ function App() {
   console.log('hello');
   
   useEffect(() => {
-    if(params === "admin/signin" || params === "admin/signup" ||
-       params === "admin/home" || params === "admin/products" ||
-       params === "admin/category" || params === "admin/orders"){
+    if(params === "admin/signin" || 
+       params === "admin/signup" ||
+       params === "admin/home" || 
+       params === "admin/products" ||
+       params === "admin/category" || 
+       params === "admin/orders/statistics" ||
+       params === "admin/orders/actions" ||
+       params === "admin/KOT" || 
+       params === "admin/BILL"){
       setCheck(true);
     }
   },[params])
@@ -67,12 +74,13 @@ function App() {
           <Route path="/about" component={About} />
 
           {/* admin starts here */}
-          <PrivateRoute path="/KOT" component={KOT}/>
+          <PrivateRoute path="/admin/KOT" component={KOT}/>
           <PrivateRoute path="/admin/home" exact component={AdminHome}/>
           <PrivateRoute path="/admin/category" component={AdminCategory}/>
           <PrivateRoute path="/admin/products"component={AdminProducts} />
-          <PrivateRoute path="/admin/orders" component={AdminOrders}/>
-          <PrivateRoute path="/BILL" component={BILL}/>
+          <PrivateRoute path="/admin/orders/statistics" component={AdminOrderStatistics}/>
+          <PrivateRoute path="/admin/BILL" component={BILL}/>
+          <PrivateRoute path="/admin/orders/actions" component={AdminOrderAction}/>
           <Route path="/admin/signin" component={AdminAccountSignin}/>
           <Route path="/admin/signup" component={AdminAccountSignup}/>
         </Switch>

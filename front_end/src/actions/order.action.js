@@ -49,7 +49,7 @@ export const adminUpdateDBStatus = (payload) => {
     return async (dispatch) => {
         dispatch({type: orderConstants.UPDATE_CUSTOMER_ORDER_REQUEST});
         try{
-            const res = await axios.post(`/admin/order/update/dbStatus`, payload);
+            const res = await adminAxios.post(`/admin/order/update/dbStatus`, payload);
             if(res.status === 201){
                 dispatch({ type: orderConstants.UPDATE_CUSTOMER_ORDER_SUCCESS});
             }else{

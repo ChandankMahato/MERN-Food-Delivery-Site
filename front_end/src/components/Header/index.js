@@ -36,9 +36,15 @@ const Header = (props) => {
   var params = currentUrl.split('3000/')[1];
   
   useEffect(() => {
-    if(params === "admin/signin" || params === "admin/signup" ||
-       params === "admin/home" || params === "admin/products" ||
-       params === "admin/category" || params === "admin/orders"){
+    if(params === "admin/signin" || 
+       params === "admin/signup" ||
+       params === "admin/home" || 
+       params === "admin/products" ||
+       params === "admin/category" || 
+       params === "admin/orders/statistics" ||
+       params === "admin/orders/actions" || 
+       params === "admin/KOT" || 
+       params === "admin/BILL"){
       setCheck(true);
     }
   },[params])
@@ -250,11 +256,12 @@ const renderAdminLoggedInLinks = () => {
                 <span className="nav-link" onClick={adminLogout} >Logout</span>
             </li>
             <li className="sidebar-item"><NavLink to={`/`} exact style={{color:'#ffba4a'}}>Home</NavLink></li>
-            <li className="sidebar-item"><NavLink to={`/category`} style={{color:'#ffba4a'}}>Category</NavLink></li>
-            <li className="sidebar-item"><NavLink to={`/products`} style={{color:'#ffba4a'}}>Products</NavLink></li>
-            <li className="sidebar-item"><NavLink to={`/orders`} style={{color:'#ffba4a'}}>Order</NavLink></li>
-            <li className="sidebar-item"><NavLink to={`/KOT`} style={{color:'#ffba4a'}}>KOT</NavLink></li>
-            <li className="sidebar-item"><NavLink to={`/BILL`} style={{color:'#ffba4a'}}>BILL</NavLink></li>
+            <li className="sidebar-item"><NavLink to={`/admin/category`} style={{color:'#ffba4a'}}>Category</NavLink></li>
+            <li className="sidebar-item"><NavLink to={`/admin/products`} style={{color:'#ffba4a'}}>Products</NavLink></li>
+            <li className="sidebar-item"><NavLink to={`/admin/orders/statistics`} style={{color:'#ffba4a'}}>Order Statistics</NavLink></li>
+            <li className="sidebar-item"><NavLink to={`/admin/orders/actions`} style={{color:'#ffba4a'}}>Order Actions</NavLink></li>
+            <li className="sidebar-item"><NavLink to={`/admin/KOT`} style={{color:'#ffba4a'}}>KOT</NavLink></li>
+            <li className="sidebar-item"><NavLink to={`/admin/BILL`} style={{color:'#ffba4a'}}>BILL</NavLink></li>
         </Nav>
     );
 }

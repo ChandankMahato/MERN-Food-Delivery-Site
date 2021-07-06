@@ -1,9 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
-//Defining a Model
-//Models are defined through the Schema interface.
-//const Schema = mongoose.Schema;
 const authSchema = new mongoose.Schema({
     fullName: {
         type: String,
@@ -37,14 +34,6 @@ const authSchema = new mongoose.Schema({
     }
         
 }, {timestamps: true });
-
-    //virtual setter method
-    // it takes parameter
-//not necessary
-// authSchema.virtual('password')
-// .set(function(password){
-//     this.hash_password = bcrypt.hashSync(password, 10);
-// });
 
 authSchema.virtual('password')
     .set(function(password) {

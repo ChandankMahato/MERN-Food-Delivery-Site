@@ -46,7 +46,7 @@ export const adminAddCategory = (form) => {
 }
 
 
-export const adminUpdateCategories = (form) => {
+export const adminUpdateCategories = (form) => { 
     return async dispatch => {
         dispatch({type: categoryConstants.UPDATE_CATEGORIES_REQUEST});
         const res = await adminAxios.post(`/category/update`, form);
