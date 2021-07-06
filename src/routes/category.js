@@ -1,11 +1,10 @@
 //impors
 const express = require('express');
-const { addCategory, getCategories, updateCategories, deleteCategories, getCategory} = require('../controller/category');
+const { addCategory, getCategories, updateCategories, deleteCategories} = require('../controller/category');
 const { requireAdminSignin, adminMiddleware} = require('../common-middleware');
 const router = express.Router();
 const multer = require('multer');
 const shortid = require('shortid');
-//bulit in libraray path.
 const path = require('path');
 
 const storage = multer.diskStorage({
