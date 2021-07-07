@@ -30,7 +30,7 @@ axiosIntance.interceptors.response.use((res) => {
     const { status } = error.response;
     if(status === 500) {
       localStorage.clear();
-      store.dispatch({ type: authConstants.LOGOUT_SUCCESS});
+      store.dispatch({ type: authConstants.USER_LOGOUT_SUCCESS});
     }
   }catch(error){
     return Promise.reject(error);

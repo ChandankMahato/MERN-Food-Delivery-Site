@@ -26,42 +26,30 @@ exports.addCategory = (req, res) => {
 }
 
 
+
 exports.updateCategories = async (req, res) => {
-
     const {_id, name} = req.body;
-    console.log(_id);
-    console.log(name);
-    
     const updatedCategories = [];
-
     if(name instanceof Array){
-
-        //iterating throug req.body
         for(let i=0; i< name.length; i++){
-
             const category = {
                 name: name[i],
-                //WORK ON SLUG WILL BE DONE LATER
-                //slug: `${slugify(req.body.name)}-${shortid.generate()}`,//keeping name itself as slug
                 updatedBy: req.adminAuth.id
             };
-
             const updatedCategory= await Category.findOneAndUpdate({ _id: _id[i]}, category, {new: true});
             updatedCategories.push(updatedCategory);
         }
         return res.status(201).json({ updateCategories: updatedCategories});
-
     }else{
         const category = {
             name,
-            //slug: `${slugify(req.body.name)}-${shortid.generate()}`,//keeping name itself as slug
             updatedBy : req.adminAuth.id
         };
-
         const updatedCategory= await Category.findOneAndUpdate({ _id }, category, {new: true});
         return res.status(201).json({ updatedCategory });
     }
 }
+
 
 
 exports.deleteCategories = async (req, res) => {

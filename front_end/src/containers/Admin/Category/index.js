@@ -171,6 +171,7 @@ const AdminCategory = (props) => {
     }
 
     const updateCategoriesForm = () => {
+        
         const form = new FormData();
 
         checkedArray.forEach((item, index) => {

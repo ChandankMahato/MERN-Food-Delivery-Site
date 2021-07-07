@@ -23,12 +23,13 @@ adminAxiosIntance.interceptors.request.use((req) => {
 
 
 
+
 adminAxiosIntance.interceptors.response.use((res) => {
   return res;
 }, (error) => {
   try{
-    const { status } = error.response ? error.response.status : 500;
-    if(status && status === 500) {
+    const { status } = error.response;
+    if(status === 500) {
       localStorage.clear();
       store.dispatch({ type: authConstants.ADMIN_LOGOUT_SUCCESS});
     }

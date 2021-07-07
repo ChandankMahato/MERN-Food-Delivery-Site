@@ -1,10 +1,6 @@
-//importing mongoose
+
 const mongoose = require('mongoose');
 
-
-//Defining a Model
-//Models are defined through the Schema interface.
-//const Schema = mongoose.Schema;
 const categorySchema = new mongoose.Schema({
 
     name: {
