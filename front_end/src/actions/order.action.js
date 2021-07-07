@@ -1,6 +1,7 @@
 import adminAxios from "../helpers/adminAxios";
 import axios from "../helpers/axios";
 import { orderConstants } from "./constants";
+import { getAdminInitialData } from "./product.action";
 
 export const adminGetCustomerOrders = () => {
     return async (dispatch) => {
@@ -33,6 +34,7 @@ export const adminUpdateOrder = (payload) => {
             const res = await adminAxios.post(`/admin/order/update`, payload);
             if(res.status === 201){
                 dispatch({ type: orderConstants.UPDATE_CUSTOMER_ORDER_SUCCESS});
+                dispatch(getAdminInitialData());
             }else{
                 const {error} = res.data;
                 dispatch({
@@ -56,6 +58,7 @@ export const adminUpdateDBStatus = (payload) => {
             const res = await adminAxios.post(`/admin/order/update/dbStatus`, payload);
             if(res.status === 201){
                 dispatch({ type: orderConstants.UPDATE_CUSTOMER_ORDER_SUCCESS});
+                dispatch(getAdminInitialData());
             }else{
                 const {error} = res.data;
                 dispatch({

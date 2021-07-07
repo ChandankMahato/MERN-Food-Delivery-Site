@@ -89,3 +89,20 @@
     width: 150px;
     height: 30px;
 }
+
+.addMore{
+    text-align: center;
+    background-color: gray;
+}
+
+.addMore button{
+    border:none;
+    padding:5px 10px;
+    background-color: #fb641b;
+    color:#ffffff;
+}
+
+.addMore button:hover{
+    background-color: rgb(255, 196, 0);
+    color:#4d4d4d;
+}

@@ -42,6 +42,10 @@ const Cart = (props) => {
           <Bbuttons/>
         </>
       }
+        {Object.keys(cart.cartItems).length === 0 ? null : 
+        <div className="addMore">
+          <button onClick={() => history.push('/')}>Add More Item</button>
+        </div>}
     </div>
 
       <Footer/>

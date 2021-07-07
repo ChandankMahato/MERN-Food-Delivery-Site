@@ -27,3 +27,18 @@
 .pName{
     padding-left: 25px;
 }
+
+.statusSelect{
+    width:120px;
+    height: 30px;
+}
+
+.statusBtn{
+    width:70px;
+    height:30px
+}
+
+.statusBtn:hover{
+    background-color: #ffba4a;
+    color:#4d4d4d;
+}

@@ -20,6 +20,7 @@ import KOT from './containers/Admin/KOT';
 import BILL from './containers/Admin/BILL';
 import AdminOrderStatistics from './containers/Admin/Orders/OrderStatistics_index';
 import AdminOrderAction from './containers/Admin/Orders/OrderAction_index';
+import PageNotFound from './containers/404';
 
 toast.configure();
 
@@ -83,6 +84,7 @@ function App() {
           <PrivateRoute path="/admin/orders/actions" component={AdminOrderAction}/>
           <Route path="/admin/signin" component={AdminAccountSignin}/>
           <Route path="/admin/signup" component={AdminAccountSignup}/>
+          <Route component={PageNotFound}/>
         </Switch>
       </Router>
       <ToastContainer 

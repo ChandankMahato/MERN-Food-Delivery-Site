@@ -32,11 +32,8 @@ const Product = (props) => {
 
   useEffect(() => {
     dispatch(getAllCategory());
-  }, [])
-
-  useEffect(() => {
     dispatch(getUserInitialData());
-  }, []);
+  }, [])
 
   const triggerDisplayProductByCategory = (Id) => {
     dispatch(getUserProductByCategory(Id));

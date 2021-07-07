@@ -1,0 +1,37 @@
+
+/*======================
+    404 page
+=======================*/
+
+.page_404{ 
+    text-align: center;
+    font-family: 'Arvo', serif;
+    margin-top: 0.8em;
+}
+
+.page_404  img{ 
+    width:100%;
+}
+
+.backgroundImg{
+    width: 70%;
+    margin-left: 15%;
+    background-image: url(./bgImage.gif);
+    background-position: center;
+}
+
+.h2{
+    margin-top:9.3em;
+}
+
+.ContentBox a{
+    text-decoration: None;
+    padding: 10px 20px;
+    background:#39ac31;
+    color: #ffffff;
+}
+
+.ContentBox a:hover{
+    background: #ffba4a;
+    color:#4d4d4d;
+}

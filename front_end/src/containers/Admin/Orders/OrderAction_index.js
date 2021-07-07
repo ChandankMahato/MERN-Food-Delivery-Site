@@ -24,7 +24,7 @@ const AdminOrderAction = (props) => {
         orderId,
         type,
       };
-      dispatch(adminUpdateOrder(payload));
+      dispatch(adminUpdateOrder(payload))
     };
 
     const onDBStatusUpdate = (orderId) => {
@@ -32,8 +32,8 @@ const AdminOrderAction = (props) => {
         orderId, 
         dbtype,
       };
-      dispatch(adminUpdateDBStatus(payload));
-    }
+      dispatch(adminUpdateDBStatus(payload))
+    };
     return (
       <Table style={{fontSize: '15px'}} responsive="sm">
         <thead>
@@ -49,13 +49,19 @@ const AdminOrderAction = (props) => {
         <tbody>
           {order.orders.length > 0
             ? order.orders.map((order, index) => (
-              <tr key={order._id}>
+              (order.dbStatus[0].isSelected === true &&
+               order.dbStatus[1].isSelected === false &&
+               order.dbStatus[2].isSelected === false &&
+               order.dbStatus[3].isSelected === false &&
+               order.dbStatus[4].isSelected === false &&
+               order.dbStatus[5].isSelected === false ?
+               <tr key={order._id}>
                 <td>{index+1}</td>
                 <td>{order.address_name}</td>
                 <td>{order.address_mobileNumber}</td>
                 <td>{order.totalAmount}</td>
                 <td>
-                  <select onChange={(e) => setType(e.target.value)}>
+                  <select className="statusSelect" onChange={(e) => setType(e.target.value)}>
                     <option value={""}>Order Status</option>
                       {order.orderStatus.map((status) => {
                         return(
@@ -71,13 +77,13 @@ const AdminOrderAction = (props) => {
                         </>)
                       })}
                     </select>
-                    <button onClick = {() => onOrderUpdate(order._id)}>
+                    <button className="statusBtn" onClick = {() => onOrderUpdate(order._id)}>
                       confirm
                     </button>
                 </td>
 
                 <td>
-                  <select onChange={(e) => setDBType(e.target.value)}>
+                  <select className="statusSelect" onChange={(e) => setDBType(e.target.value)}>
                     <option value={""}>DB Status</option>
                       {order.dbStatus.map((status) => {
                         return(
@@ -93,11 +99,12 @@ const AdminOrderAction = (props) => {
                         </>)
                       })}
                     </select>
-                    <button onClick = {() => onDBStatusUpdate(order._id)}>
+                    <button className="statusBtn" onClick = {() => onDBStatusUpdate(order._id)}>
                       confirm
                     </button>
                 </td>
-              </tr>
+              </tr> : null
+              )
             )) :null
           }
           

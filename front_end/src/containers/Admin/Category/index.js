@@ -9,9 +9,7 @@ import {
      adminDeleteCategories as deleteCategoriesAction
     } from '../../../actions';
 
-//import for check box tree 
 import CheckboxTree from 'react-checkbox-tree';
-//import icons
 import {
     IoCheckboxSharp,
     IoCheckboxOutline,
@@ -23,7 +21,6 @@ import {
     IoIosCloud
 } from 'react-icons/io';
 
-//css for check box tree
 import 'react-checkbox-tree/lib/react-checkbox-tree.css';
 import UpdateCategoriesModal from './components/UpdateCategoriesModal';
 import AddCategoryModal from './components/AddCategoryModal';

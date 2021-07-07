@@ -16,13 +16,9 @@ const KOT = (props) => {
   const dispatch = useDispatch();
   
   const showDate = (date) => {
-      //converting UTC to GMT
       var dateObj =new Date(date);
-      //converting to Object
       var dateString = dateObj.toString();
-      //modifying string to get time only
       var output = dateString.substring(16, 25);
-      //returning output
       return(output);
   }
   
