@@ -7,6 +7,7 @@ import logo from './images/Logo/logo.jpg'
 import chandan1 from './images/chandan1.jpg';
 import { useHistory } from 'react-router-dom';
 import Modal from '../UI/Modal';
+import { Bounce, toast } from 'react-toastify';
 
 /**
 * @author
@@ -68,8 +69,8 @@ const Footer = (props) => {
             <h5>Follow us on</h5>
             <div className="socialImg">
               <a href="https://www.facebook.com/Gety0urf00d" target="_blank" rel="noreferrer"><img src={facebook} alt="nothing" /></a>
-              <img src={twitter} alt="nothing" onClick={() => alert('Currently not available!')} />
-              <img src={instagram} alt="nothing" onClick={() => alert('Currently not available!')} />
+              <img src={twitter} alt="nothing" onClick={() => toast.info('Currently not available!',{postion:'top-center', tarnsition: Bounce})} />
+              <img src={instagram} alt="nothing" onClick={() => toast.info('Currently not available!',{position: 'top-center', transiton: Bounce})} />
             </div>
           </div>
         </div>

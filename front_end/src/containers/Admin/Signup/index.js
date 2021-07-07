@@ -5,6 +5,7 @@ import Input from  '../../../components/UI/Input';
 import { Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {adminSignup} from '../../../actions';
+import { toast, Zoom } from 'react-toastify';
 
 /**
 * @author
@@ -25,26 +26,28 @@ const AdminAccountSignup = (props) => {
     
     e.preventDefault();
     if(mobile==='' && password===''){
-      alert("Enter Mobile Number and Password");
+      toast.dark("Enter Mobile Number and Password",{position:'top-center', transition:Zoom});
+      return;
     }else{
       if(mobile===''){
-        alert("Enter Mobile Number");
+        toast.dark("Enter Mobile Number",{position: 'top-center', transition:Zoom});
         return;
       }else if(mobile!==''){
         if(isNaN(mobile)){
-          alert("Mobile Number must be Number(0-9)");
+          toast.dark("Mobile Number must be Number(0-9)",{position: 'top-center', transition: Zoom});
           return;
         }else if(mobile.length !==10){
-          alert("Enter 10 Digit mobile Number");
+          toast.dark("Enter 10 Digit mobile Number",{position:'top-center', transition: Zoom});
           return;
         }
       }
       if(password===''){
-        alert("Enter Password");
+        toast.dark("Enter Password", {position:'top-center', transition:Zoom });
         return;
       }else{
         if(password.length < 6){
-          alert("Password Must be at least of 6 character");
+          toast.dark("Password Must be at least of 6 character", {position:'top-center', transition: Zoom});
+          return true;
         }
       }
     }

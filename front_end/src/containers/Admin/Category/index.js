@@ -29,6 +29,7 @@ import UpdateCategoriesModal from './components/UpdateCategoriesModal';
 import AddCategoryModal from './components/AddCategoryModal';
 import DeleteCategoryModal from './components/DeleteCategoryModal';
 import './style.css';
+import {toast, Zoom } from 'react-toastify';
 
 /**
 * @author
@@ -67,7 +68,7 @@ const AdminCategory = (props) => {
         });
 
         if (categoryName === "") {
-            alert('Category Name Must Be Provided To Create New Category!!!');
+            toast.dark('Category Name Must Be Provided To Create New Category!!!',{position:'top-center', transition: Zoom});
         }
 
         setCategoryName('');
@@ -165,7 +166,7 @@ const AdminCategory = (props) => {
     }
 
     const NotDeleteCategory = () => {
-        alert('No, if you want to delete you must expand and checked as you wish');
+        toast.dark('No?, if you want to delete you must expand and checked as you wish', {position:'top-center', transition: Zoom});
         setDeleteCategoryModal(false);
     }
 

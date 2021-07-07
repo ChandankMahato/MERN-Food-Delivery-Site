@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Bounce, toast } from 'react-toastify';
 import { addAddress } from '../../actions';
 import { MaterialInput, MaterialButton } from '../../components/MaterialUI';
 
@@ -31,12 +32,12 @@ const AddressForm = (props) => {
     const onAddressSubmit = (e) => {
 
       if(name === ''|| mobileNumber === '' || locality===''|| address === ''){
-        alert('Customer Name, Mobile Number, Locality and Adreess Must Be Provided!');
+        toast.info('Customer Name, Mobile Number, Locality and Adreess Must Be Provided!', {position:'top-center', transition:Bounce});
         return;
       }
 
       if(addressType===''){
-        alert('Select Address Type');
+        toast.info('Select Address Type',{position:'top-center', transition:Bounce});
         return;
       }
 

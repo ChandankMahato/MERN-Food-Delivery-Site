@@ -4,11 +4,9 @@ import { categoryConstants } from "./constants";
 
 export const getAllCategory = () =>{
     return async dispatch => {
-        
-        dispatch({ type: categoryConstants.GET_ALL_CATEGORIES_REQUEST})
+        try{
+            dispatch({ type: categoryConstants.GET_ALL_CATEGORIES_REQUEST})
         const res = await axios.get('/category/getCategory');
-
-        console.log(res);
         if(res.status === 200){
             const {categories} = res.data;
 
@@ -22,25 +20,32 @@ export const getAllCategory = () =>{
                 payload: {error: res.data.error}
             });
         }
+        }catch(error){
+            console.log(error);
+        }
     }
 }
 
 
 export const adminAddCategory = (form) => {
     return async dispatch => {
-        dispatch({ type: categoryConstants.ADD_NEW_CATEGORY_REQUEST});
-        const res = await adminAxios.post('/category/create', form);
-        if(res.status === 201){
-            dispatch({
-                type: categoryConstants.ADD_NEW_CATEGORY_SUCCESS,
-                payload: {category: res.data.category}
-            });
-            return true;
-        }else{
-            dispatch({
-                type: categoryConstants.ADD_NEW_CATEGORY_FAILURE,
-                payload: res.data.error
-            });
+        try{
+            dispatch({ type: categoryConstants.ADD_NEW_CATEGORY_REQUEST});
+            const res = await adminAxios.post('/category/create', form);
+            if(res.status === 201){
+                dispatch({
+                    type: categoryConstants.ADD_NEW_CATEGORY_SUCCESS,
+                    payload: {category: res.data.category}
+                });
+                return true;
+            }else{
+                dispatch({
+                    type: categoryConstants.ADD_NEW_CATEGORY_FAILURE,
+                    payload: res.data.error
+                });
+            }
+        }catch(error){
+            console.log(error);
         }
     }
 }
@@ -48,41 +53,47 @@ export const adminAddCategory = (form) => {
 
 export const adminUpdateCategories = (form) => { 
     return async dispatch => {
-        dispatch({type: categoryConstants.UPDATE_CATEGORIES_REQUEST});
-        const res = await adminAxios.post(`/category/update`, form);
-        console.log(res);
-        if(res.status === 201){
-            console.log(res.status);
-            dispatch({ type: categoryConstants.UPDATE_CATEGORIES_SUCCESS});
-            return true;
-        }else{
-            const { error } = res.data;
-            dispatch({
-                type: categoryConstants.UPDATE_CATEGORIES_FAILURE,
-                payload: {error}
-            });
+        try{
+            dispatch({type: categoryConstants.UPDATE_CATEGORIES_REQUEST});
+            const res = await adminAxios.post(`/category/update`, form);
+            if(res.status === 201){
+                console.log(res.status);
+                dispatch({ type: categoryConstants.UPDATE_CATEGORIES_SUCCESS});
+                return true;
+            }else{
+                const { error } = res.data;
+                dispatch({
+                    type: categoryConstants.UPDATE_CATEGORIES_FAILURE,
+                    payload: {error}
+                });
+            }
+        }catch(error){
+            console.log(error);
         }
     }
 }
 
-//action to delete the category
 export const adminDeleteCategories = (ids) => {
     return async dispatch => {
-        dispatch({ type: categoryConstants.DELETE_CATEGORIES_REQUEST});
-        const res = await adminAxios.post(`/category/delete`, {
-            payload: {
-                ids
-            }
-        });
-        if(res.status === 200){
-            dispatch({ type: categoryConstants.DELETE_CATEGORIES_SUCCESS});
-            return true;
-        }else{
-            const {error} = res.data;
-            dispatch({
-                type: categoryConstants.DELETE_CATEGORIES_FAILURE,
-                payload: {error }
+        try{
+            dispatch({ type: categoryConstants.DELETE_CATEGORIES_REQUEST});
+            const res = await adminAxios.post(`/category/delete`, {
+                payload: {
+                    ids
+                }
             });
+            if(res.status === 200){
+                dispatch({ type: categoryConstants.DELETE_CATEGORIES_SUCCESS});
+                return true;
+            }else{
+                const {error} = res.data;
+                dispatch({
+                    type: categoryConstants.DELETE_CATEGORIES_FAILURE,
+                    payload: {error }
+                });
+            }
+        }catch(error){
+            console.log(error);
         }
     }
 }

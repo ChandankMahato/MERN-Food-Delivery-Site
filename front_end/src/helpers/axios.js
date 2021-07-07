@@ -22,16 +22,19 @@ axiosIntance.interceptors.request.use((req) => {
   return req;
 })
 
+
 axiosIntance.interceptors.response.use((res) => {
   return res;
 }, (error) => {
-  console.log(error);
-  const { status } = error.response;
-  if(status === 500) {
-    localStorage.clear();
-    store.dispatch({ type: authConstants.LOGOUT_SUCCESS});
+  try{
+    const { status } = error.response;
+    if(status === 500) {
+      localStorage.clear();
+      store.dispatch({ type: authConstants.LOGOUT_SUCCESS});
+    }
+  }catch(error){
+    return Promise.reject(error);
   }
-  return Promise.reject(error);
 })
 
 export default axiosIntance;

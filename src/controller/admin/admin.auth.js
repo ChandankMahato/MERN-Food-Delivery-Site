@@ -45,12 +45,12 @@ exports.signup = (req,res)=>{
 
 exports.signin = (req, res) => {
     adminAuth.findOne({mobile: req.body.mobile})
-    .exec((error,admin)=>{
+    .exec(async (error,admin)=>{
         if(error){
             return res.status(400).json({error});
         }
         if(admin){
-            const isPasswordMatch = admin.authenticate(req.body.password)
+            const isPasswordMatch = await admin.authenticate(req.body.password)
             if(isPasswordMatch && admin.role === 'admin'){
                 const adminToken = jwt.sign({id: admin._id, role: admin.role, fullName:admin.fullName}, process.env.JWT_SECRET,{expiresIn: '1h'});
                 const {

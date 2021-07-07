@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Row, Col } from 'react-bootstrap';
 import './style.css';
 import { generatePublicUrl } from '../../../urlConfig';
+import { Slide, toast } from 'react-toastify';
 
 
 /**
@@ -26,7 +27,7 @@ const CartItem = (props) => {
     };
 
     const Info = () => {
-      alert('Do you want to save product in cart? Please Signin!!!');
+      toast.success('Product Saved To Your Cart.', {position: 'top-left', transition:Slide});
     }
 
   return (
