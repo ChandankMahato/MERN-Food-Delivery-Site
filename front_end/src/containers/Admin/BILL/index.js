@@ -63,15 +63,14 @@ const BILL = (props) => {
         break;
     }
   }, [adminAuth.admin.mobile]);
+
+  console.log(base);
   
 const showDate = (date) => {
-    //converting UTC to GMT
+
     var dateObj =new Date(date);
-    //converting to Object
     var dateString = dateObj.toString();
-    //modifying string to get time only
     var output = dateString.substring(16, 25);
-    //returning output
     return(output);
 }
 
@@ -104,6 +103,7 @@ const onOrderUpdate = (orderId) =>{
                           <div className="billproductsQty">
                             <span className="billproductsHeading">Products Name</span>
                             <span className="billQtyHeading">Qty</span>
+                            <span className="billpriceHeadingBill">Price</span>
                           </div>
 
                           {order.items.map((item, index) => (
@@ -112,6 +112,9 @@ const onOrderUpdate = (orderId) =>{
                             
                               <div className="billinsideKotItem">
                                   {item.productId.name} 
+                              </div>
+                              <div className="priceInsideKotItemBill">
+                                {item.productId.price}
                               </div>
                               <div className="billqtyInsideKotItem">
                                   {item.purchasedQty}
@@ -126,20 +129,14 @@ const onOrderUpdate = (orderId) =>{
                       </div>
 
                       <div className="billcustomerDetails">
-                        <div className="billtitle">
-                            <div>Name: </div>
-                            <div>Mobile: </div>
-                            <div>Address: </div>
-                            <div>Amount: </div>
-                        </div>
                         <div className="billdetails">
-                          <div>&nbsp;&nbsp;{order.address_name}</div>
-                          <div>&nbsp;&nbsp;{order.address_mobileNumber} / {order.address_alternatePhone}</div>
-                          <div>&nbsp;&nbsp;{order.address_address},&nbsp;{order.address_locality},&nbsp;{order.address_landmark}</div>
-                          <div>&nbsp;&nbsp;{order.totalAmount}</div>
+                          <div className="billtitle"><span >Name:</span>&nbsp;&nbsp;{order.address_name}</div>
+                          <div className="billtitle"><span >Mobile:</span>&nbsp;&nbsp;{order.address_mobileNumber} / {order.address_alternatePhone}</div>
+                          <div className="billtitle"><span> Address:</span>&nbsp;&nbsp;{order.address_address},&nbsp;{order.address_locality},&nbsp;{order.address_landmark}</div>
+                          <div className="billtitle"><span >Amount:</span>&nbsp;&nbsp;{order.totalAmount}</div>
                         </div>
-
                       </div>
+
 
                       <div className="billKotTime">
                             {showDate(order.createdAt)}

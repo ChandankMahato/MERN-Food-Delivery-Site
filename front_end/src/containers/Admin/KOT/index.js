@@ -90,7 +90,7 @@ const KOT = (props) => {
                                 </>)
                               })}
                             </select>
-                            <button className="statusBtn" onClick = {() => onOrderUpdate(order._id)}>
+                            <button className="KotstatusBtn" onClick = {() => onOrderUpdate(order._id)}>
                               confirm
                             </button>
                           </div>

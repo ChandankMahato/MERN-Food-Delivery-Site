@@ -13,10 +13,6 @@
     box-shadow:3px 3px 10px 6px gray; 
 }
 
-.emptyCart h1 p{
-    height: 100%;
-}
-
 .emptyCart .add{
     color: #faba46;
     cursor:pointer

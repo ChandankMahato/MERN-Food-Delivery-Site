@@ -7,7 +7,7 @@ import CheckoutPage from './containers/CheckoutPage';
 import { useDispatch, useSelector } from 'react-redux';
 import About from './containers/About';
 
-import { getAdminInitialData, isAdminLoggedIn, isUserLoggedIn, updateCart } from './actions';
+import { getAdminInitialData, getUserOrders, isAdminLoggedIn, isUserLoggedIn, updateCart } from './actions';
 import AdminAccountSignin from './containers/Admin/Signin';
 import AdminAccountSignup from './containers/Admin/Signup';
 import PrivateRoute from './components/Admin/HOC/PrivateRoute';
@@ -21,6 +21,8 @@ import BILL from './containers/Admin/BILL';
 import AdminOrderStatistics from './containers/Admin/Orders/OrderStatistics_index';
 import AdminOrderAction from './containers/Admin/Orders/OrderAction_index';
 import PageNotFound from './containers/404';
+import Order from './containers/Orders';
+import PrivateRouteUser from './components/HOC/PrivateRoute';
 
 toast.configure();
 
@@ -55,6 +57,7 @@ function App() {
       dispatch(isUserLoggedIn());
     }
     dispatch(updateCart);
+    dispatch(getUserOrders());
   },[auth.userAuthenticate]);
 
   useEffect(() => {
@@ -73,7 +76,8 @@ function App() {
           <Route path="/cart" component={Cart} />
           <Route path="/checkout" component={CheckoutPage} />
           <Route path="/about" component={About} />
-
+          <PrivateRouteUser path="/order" component={Order}/>
+          
           {/* admin starts here */}
           <PrivateRoute path="/admin/KOT" component={KOT}/>
           <PrivateRoute path="/admin/home" exact component={AdminHome}/>

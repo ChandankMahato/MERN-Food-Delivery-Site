@@ -3,7 +3,6 @@ import Layout from '../../../components/Admin/Layout';
 import {Container, Row, Col, Table} from 'react-bootstrap';
 import {useSelector } from 'react-redux';
 import Modal from '../../../components/UI/Modal';
-import { generatePublicUrl } from '../../../urlConfig';
 import './style.css';
 
 /**
@@ -16,6 +15,61 @@ const AdminOrderStatistics = (props) => {
   const [orderDetailsModal, setOrderDetailsModal] = useState(false);
   const [orderDetails, setOrderDetails] = useState(null);
   const order = useSelector(state => state.order);
+
+  const showTotalOrderReceived = () => {
+    var total = 0;
+    for (var i=0; i< order.orders.length; i++){
+      total += order.orders[i].totalAmount;
+    }
+    return total;
+  }
+
+  const showTotalSales = () => {
+    var total = 0;
+    for(var i=0; i< order.orders.length; i++){
+      if(order.orders[i].orderStatus[4].isCompleted === true){
+        total += order.orders[i].totalAmount;
+      }
+     
+    }
+    return total;
+  }
+
+  const showIndividualSales = (count) =>{
+    var total = 0;
+    for(var i=0; i<order.orders.length; i++){
+      if(order.orders[i].dbStatus[count].isSelected === true && order.orders[i].orderStatus[4].isCompleted === true){
+        total += order.orders[i].totalAmount;
+      }
+    }
+    return total;
+  }
+
+  const TodayTotalSales = () => {
+    var total = 0;
+    for(var i=0; i<order.orders.length; i++){
+      var dateObj = new Date(order.orders[i].createdAt);
+      var dateString = dateObj.toString();
+      const day = dateString.substring(0, 10);
+      if(Date().substring(0, 10) === day && order.orders[i].orderStatus[4].isCompleted === true){
+        total += order.orders[i].totalAmount;
+      }
+    }
+    return total;
+  }
+
+  const TodayIndividualSales = (count) =>{
+    var total = 0;
+    for(var i=0; i<order.orders.length; i++){
+      var dateObj = new Date(order.orders[i].createdAt);
+      var dateString = dateObj.toString();
+      const day = dateString.substring(0, 10);
+      if(Date().substring(0,10) === day && order.orders[i].dbStatus[count].isSelected === true && order.orders[i].orderStatus[4].isCompleted === true){
+        total += order.orders[i].totalAmount;
+      }
+    }
+    return total;
+  }
 
   const renderProducts = () => {
 
@@ -132,29 +186,6 @@ const AdminOrderStatistics = (props) => {
             ))}
           </Col>
         </Row>
-        
-        <Row>
-          <Col md="12">
-              <label className="key">Product Pictures</label>
-                    
-              <div >
-                {orderDetails.items.map((item,index) => (
-                  <Row>
-                    <div key={index}>
-                      <Row className="pName">
-                      {item.productId.name}
-                      </Row>
-                      {item.productId.productPictures.map((image,index) => (
-                          <div key={index} className="productImgContainer">
-                            <img src={generatePublicUrl(image.img)} alt="nothing"/>
-                          </div>
-                      ))} 
-                    </div>
-                  </Row>
-                ))}
-              </div>
-          </Col>
-        </Row>
 
         <Row>
           <Col md="6">
@@ -167,6 +198,36 @@ const AdminOrderStatistics = (props) => {
           </Col>
         </Row>
 
+        <Row>
+          <Col md="6">
+            <label className="key">Payment Status</label>
+            <p className="value">{orderDetails.paymentStatus}</p>
+          </Col>
+          <Col md="6">
+            <label className="key">Order Status</label>
+            <p className="value">
+              {orderDetails.orderStatus[4].isCompleted ? 'Delivered' :
+               orderDetails.orderStatus[3].isCompleted ? 'On The Way':
+               orderDetails.orderStatus[2].isCompleted ? 'Packed' :
+               orderDetails.orderStatus[1].isCompleted ? 'Cooked' :
+               orderDetails.orderStatus[0].isCompleted ? 'Ordered' : 'null'}
+            </p>
+          </Col>
+        </Row>
+
+        <Row>
+          <Col>
+              <label className="key">DB Status</label>
+              <p className="value">
+                {orderDetails.dbStatus[1].isSelected? 'B1' :
+                 orderDetails.dbStatus[2].isSelected? 'B2' :
+                 orderDetails.dbStatus[3].isSelected? 'B3' :
+                 orderDetails.dbStatus[4].isSelected? 'B4' :
+                 orderDetails.dbStatus[5].isSelected? 'B5' : 'CR'}
+              </p>
+          </Col>
+        </Row>
+
       </Modal>
     )
   }
@@ -176,13 +237,29 @@ const AdminOrderStatistics = (props) => {
         <Container>
           <Row>
             <Col md={12}>
-              <div style={{display:'flex', justifyContent: 'space-between'}}>
-                <h3>Orders</h3>
-              </div>
+            <h3 style={{textAlign:'center'}}>Orders Statistics</h3>
+              <h6 style={{textAlign: 'center'}}>Order Recived Amounts to: {showTotalOrderReceived()}</h6> 
+              <p style={{textAlign:'center'}}>All Time Sales</p>
+                <div style={{display:'flex', justifyContent:'space-between'}}>
+                  <h6>Total Sales: {showTotalSales()}</h6>
+                  <h6>B1: {showIndividualSales(1)}</h6>
+                  <h6>B2: {showIndividualSales(2)}</h6>
+                  <h6>B3: {showIndividualSales(3)}</h6>
+                  <h6>B4: {showIndividualSales(4)}</h6>
+                  <h6>B5: {showIndividualSales(5)}</h6>
+                </div>
+              <p style={{textAlign:'center'}}>Current Day Sales</p>
+              <div style={{display:'flex', justifyContent:'space-between'}}>
+                  <h6>Total Sales: {TodayTotalSales()}</h6>
+                  <h6>B1: {TodayIndividualSales(1)}</h6>
+                  <h6>B2: {TodayIndividualSales(2)}</h6>
+                  <h6>B3: {TodayIndividualSales(3)}</h6>
+                  <h6>B4: {TodayIndividualSales(4)}</h6>
+                  <h6>B5: {TodayIndividualSales(5)}</h6>
+                </div>
             </Col>
           </Row>
         </Container>
-          {/* {handleProductPictures()} */}
           {renderProducts()}
           {renderShowProductDetailsModal()}
       </Layout>

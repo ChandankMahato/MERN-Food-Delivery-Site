@@ -69,19 +69,18 @@ exports.addOrder = (req, res) => {
     });
 };
 
-exports.getOrders = (req, res) => {
-
+exports.getUserOrders = (req, res) => {
     Order.find({ userId: req.auth.id})
-    .select('_id userId addressId totalAmount items paymentStatus paymentType orderStatus, dbStatus')
-    .populate('userId', '_id fullName mobile password')
+    .select('_id userId address_id address_name address_mobileNumber address_locality address_landmark address_address address_alternatePhone address_addressType totalAmount items paymentStatus paymentType orderStatus dbStatus createdAt updatedAt')
+    .populate('userId', '_id fullName mobile')
     .populate('items.productId', '_id name slug price description productPictures category')
-    .populate('addressId','customerAddress')
-    .exec((error, order) => {
-        if(error) res.status(400).json({error});
-        if(order) {
-            res.status(200).json({order});
-        }
-    })
+    .populate('items.categoryId', 'name')
+   .exec((error, userOrders) => {
+       if(error) res.status(400).json({error});
+       if(userOrders) {
+           res.status(200).json({userOrders});
+       }
+   })
 
 }
 

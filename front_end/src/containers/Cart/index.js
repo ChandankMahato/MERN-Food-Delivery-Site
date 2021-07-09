@@ -32,9 +32,9 @@ const Cart = (props) => {
     <div className="cartItemContainer">
       {Object.keys(cart.cartItems).length === 0
         ?<div className="emptyCart">
-            <h1>Cart Is Empty</h1>
+            <h3>Cart Is Empty</h3>
             <p>It Seems like you Have not added item to cart.</p>
-            <h1 className="add" onClick={() => history.push('/') }>Add Items</h1>
+            <h3 className="add" onClick={() => history.push('/') }>Add Items</h3>
           </div> 
         :<>
           <Items/>

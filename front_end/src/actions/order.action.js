@@ -72,3 +72,27 @@ export const adminUpdateDBStatus = (payload) => {
     }
     
 }
+
+
+export const getUserOrders = () => {
+    return async dispatch => {
+        try{
+            console.log('hello');
+            dispatch({type: orderConstants.GET_USER_ORDER_REQUEST})
+            const res = await axios.get(`/getUserOrder`);
+            if(res.status === 200){
+                dispatch({
+                    type: orderConstants.GET_USER_ORDER_SUCCESS,
+                    payload: (res.data)
+                })
+            }else{
+                dispatch({
+                    type: orderConstants.GET_USER_ORDER_FAILURE,
+                    payload: {error: res.data.error}
+                })
+            }
+        }catch(error){
+            console.log(error);
+        }
+    }
+}

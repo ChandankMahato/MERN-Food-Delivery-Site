@@ -288,6 +288,9 @@ const renderUserLoggedInLinks = () => {
             <li className="nav-item">
               <a href={`/cart`}><span className="nav-link" style={{color:'#ffffff'}}>Cart</span></a>
             </li>
+            <li className="nav-item">
+              <a href={`/order`}><span className="nav-link" style={{color:'#ffffff'}}>Order</span></a>
+            </li>
         </Nav>
     );
 }
