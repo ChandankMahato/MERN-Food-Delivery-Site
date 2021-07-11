@@ -20,6 +20,7 @@ const Layout = (props) => {
                             <Col md={2} className="sidebar">
                                 <ul>
                                     <li><NavLink to={`/admin/home`} exact >Home</NavLink></li>
+                                    <li><NavLink to={'/admin/banner'}>Banner</NavLink></li>
                                     <li><NavLink to={`/admin/category`}>Category</NavLink></li>
                                     <li><NavLink to={`/admin/products`}>Products</NavLink></li>
                                     <li><NavLink to={`/admin/orders/statistics`}>Order Statistics</NavLink></li>

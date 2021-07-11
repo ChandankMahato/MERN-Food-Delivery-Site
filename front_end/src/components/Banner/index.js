@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {Carousel} from 'react-bootstrap';
-import banner from './images/Banner.png';
-import chowmeen from './images/Chowmeen.jpg';
-import thukpa from './images/Thukpa1.webp';
-import momo from './images/momo.jpg';
+import {useDispatch, useSelector} from 'react-redux';
+import {getAllBanner} from '../../actions';
+import { generatePublicUrl } from '../../urlConfig';
 import './style.css';
 
 /**
@@ -13,41 +12,27 @@ import './style.css';
 
 const Banner = (props) => {
 
+  const dispatch = useDispatch();
+  const banner = useSelector(state => state.banner);
+
+  useEffect(() => {
+    dispatch(getAllBanner());
+  },[]);
+
   return (
     <>
       <Carousel>
-        <Carousel.Item interval={1000}>
-          <img
-            className="d-block w-100"
-            src={momo}
-            alt="First slide"
-          />
-        </Carousel.Item>
-        <Carousel.Item interval={500}>
-          <img
-            className="d-block w-100"
-            src={thukpa}
-            alt="Second slide"
-          />
-
-        </Carousel.Item>
-        <Carousel.Item>
-          <img 
-            className="d-block w-100"
-            src={chowmeen}
-            alt="Third slide"
-          />
-
-        </Carousel.Item>
-
-        <Carousel.Item>
-          <img 
-            className="d-block w-100"
-            src={banner}
-            alt="Third slide"
-          />
-
-        </Carousel.Item>
+      {
+          banner.banners.map((banner, index) => (
+            <Carousel.Item interval={1000}>
+              <img
+                className="d-block w-100"
+                src={generatePublicUrl(banner.bannerImage)}
+                alt="slides"
+              />
+              </Carousel.Item>
+          ))
+        }
       </Carousel>
     </>
   )

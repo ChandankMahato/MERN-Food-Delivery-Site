@@ -16,6 +16,7 @@ const addressRoutes = require('./routes/address');
 const orderRoutes = require('./routes/order');
 const adminOrderRoute = require('./routes/admin/order.routes');
 const initialdata = require('./routes/initialdata');
+const bannerRoutes = require('./routes/banner');
 
 //environment variable or we can say constant
 env.config();
@@ -53,7 +54,7 @@ app.use('/api', addressRoutes);
 app.use('/api',orderRoutes);
 app.use('/api', adminOrderRoute);
 app.use('/api', initialdata);
-
+app.use('/api',bannerRoutes);
 
 //listen on port ####
 app.listen(process.env.PORT, () => {

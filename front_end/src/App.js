@@ -23,6 +23,9 @@ import AdminOrderAction from './containers/Admin/Orders/OrderAction_index';
 import PageNotFound from './containers/404';
 import Order from './containers/Orders';
 import PrivateRouteUser from './components/HOC/PrivateRoute';
+import AdminBanner from './containers/Admin/Banner';
+import UserAccountSignin from './containers/Signin';
+import UserAccountSignup from './containers/Signup';
 
 toast.configure();
 
@@ -42,6 +45,7 @@ function App() {
     if(params === "admin/signin" || 
        params === "admin/signup" ||
        params === "admin/home" || 
+       params === "admin/banner" || 
        params === "admin/products" ||
        params === "admin/category" || 
        params === "admin/orders/statistics" ||
@@ -73,6 +77,8 @@ function App() {
       <Router>
         <Switch>
           <Route path="/" exact component={Home} />
+          <Route path="/login" exact component={UserAccountSignin} />
+          <Route path="/register" component={UserAccountSignup} />
           <Route path="/cart" component={Cart} />
           <Route path="/checkout" component={CheckoutPage} />
           <Route path="/about" component={About} />
@@ -81,6 +87,7 @@ function App() {
           {/* admin starts here */}
           <PrivateRoute path="/admin/KOT" component={KOT}/>
           <PrivateRoute path="/admin/home" exact component={AdminHome}/>
+          <PrivateRoute path="/admin/banner" component={AdminBanner} />
           <PrivateRoute path="/admin/category" component={AdminCategory}/>
           <PrivateRoute path="/admin/products"component={AdminProducts} />
           <PrivateRoute path="/admin/orders/statistics" component={AdminOrderStatistics}/>

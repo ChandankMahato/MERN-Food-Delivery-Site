@@ -22,7 +22,7 @@ const AdminAccountSignup = (props) => {
   const user = useSelector(state => state.user);
   const dispatch = useDispatch();
 
-  const userAccountSignup = (e) => {
+  const adminAccountSignup = (e) => {
     
     e.preventDefault();
     if(mobile==='' && password===''){
@@ -73,7 +73,7 @@ const AdminAccountSignup = (props) => {
         {user.message}
         <Row style={{ marginTop: '120px' }}>
           <Col md={{ span: 6, offset: 3 }}>
-            <Form onSubmit={userAccountSignup}>
+            <Form onSubmit={adminAccountSignup}>
               
             <Input
                 label="Full Name"
