@@ -102,7 +102,7 @@ const UserAccountSignup = (props) => {
                 />
 
                 <Button variant="primary" type="submit">
-                  Submit
+                  Register
                 </Button>
 
               </Form>

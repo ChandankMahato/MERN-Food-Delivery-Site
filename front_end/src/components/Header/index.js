@@ -1,21 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { Form } from 'react-bootstrap';
 import { Navbar, Nav, Container, } from 'react-bootstrap';
 import { Link, NavLink } from 'react-router-dom';
 import { useDispatch, useSelector} from 'react-redux';
-import Modal from '../../components/UI/Modal';
-import Input from '../../components/UI/Input';
 import logo from './images/Logo/logo.jpg';
 import './style.css';
-import { isUserLoggedIn, userLogin, userSignout, userSignup, isAdminLoggedIn, adminSignout} from '../../actions';
-import {toast, Zoom} from 'react-toastify';
+import { isUserLoggedIn, userSignout, isAdminLoggedIn, adminSignout} from '../../actions';
 
 /**
 * @author
 * @function Header
 **/
 
-toast.configure();
 
 const Header = (props) => {
   
