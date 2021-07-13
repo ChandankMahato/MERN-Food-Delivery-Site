@@ -23,6 +23,7 @@ const Layout = (props) => {
                                     <li><NavLink to={'/admin/banner'}>Banner</NavLink></li>
                                     <li><NavLink to={`/admin/category`}>Category</NavLink></li>
                                     <li><NavLink to={`/admin/products`}>Products</NavLink></li>
+                                    <li><NavLink to={`/feedback`}>Feedbacks</NavLink></li>
                                     <li><NavLink to={`/admin/orders/statistics`}>Order Statistics</NavLink></li>
                                     <li><NavLink to={`/admin/orders/actions`}>Order Actions</NavLink></li>
                                     <li><NavLink to={`/admin/KOT`}>KOT</NavLink></li>

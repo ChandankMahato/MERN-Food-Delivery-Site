@@ -29,6 +29,7 @@ const Header = (props) => {
        params === "admin/home" ||
        params === "admin/banner" || 
        params === "admin/products" ||
+       params === "feedback" ||
        params === "admin/category" || 
        params === "admin/orders/statistics" ||
        params === "admin/orders/actions" || 
@@ -79,6 +80,7 @@ const renderAdminLoggedInLinks = () => {
             <li className="sidebar-item"><NavLink to={`/admin/banner`} style={{color:'#ffba4a'}}>Banner</NavLink></li>
             <li className="sidebar-item"><NavLink to={`/admin/category`} style={{color:'#ffba4a'}}>Category</NavLink></li>
             <li className="sidebar-item"><NavLink to={`/admin/products`} style={{color:'#ffba4a'}}>Products</NavLink></li>
+            <li className="sidebar-item"><NavLink to={`/feedback`} style={{color:'#ffba4a'}}>Feedbacks</NavLink></li>
             <li className="sidebar-item"><NavLink to={`/admin/orders/statistics`} style={{color:'#ffba4a'}}>Order Statistics</NavLink></li>
             <li className="sidebar-item"><NavLink to={`/admin/orders/actions`} style={{color:'#ffba4a'}}>Order Actions</NavLink></li>
             <li className="sidebar-item"><NavLink to={`/admin/KOT`} style={{color:'#ffba4a'}}>KOT</NavLink></li>

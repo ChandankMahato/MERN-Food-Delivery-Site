@@ -136,10 +136,15 @@ html{
     margin-bottom:0;
 }
 
-.textA .a img{
-    width: 20px;
-    height: 20px;
-    margin-right: 5px;
+.textA .feedback{
+    margin-left: 15%;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.textA .feedback:hover{
+    color:#ffba4a;
+    font-size: 15.3px;
 }
 
 .copyright{

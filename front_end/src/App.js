@@ -26,6 +26,7 @@ import PrivateRouteUser from './components/HOC/PrivateRoute';
 import AdminBanner from './containers/Admin/Banner';
 import UserAccountSignin from './containers/Signin';
 import UserAccountSignup from './containers/Signup';
+import Feedbacks from './containers/Admin/Feedback';
 
 toast.configure();
 
@@ -47,6 +48,7 @@ function App() {
        params === "admin/home" || 
        params === "admin/banner" || 
        params === "admin/products" ||
+       params === "feedback" ||
        params === "admin/category" || 
        params === "admin/orders/statistics" ||
        params === "admin/orders/actions" ||
@@ -90,6 +92,7 @@ function App() {
           <PrivateRoute path="/admin/banner" component={AdminBanner} />
           <PrivateRoute path="/admin/category" component={AdminCategory}/>
           <PrivateRoute path="/admin/products"component={AdminProducts} />
+          <PrivateRoute path="/feedback" component={Feedbacks}/>
           <PrivateRoute path="/admin/orders/statistics" component={AdminOrderStatistics}/>
           <PrivateRoute path="/admin/BILL" component={BILL}/>
           <PrivateRoute path="/admin/orders/actions" component={AdminOrderAction}/>
