@@ -14,7 +14,10 @@ const AdminOrderStatistics = (props) => {
 
   const [orderDetailsModal, setOrderDetailsModal] = useState(false);
   const [orderDetails, setOrderDetails] = useState(null);
+  const [selectedDate, setSelectedDate] = useState(Date());
   const order = useSelector(state => state.order);
+
+  
 
   const showTotalOrderReceived = () => {
     var total = 0;
@@ -48,23 +51,18 @@ const AdminOrderStatistics = (props) => {
   const TodayTotalSales = () => {
     var total = 0;
     for(var i=0; i<order.orders.length; i++){
-      var dateObj = new Date(order.orders[i].createdAt);
-      var dateString = dateObj.toString();
-      const day = dateString.substring(0, 10);
-      if(Date().substring(0, 10) === day && order.orders[i].orderStatus[4].isCompleted === true){
+      if(new Date(order.orders[i].createdAt).toDateString() === new Date(selectedDate).toString().substring(0,15) && order.orders[i].orderStatus[4].isCompleted === true){
         total += order.orders[i].totalAmount;
       }
     }
     return total;
   }
 
+
   const TodayIndividualSales = (count) =>{
     var total = 0;
     for(var i=0; i<order.orders.length; i++){
-      var dateObj = new Date(order.orders[i].createdAt);
-      var dateString = dateObj.toString();
-      const day = dateString.substring(0, 10);
-      if(Date().substring(0,10) === day && order.orders[i].dbStatus[count].isSelected === true && order.orders[i].orderStatus[4].isCompleted === true){
+      if(new Date(order.orders[i].createdAt).toDateString() === new Date(selectedDate).toString().substring(0,15) && order.orders[i].dbStatus[count].isSelected === true && order.orders[i].orderStatus[4].isCompleted === true){
         total += order.orders[i].totalAmount;
       }
     }
@@ -92,17 +90,20 @@ const AdminOrderStatistics = (props) => {
         <tbody>
           {order.orders.length > 0
             ? order.orders.map((order, index) => (
-              <tr key={order._id}>
-                <td>{index+1}</td>
-                <td>{order.address_name}</td>
-                <td>{order.address_mobileNumber}</td>
-                <td>{order.totalAmount}</td>
-                <td>
-                  <button onClick={() => showOrderDetailsModal(order)}>
-                    Details
-                  </button>
-                </td>
-              </tr>
+              (
+                new Date(order.createdAt).toDateString() === new Date(selectedDate).toString().substring(0,15)? 
+                <tr key={order._id}>
+                  <td>{index+1}</td>
+                  <td>{order.address_name}</td>
+                  <td>{order.address_mobileNumber}</td>
+                  <td>{order.totalAmount}</td>
+                  <td>
+                    <button onClick={() => showOrderDetailsModal(order)}>
+                      Details
+                    </button>
+                  </td>
+                </tr>: null
+              )
             )) :null
           }
           
@@ -248,7 +249,13 @@ const AdminOrderStatistics = (props) => {
                   <h6>B4: {showIndividualSales(4)}</h6>
                   <h6>B5: {showIndividualSales(5)}</h6>
                 </div>
-              <p style={{textAlign:'center'}}>Current Day Sales</p>
+
+                <form style={{textAlign:'center'}}>
+                    <span className="dateText">Show Sales as of:</span>
+                    <input type="date" name="order" min="2021-01-01" onChange={(e)=> setSelectedDate(e.target.value)} max="2026-01-01" required/>
+                    <span className="validity"></span>
+                </form>
+              
               <div style={{display:'flex', justifyContent:'space-between'}}>
                   <h6>Total Sales: {TodayTotalSales()}</h6>
                   <h6>B1: {TodayIndividualSales(1)}</h6>

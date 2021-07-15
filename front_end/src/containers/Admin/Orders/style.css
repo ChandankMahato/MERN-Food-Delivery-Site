@@ -42,3 +42,21 @@
     background-color: #ffba4a;
     color:#4d4d4d;
 }
+
+/* css for date */
+label {
+    display: flex;
+    align-items: center;
+  }
+  
+  span::after {
+    padding-left: 5px;
+  }
+  
+  input:invalid + span::after {
+    content: '✖';
+  }
+  
+  input:valid+span::after {
+    content: '✓';
+  }

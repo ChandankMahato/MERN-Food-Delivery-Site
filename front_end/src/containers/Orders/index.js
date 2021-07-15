@@ -13,6 +13,7 @@ const Order = (props) => {
 
   const userOrder = useSelector(state => state.userOrder);
   const auth = useSelector(state => state.auth);
+  const [selectedDate, setSelectedDate] = useState(Date());
 
   const showDate = (date) => {
     var dateObj =new Date(date);
@@ -37,10 +38,16 @@ const Order = (props) => {
             <div style={{textAlign:'center'}}>Welcome to getyourfood, {auth.user.fullName}</div>
             <div style={{textAlign: 'Center'}}>Thank You for your Contribution</div>
             <div style={{textAlign: 'center'}}>Contribution Point: {showTotalContribution()}</div>
-            <div style={{textAlign:'Center'}}>Your Order History is Here...</div>
+            <div style={{textAlign:'Center'}}>Show Order History as of:</div>
+            <form style={{textAlign:'center'}}>
+                <input type="date" name="order" min="2021-01-01" onChange={(e)=> setSelectedDate(e.target.value)} max="2026-01-01" required/>
+                <span className="validity"></span>
+            </form>
               {
                 userOrder.userOrders.map((order,index) => (
-                   <div className="Bill">
+                  (
+                      new Date(order.createdAt).toDateString() === new Date(selectedDate).toString().substring(0,15)? 
+                      <div className="Bill">
                       <div className="BillNo">
                           Bill No: {index+ 1}
                       </div>
@@ -88,10 +95,10 @@ const Order = (props) => {
                         <div className="UserorderStatus">Order Status</div>
                         <div className="currentStatus">
                           {order.orderStatus[4].isCompleted? 'Delivered' :
-                           order.orderStatus[3].isCompleted? 'On The Way':
-                           order.orderStatus[2].isCompleted? 'Packed':
-                           order.orderStatus[1].isCompleted? 'Cooked':
-                           order.orderStatus[0].isCompleted? 'Ordered': null}
+                          order.orderStatus[3].isCompleted? 'On The Way':
+                          order.orderStatus[2].isCompleted? 'Packed':
+                          order.orderStatus[1].isCompleted? 'Cooked':
+                          order.orderStatus[0].isCompleted? 'Ordered': null}
                         </div>
                       </div>
 
@@ -99,7 +106,8 @@ const Order = (props) => {
                             {showDate(order.createdAt)}
                       </div>
 
-                    </div> 
+                    </div> : null
+                  )
                       ))
                     }
               </div>
