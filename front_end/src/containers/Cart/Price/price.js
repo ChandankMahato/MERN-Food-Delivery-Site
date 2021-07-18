@@ -47,16 +47,6 @@ const Price = (props) => {
                             }
                         </div>
                     </div>
-{/* 
-                    <div className="Delivery">
-                        <div className="DeliveryOne">
-                            Delivery Charge
-                        </div>
-                        <div className="DeliveryTwo">
-                            Free
-                        </div>
-                    </div> */}
-
 
                     <div className="itemPrice">
                         <div className="itemPriceOne">

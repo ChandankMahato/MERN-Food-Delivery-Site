@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Header from '../../components/Header';
-import Footer from '../../components/Footer';
 import { getAddress, addOrder, getCartItems, userLogin } from '../../actions';
 import { MaterialButton, MaterialInput, Anchor } from '../../components/MaterialUI';
 import Items from '../Cart/Item/items';
@@ -16,8 +15,6 @@ import {Slide, toast, Zoom} from 'react-toastify';
 * @author
 * @function CheckoutPage
 **/
-
-toast.configure();
 
 const CheckoutStep = (props) => {
   return (
@@ -63,7 +60,7 @@ const Address = ({
                   onClick={() => enableAddressEditForm(adr)}
                   style={{
                     fontWeight: "500",
-                    color: "#2874f0",
+                    color: "#d56040",
                   }}
                 />
               )}
@@ -76,7 +73,7 @@ const Address = ({
                   width: '100%',
                   display: 'flex',
                   marginTop:'15px',
-                  background: '#ffffff',
+                  background: '#f1f1f1',
                   justifyContent: 'center',
                   boxSizing: 'border-box',}}
               > 
@@ -251,8 +248,8 @@ const CheckoutPage = (props) => {
     console.log(payload);
     dispatch(addOrder(payload));
     setConfirmOrder(true);
-    toast.success('Thank You, Your Order Received', {position:'top-left', transition:Slide});
-    history.push('/');
+    toast.success('Thank You, Your Order Received', {position: 'top-left', transition:Slide});
+    history.push('/order');
   };
 
 
@@ -269,11 +266,11 @@ const CheckoutPage = (props) => {
             body={
               auth.userAuthenticate ? (
                 <div className="loggedInId">
-                  <span style={{ fontWeight: 500 }}>{auth.user.fullName}</span>
-                  <span style={{ margin: "0 5px" }}>{auth.user.mobile}</span>
+                  <span style={{ fontWeight: 500, color: '#d56040' }}>{auth.user.fullName}</span>
+                  <span style={{ margin: "0 5px", color: '#d56040' }}>{auth.user.mobile}</span>
                 </div>
               ) : (
-                <div>
+                <div  style={{background:'#f1f1f1'}}>
                   <MaterialInput 
                   label="Mobile Number"
                   placeholder="9811771892"
@@ -283,7 +280,7 @@ const CheckoutPage = (props) => {
                   />
                   <MaterialInput 
                   label="Password" 
-                  placeholder="*********"
+                  placeholder="Enter Password"
                   value={password}
                   type="password"
                   onChange={(e) => setPassword(e.target.value)}
@@ -292,14 +289,14 @@ const CheckoutPage = (props) => {
                       width: '100%',
                       display: 'flex',
                       marginTop:'15px',
-                      background: '#ffffff',
+                      background: '#e4ded5',
                       justifyContent: 'center',
                       boxSizing: 'border-box',
                   }}>
                     <div>
                       <span style={{
                         cursor:'pointer',
-                        color:'#2874f0',
+                        color:'#d56040',
                         fontSize:'20px',
                       }} onClick={userAccountLogin}>Login</span>
                     </div>
@@ -350,7 +347,9 @@ const CheckoutPage = (props) => {
             active={orderSummary}
             body={
               orderSummary ? (
+              <div style={{background: '#f1f1f1'}}>
                 <Items/>
+              </div>
               ) : orderConfirmation ? (
                 <div className="stepCompleted">
                   {Object.keys(cart.cartItems).length} items
@@ -363,11 +362,13 @@ const CheckoutPage = (props) => {
             <Card
               style={{
                 margin: "10px 0",
+                background: '#f1f1f1'
               }}
             >
                 <div  className="flexRow" style={{
                   width: '100%',
                   display: 'flex',
+                  background: '#f1f1f1',
                   marginBottom:'15px',
                   justifyContent: 'center',
                   boxSizing: 'border-box',}}>
@@ -376,6 +377,7 @@ const CheckoutPage = (props) => {
                 <div className="flexRow" style={{
                   width: '100%',
                   display: 'flex',
+                  background: '#f1f1f1',
                   marginBottom:'15px',
                   justifyContent: 'center',
                   boxSizing: 'border-box',}} >
@@ -397,12 +399,16 @@ const CheckoutPage = (props) => {
             active={paymentOption}
             body={
               paymentOption && (
-                <div>
+                <div style={{
+                  background: '#f1f1f1',
+                 
+                }}>
                   <div
                     className="flexRow"
                     style={{
                       alignItems: "center",
                       padding: "20px",
+                      margin:'10px 10px 10px 10px'
                     }}
                   >
                     <input type="radio" name="paymentOption" value="cod" />
@@ -413,7 +419,7 @@ const CheckoutPage = (props) => {
                     onClick={onConfirmOrder}
                     style={{
                       width: "200px",
-                      margin: "0 0 20px 20px",
+                      margin:'10px 10px 10px 10px'
                     }}
                   />
                 </div>
@@ -423,7 +429,6 @@ const CheckoutPage = (props) => {
         </div>
         
       </div>
-    <Footer />
     </>
   );
 };

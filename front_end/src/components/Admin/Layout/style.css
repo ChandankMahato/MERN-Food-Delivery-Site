@@ -11,14 +11,14 @@
         top: 0;
         bottom: 0;
         left:0;
-        background-color:#eeeeee;
+        background-color:rgb(173, 173, 173);
         padding-top: 60px;
         box-shadow: inset 0 0 2px gray;
     }
 }
 
 .sidebar ul{
-    margin: 0;
+    margin-top: 1.5em;
     padding: 0;
 }
 
@@ -28,7 +28,7 @@
 
 .sidebar ul li a{
     display: block;
-    color: #333;
+    color: #2b2621;
     padding: 5px 10px;
     box-sizing: border-box;
     margin: 5px 0 5px 10px;
@@ -37,6 +37,6 @@
 }
 
 .sidebar ul li a.active{
-    background: #333;
+    background: #d56040;
     color: #fff;
 }

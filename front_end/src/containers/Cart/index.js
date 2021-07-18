@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import Header from '../../components/Header';
-import Footer from '../../components/Footer';
 import Bbuttons from './Button/button';
 import Price from './Price/price';
 import Items from './Item/items';
@@ -47,8 +46,6 @@ const Cart = (props) => {
           <button onClick={() => history.push('/')}>Add More Item</button>
         </div>}
     </div>
-
-      <Footer/>
     </>
    )
 

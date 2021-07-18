@@ -1,32 +1,40 @@
 .cartItemContainer{
-    margin-top: 100px;
+    margin-top: 8em;
     width: 80%;
     margin-left: 10%;
     display: block;
+    border: 1px solid #cecece;
+    margin-bottom: 4em;
+    background-color: #f1f1f1;
 }
 
 .emptyCart{
-    background-color: #4d4d4d;
+    background-color: #e0dbdb;
     text-align: center;
-    color: #ffffff;
+    color: #d56040;
     padding: 10px;
     box-shadow:3px 3px 10px 6px gray; 
 }
 
 .emptyCart .add{
-    color: #faba46;
+    color: #2b2621;
+    font-size: 2em;
     cursor:pointer
+}
+
+.emptyCart .add:hover{
+    color: #d56040;
 }
 
 .firstContent{
     width: 80%;
-    height: 40px;
+    height: 2.5em;
     text-align:center;
     margin-left: 10%;
 }
 
 .firstContent h5{
-    margin-top: 7px;
+    margin-top: 0.5em;
 }
 
 .cartHeader{
@@ -34,31 +42,23 @@
 } 
 
 .rightPart{
-    border:1px solid #cecece;
+    background-color: rgb(230, 230, 230);
+    border:1px solid #2b2621;
+    box-shadow: 5px 0 5px 5px rgb(194, 194, 194);
     width: 30%;
     text-align: center;
     display:table-cell;
+    color: #d56040;
 } 
 
 .rightPartHeader{
-    border-bottom: 1px solid #cecece;
+    border-bottom: 1px solid #2b2621;
     width: 100%;
-    height: 40px;
+    height: 2.5em;
 }
 
 .rightPartBody{
     width: 100%;
-}
-
-.cartItems{
-    width: 95%;
-    margin-left: 2.5%;
-    margin-top: 10px;
- }
-
- .cartItemsDetails{
-    width: 95%;
-    margin-left: 2.5%;
 }
 
 .itemCount, .Delivery, .itemPrice{
@@ -77,15 +77,6 @@
     text-align: right;
 }
 
-.placeOrder{
-    margin-left: 82.5%;
-}
-
-.placeOrder button{
-    width: 150px;
-    height: 30px;
-}
-
 .addMore{
     text-align: center;
     background-color: gray;
@@ -93,12 +84,12 @@
 
 .addMore button{
     border:none;
+    background-color: #d56040;
     padding:5px 10px;
-    background-color: #fb641b;
-    color:#ffffff;
+    
 }
 
 .addMore button:hover{
-    background-color: rgb(255, 196, 0);
+    background-color: rgb(49, 0, 226);
     color:#4d4d4d;
 }

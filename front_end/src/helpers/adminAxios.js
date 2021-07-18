@@ -21,9 +21,6 @@ adminAxiosIntance.interceptors.request.use((req) => {
   return req;
 })
 
-
-
-
 adminAxiosIntance.interceptors.response.use((res) => {
   return res;
 }, (error) => {

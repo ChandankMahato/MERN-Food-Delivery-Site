@@ -14,8 +14,6 @@ import { toast } from 'react-toastify';
 * @function Product
 **/
 
-toast.configure();
-
 const Product = (props) => {
 
   let history = useHistory();
@@ -92,6 +90,11 @@ const Product = (props) => {
           <Col>
             <label className="key">Price</label>
             <p className="value">{productDetails.price}</p>
+          </Col>
+
+          <Col>
+          <label className="key">Category</label>
+            <p className="value">{productDetails.category.name}</p>
           </Col>
           
           <Col>

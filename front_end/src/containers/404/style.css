@@ -7,6 +7,7 @@
     text-align: center;
     font-family: 'Arvo', serif;
     margin-top: 0.8em;
+    color: #d56040;
 }
 
 .page_404  img{ 
@@ -27,11 +28,10 @@
 .ContentBox a{
     text-decoration: None;
     padding: 10px 20px;
-    background:#39ac31;
+    background:#d56040;
     color: #ffffff;
 }
 
 .ContentBox a:hover{
-    background: #ffba4a;
-    color:#4d4d4d;
+    background: #2b2621;
 }

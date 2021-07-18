@@ -14,7 +14,9 @@ import { Bounce, toast } from 'react-toastify';
 
 const Feedbacks = (props) => {
   const [messageDetailsModal, setMessageDetailsModal] = useState(false);
+  const [messageDeleteModal, setMessageDeleteModal] = useState(false);
   const [messageDetails, setMessageDetails] = useState(null);
+  const [feedbackId, setFeedbackId] = useState('');
   const dispatch = useDispatch();
   const feedback = useSelector(state => state.feedback);
 
@@ -22,7 +24,7 @@ const Feedbacks = (props) => {
     dispatch(getAllFeedback());
   }, []);
 
-  const deleteFeedBackMessage = (feedbackId) => {
+  const deleteFeedBackMessage = () => {
       const payload = {
         feedbackId,
       };
@@ -32,19 +34,19 @@ const Feedbacks = (props) => {
             dispatch(getAllFeedback());
         }
     });
-    closeMessageDetailsModal();
+    setMessageDeleteModal(false);
     toast.success('Message Deleted', { position: 'top-center', transition: Bounce});
   }
 
   const renderFeedbacks = () => {
     return (
-      <Table style={{ fontSize: '15px' }} responsive="sm">
+      <Table className="tables" responsive="sm">
         <thead>
           <tr>
             <th>#</th>
             <th>Name</th>
             <th>Mobile</th>
-            <th>Message</th>
+            <th style={{textAlign:'center'}}>Message</th>
           </tr>
         </thead>
         <tbody>
@@ -54,10 +56,15 @@ const Feedbacks = (props) => {
                 <td>{index+1}</td>
                 <td>{feedback.Name}</td>
                 <td>{feedback.Mobile}</td>
-                <td>
-                  <button onClick={() => ShowMessageDetailsModal(feedback)}>
-                    Show
-                  </button>
+                <td style={{width:'40%', textAlign:'center'}}>
+                  <div style={{height:'30px'}}>
+                    <button className="actionBtns" onClick={() => ShowMessageDetailsModal(feedback)}>
+                      Show
+                    </button>
+                    <button className="actionBtns" onClick={() => ShowMessageDeleteModal(feedback)}>
+                      Delete
+                    </button>
+                  </div>
                 </td>
               </tr>
             ))
@@ -76,6 +83,62 @@ const Feedbacks = (props) => {
     setMessageDetailsModal(false);
   }
 
+  
+  const ShowMessageDeleteModal = (feedback) => {
+    setFeedbackId(feedback._id);
+    setMessageDetails(feedback);
+    setMessageDeleteModal(true);
+  }
+
+  const closeMessageDeleteModal = () => {
+    setMessageDeleteModal(false);
+  }
+
+  const renderMessageDeleteModal = () => {
+    if (!messageDetails) {
+      return null;
+    }
+
+    return(
+      <Modal
+      show={messageDeleteModal}
+      close={closeMessageDeleteModal}
+      modaltitle={'Message Details'}
+      buttons = {[
+        {
+            label: 'No',
+            color: 'primary',
+            onClick: closeMessageDeleteModal
+        },
+        {
+            label: 'Yes',
+            color: 'danger',
+            onClick: deleteFeedBackMessage
+        }
+      ]}
+      size="md"
+      >
+        <Row>
+          <Col md="12">
+            <label className="key">Name</label>
+            <p className="value">{messageDetails.Name}</p>
+          </Col>
+          <Col md="12">
+            <label className="key">Mobile</label>
+            <p className="value">{messageDetails.Mobile}</p>
+          </Col>
+        </Row>
+        <Row>
+          <Col md="12">
+            <label className="key">Message</label>
+            <p className="value">{messageDetails.Message}</p>
+          </Col>
+        </Row>
+      </Modal>
+    )
+  }
+
+
   const renderShowMessageDetailsModal = () => {
     if (!messageDetails) {
       return null;
@@ -86,9 +149,9 @@ const Feedbacks = (props) => {
         show={messageDetailsModal}
         close={closeMessageDetailsModal}
         modaltitle={'Message Details'}
-        btntitle ={'Delete'}
+        btntitle ={'Close'}
         size="md"
-        save = {() => deleteFeedBackMessage(messageDetails._id)}
+        save={closeMessageDetailsModal}
       >
         <Row>
           <Col md="6">
@@ -113,7 +176,7 @@ const Feedbacks = (props) => {
   return (
     <Layout sidebar>
 
-      <Container>
+      <Container className="feedbackContainer">
         <Row>
           <Col md={12}>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -128,6 +191,7 @@ const Feedbacks = (props) => {
           </Col>
         </Row>
       </Container>
+      {renderMessageDeleteModal()}
       {renderShowMessageDetailsModal()}
     </Layout>
   )

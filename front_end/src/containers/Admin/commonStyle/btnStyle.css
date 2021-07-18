@@ -1,0 +1,12 @@
+.actionBtns{
+    background-color: #d04723;
+    width: 70px;
+    height: 30px;
+    color: #ffffff;
+}
+
+.actionBtns:hover{
+    background-color: #2b2621;
+    width: 68px;
+    height: 28px;
+}

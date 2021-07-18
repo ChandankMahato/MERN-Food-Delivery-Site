@@ -3,6 +3,8 @@
     width: 95%;
     margin-left: 2.5%;
     margin-top: 2em;
+    margin-top: 1.5em;
+    color:#d04723;
 }
 
 @media screen and (max-width: 600px){
@@ -28,12 +30,12 @@
 .billKotBill, .billKotTime {
     text-align: center;
     height: 2em;
-    background-color: green;
+    background-color: #d04723;
 }
 
 .billproductsQty{
     width: 100%;
-    background-color: #4d4d4d;
+    background-color: #2b2621;
 }
 
 .billproductsHeading{
@@ -52,7 +54,8 @@
 }
 
 .billitemAndQty{
-    background-color: gray;
+    background-color: #ffffff;
+    color: #d04723;
     display: flex;
 }
 
@@ -72,13 +75,14 @@
 }
 
 .billcustomerDetailsHeading{
-    background-color: #4d4d4d;
+    background-color: #2b2621;
     width: 100%;
     text-align: center;
 }
 
 .billcustomerDetails{
-    background-color: gray;
+    background-color: #ffffff;
+    color: #d04723;
     display: flex;
 }
 
@@ -93,13 +97,14 @@
 
 .billorderStatus{
     width: 60%;
-    height: 2em;
-    border-style: none;
-    background-color: lightgrey;
 }
 .billstatusBtn{
-    height: 2em;
     width: 40%;
+}
+
+.billorderStatus, .billstatusBtn{
+    height: 2em;
     border-style: none;
-    background-color: lightgrey;
+    background-color: #2b2621;
+    color: #ffffff;
 }

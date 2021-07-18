@@ -13,7 +13,7 @@ const NewModal = (props) => {
             <Modal.Header closeButton>
                 <Modal.Title>{props.modaltitle}</Modal.Title>
             </Modal.Header>
-            <Modal.Body>
+            <Modal.Body className="modal-body">
                 {props.children}
             </Modal.Body>
             <Modal.Footer>
@@ -26,7 +26,6 @@ const NewModal = (props) => {
                     <Button 
                         variant="primary"
                         {...props} 
-                        style={{backgroundColor: '#333'}}
                         className="btn-sm" 
                         onClick={props.save}
                     >

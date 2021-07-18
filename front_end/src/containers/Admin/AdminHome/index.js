@@ -8,7 +8,10 @@ import Layout from '../../../components/Admin/Layout';
 const AdminHome = (props) => {
   return(
     <Layout sidebar>
+      <div style={{marginTop:'2em'}}>
       AdminHome
+      </div>
+    
     </Layout>
    )
 

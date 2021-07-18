@@ -2,9 +2,6 @@ import {authConstants, cartConstants} from "./constants";
 import axios from "../helpers/axios"
 import { Slide, toast } from "react-toastify";
 
-
-toast.configure();
-
 export const userLogin = (user) => {
     return async (dispatch) => {
         try{

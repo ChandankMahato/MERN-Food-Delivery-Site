@@ -7,6 +7,7 @@ import { addAdminProduct, adminUpdateProduct, deleteAdminProductById, getAdminIn
 import Modal from '../../../components/UI/Modal';
 import './style.css';
 import { generatePublicUrl } from '../../../urlConfig';
+import { Bounce, toast } from 'react-toastify';
 
 /**
 * @author
@@ -28,6 +29,7 @@ const AdminProducts = (props) => {
 
   const dispatch = useDispatch();
   const [productDetailsModal, setProductDetailsModal] = useState(false);
+  const [productDeleteModal, setProductDeleteModal] = useState(false);
   const [productDetails, setProductDetails] = useState(null);
 
   const category = useSelector(state => state.category);
@@ -118,6 +120,29 @@ const AdminProducts = (props) => {
     setProductPictures([]);
   }
 
+  const deleteProduct = () => {
+    const payload = {
+      productId: product._id,
+    };
+    dispatch(deleteAdminProductById(payload))
+    .then(result => {
+      if(result){
+          dispatch(getAdminProducts());
+          dispatch(getAdminInitialData());
+      }
+  });
+  closeProductDeleteModal();
+  toast.success('Product Deleted', { position: 'top-center', transition: Bounce});
+}
+
+const showProductDeleteModal = (product) => {
+  setProductDeleteModal(product);
+  setProductId(product._id);
+  setProductDeleteModal(true);
+}
+const closeProductDeleteModal = () => {setProductDeleteModal(false)};
+
+
 
 
   const closeAddNewProductModal = () => { setAddNewProductModal(false) };
@@ -141,7 +166,7 @@ const AdminProducts = (props) => {
 
     return (
 
-      <Table style={{ fontSize: '15px' }} responsive="sm">
+      <Table className="tables" responsive="sm">
         <thead>
           <tr>
             <th>#</th>
@@ -149,7 +174,7 @@ const AdminProducts = (props) => {
             <th>Price</th>
             <th>Quantity</th>
             <th>Category</th>
-            <th>Actions</th>
+            <th style={{textAlign:'center'}}>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -161,28 +186,14 @@ const AdminProducts = (props) => {
                 <td>{product.price}</td>
                 <td>{product.quantity}</td>
                 <td>{product.category.name}</td>
-                <td>
-                  <button onClick={() => showProductDetailsModal(product)}>
+                <td style={{width:'25%', textAlign:'center'}}>
+                  <button className="actionBtns" onClick={() => showProductDetailsModal(product)}>
                     info
                   </button>
-                  <button onClick={() => showProductUpdateModal(product)}>
+                  <button className="actionBtns" onClick={() => showProductUpdateModal(product)}>
                     edit
                   </button>
-                  <button
-                    onClick={() => {
-                      const payload = {
-                        productId: product._id,
-                      };
-                      dispatch(deleteAdminProductById(payload))
-                      .then(result => {
-                        if(result){
-                            dispatch(getAdminProducts());
-                            dispatch(getAdminInitialData());
-                        }
-                    });
-            
-                    }}
-                  >
+                  <button className="actionBtns" onClick={() => showProductDeleteModal(product)}>
                     del
                   </button>
                 </td>
@@ -193,6 +204,57 @@ const AdminProducts = (props) => {
       </Table>
     )
   }
+
+  
+  const renderProductDeleteModal = () => {
+
+    if(!productDetails){
+      return null;
+    }
+
+    return(
+      <Modal
+      show={productDeleteModal}
+      close={closeProductDeleteModal}
+      modaltitle={'Delete Product'}
+      buttons = {[
+          {
+              label: 'No',
+              color: 'primary',
+              onClick: closeProductDeleteModal
+          },
+          {
+              label: 'Yes',
+              color: 'danger',
+              onClick: deleteProduct
+          }
+        ]}
+        size="md"
+      >
+       <Row>
+          <Col md="6">
+            <label className="keyAdmin">Name</label>
+            <p className="valueAdmin">{productDetails.name}</p>
+          </Col>
+          <Col md="6">
+            <label className="keyAdmi">Category</label>
+            <p className="valueAdmin">{productDetails.category.name}</p>
+          </Col>
+        </Row>
+        <Row>
+          <Col md="6">
+            <label className="keyAdmin">Price</label>
+            <p className="valueAdmin">{productDetails.price}</p>
+          </Col>
+          <Col md="6">
+            <label className="keyAdmin">Quantity</label>
+            <p className="valueAdmin">{productDetails.quantity}</p>
+          </Col>
+        </Row>
+      </Modal>
+    )
+  }
+
 
   const renderAddProductsModal = () => {
     return (
@@ -319,43 +381,45 @@ const AdminProducts = (props) => {
         show={productDetailsModal}
         close={handleCloseProductDetailsModal}
         modalTitle={'Products Details'}
+        btntitle="close"
+        save={() => setProductDetailsModal(false)}
         size="lg"
       >
         <Row>
           <Col md="6">
-            <label className="key">Name</label>
-            <p className="value">{productDetails.name}</p>
+            <label className="keyAdmin">Name</label>
+            <p className="valueAdmin">{productDetails.name}</p>
           </Col>
           <Col md="6">
-            <label className="key">Price</label>
-            <p className="value">{productDetails.price}</p>
+            <label className="keyAdmin">Price</label>
+            <p className="valueAdmin">{productDetails.price}</p>
           </Col>
         </Row>
 
         <Row>
           <Col md="6">
-            <label className="key">Quantity</label>
-            <p className="value">{productDetails.quantity}</p>
+            <label className="keyAdmin">Quantity</label>
+            <p className="valueAdmin">{productDetails.quantity}</p>
           </Col>
           <Col md="6">
-            <label className="key">Category</label>
-            <p className="value">{productDetails.category.name}</p>
+            <label className="keyAdmin">Category</label>
+            <p className="valueAdmin">{productDetails.category.name}</p>
           </Col>
         </Row>
 
         <Row>
           <Col md="12">
-            <label className="key">Description</label>
-            <p className="value">{productDetails.description}</p>
+            <label className="keyAdmin">Description</label>
+            <p className="valueAdmin">{productDetails.description}</p>
           </Col>
         </Row>
 
         <Row>
           <Col>
-            <lable className="key">Product Pictures</lable>
+            <lable className="keyAdmin">Product Pictures</lable>
             <div style={{ display: 'flex' }}>
               {productDetails.productPictures.map(picture =>
-                <div className="productImgContainer">
+                <div className="productImgContainerAdmin">
                   <img src={generatePublicUrl(picture.img)} alt="nothing"/>
                 </div>
               )}
@@ -370,12 +434,12 @@ const AdminProducts = (props) => {
   return (
     <Layout sidebar>
 
-      <Container>
+      <Container className="productContainerAdmin">
         <Row>
           <Col md={12}>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               <h3>Products</h3>
-              <button onClick={showAddNewProductModal}>Add</button>
+              <button className="actionBtns" onClick={showAddNewProductModal}>Add</button>
             </div>
           </Col>
         </Row>
@@ -390,6 +454,7 @@ const AdminProducts = (props) => {
       {renderAddProductsModal()}
       {renderShowProductDetailsModal()}
       {renderProductUpdateModal()}
+      {renderProductDeleteModal()}
     </Layout>
   )
 

@@ -1,28 +1,21 @@
-.cartItemContainer{
-    margin-top: 100px;
-    width: 80%;
-    border: 1px solid #cecece;
-    display: table;
-    margin-bottom: 120px;
-}
 
 .cartItems{
    width: 95%;
    margin-left: 2.5%;
-   margin-top: 10px;
-   
+   margin-top: 1em;
+   color: #d56040;
 }
 
 .cartItemsDetails{
     width: 95%;
     margin-left: 2.5%;
-    margin-bottom: 20px;
+    margin-bottom: 1.25em;
     
 }
 
 .cartProImgContainer{
-    width: 100px;
-    height: 100px;
+    width: 10em;
+    height: 6em;
     overflow: hidden;
     margin-bottom: 5px;
 }
@@ -40,60 +33,78 @@
 .cartHeader{
     border: 1px solid #cecece;
     display: flex;
-    background-color: #4d4d4d;
+    background-color: #d56040;
     color:#ffffff;
 }
 
 .firstContent{
     width: 50%;
-    height: 40px;
+    height: 2.5em;
     float: left;
     text-align:left;
-    margin-left: 20px;
+    margin-left: 1.25em;
 }
 
 .secondContent{
     width: 50%;
     float: right;
-    height: 40px;
-    margin-right: 20px;
-    text-align:right;
-    
+    height: 2.5em;
+    margin-right: 1.25em;
+    text-align:right; 
 }
 
 /* quantity control css */
 
 .quantityControl{
     display: flex;
-    align-items: center;
 }
 
+.btnControl{
+    margin-left: -0.5em;
+}
+
+
 .quantityControl input{
-    width: 30px;
-    height: 30px;
+    width: 1.5em;
+    height: 1.5em;
     border: 1px solid #c2c2c2;
     margin: 0 5px;
     text-align: center;
+    color: #d56040;
+    font-size: 1.2em;
+    font-weight: bolder;
 }
 
 .quantityControl button{
-    width: 30px;
-    height: 30px;
-    border-radius: 15px;
+    width: 1.5em;
+    height: 1.5em;
+    border-radius: 1em;
     border: none;
     border: 1px solid #c2c2c2;
     background-color: transparent;
+    color: #d56040;
+    font-size: 1.2em;
+    font-weight: bolder;
+}
+
+.quantityControl button:hover{
+    font-size: 1.1em;
 }
 
 /* action button css */
 .cartActionBtn{
-    margin: 0 10px;
     font-family: 'Roboto';
     font-weight: 600px;
     text-transform: uppercase;
     background: transparent;
     border: none;
-    color:#212121;
+    color: #2b2621;
     cursor: pointer;
-    font-size: 15px;
+    font-size: 1em;
+    margin: -0.5em 0 10px;
+}
+
+.cartActionBtn:hover{
+    font-size: 0.95em;
+    color: #d56040;
 }

@@ -34,6 +34,7 @@ const KOT = (props) => {
       <Layout sidebar>
          
               <div className="KotContainer">
+              <h4 style={{textAlign:'center'}}>Kitchen Order Ticketing (KOT)</h4>
                 {
                   order.orders.map((order,index) => (
                     (order.orderStatus[0].isCompleted === true && 

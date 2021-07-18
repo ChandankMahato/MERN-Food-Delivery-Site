@@ -3,7 +3,7 @@ import Layout from '../../../components/Admin/Layout';
 import {Container, Row, Col, Table} from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import './style.css';
-import { adminUpdateDBStatus, adminUpdateOrder } from '../../../actions/order.action';
+import { adminUpdateDBStatus } from '../../../actions/order.action';
 
 /**
 * @author
@@ -19,14 +19,6 @@ const AdminOrderAction = (props) => {
 
   const renderProducts = () => {
 
-    const onOrderUpdate = (orderId) =>{
-      const payload = {
-        orderId,
-        type,
-      };
-      dispatch(adminUpdateOrder(payload))
-    };
-
     const onDBStatusUpdate = (orderId) => {
       const payload = {
         orderId, 
@@ -35,15 +27,14 @@ const AdminOrderAction = (props) => {
       dispatch(adminUpdateDBStatus(payload))
     };
     return (
-      <Table style={{fontSize: '15px'}} responsive="sm">
+      <Table className="tables" responsive="sm">
         <thead>
           <tr>
             <th>#</th>
             <th>Customer Name</th>
             <th>mobileNumber</th> 
             <th>Total Price</th>
-            <th>Order Status</th>
-            <th>DB Status</th>
+            <th style={{textAlign:'center'}}>DB Status</th>
           </tr>
         </thead>
         <tbody>
@@ -60,29 +51,8 @@ const AdminOrderAction = (props) => {
                 <td>{order.address_name}</td>
                 <td>{order.address_mobileNumber}</td>
                 <td>{order.totalAmount}</td>
-                <td>
-                  <select className="statusSelect" onChange={(e) => setType(e.target.value)}>
-                    <option value={""}>Order Status</option>
-                      {order.orderStatus.map((status) => {
-                        return(
-                        <>
-                          {!status.isCompleted ? (
-                            <option 
-                            key={status.type} 
-                            value={status.type}
-                            >
-                              {status.type}
-                            </option>
-                          ) : null}
-                        </>)
-                      })}
-                    </select>
-                    <button className="statusBtn" onClick = {() => onOrderUpdate(order._id)}>
-                      confirm
-                    </button>
-                </td>
-
-                <td>
+                <td style={{width:'25%', textAlign:'center'}}>
+                  <div style={{height:'30px'}}>
                   <select className="statusSelect" onChange={(e) => setDBType(e.target.value)}>
                     <option value={""}>DB Status</option>
                       {order.dbStatus.map((status) => {
@@ -99,9 +69,10 @@ const AdminOrderAction = (props) => {
                         </>)
                       })}
                     </select>
-                    <button className="statusBtn" onClick = {() => onDBStatusUpdate(order._id)}>
+                    <button className="actionBtns" onClick = {() => onDBStatusUpdate(order._id)}>
                       confirm
                     </button>
+                  </div>
                 </td>
               </tr> : null
               )
@@ -115,7 +86,7 @@ const AdminOrderAction = (props) => {
 
   return(
       <Layout sidebar>
-        <Container>
+        <Container className="orderContainer">
           <Row>
             <Col md={12}>
               <div style={{display:'flex', justifyContent: 'space-between'}}>

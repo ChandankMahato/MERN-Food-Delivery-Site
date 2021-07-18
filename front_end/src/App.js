@@ -27,6 +27,7 @@ import AdminBanner from './containers/Admin/Banner';
 import UserAccountSignin from './containers/Signin';
 import UserAccountSignup from './containers/Signup';
 import Feedbacks from './containers/Admin/Feedback';
+import Footer from './components/Footer';
 
 toast.configure();
 
@@ -75,41 +76,46 @@ function App() {
   
  
   return (
-    <div className="App">
-      <Router>
-        <Switch>
-          <Route path="/" exact component={Home} />
-          <Route path="/login" exact component={UserAccountSignin} />
-          <Route path="/register" component={UserAccountSignup} />
-          <Route path="/cart" component={Cart} />
-          <Route path="/checkout" component={CheckoutPage} />
-          <Route path="/about" component={About} />
-          <PrivateRouteUser path="/order" component={Order}/>
-          
-          {/* admin starts here */}
-          <PrivateRoute path="/admin/KOT" component={KOT}/>
-          <PrivateRoute path="/admin/home" exact component={AdminHome}/>
-          <PrivateRoute path="/admin/banner" component={AdminBanner} />
-          <PrivateRoute path="/admin/category" component={AdminCategory}/>
-          <PrivateRoute path="/admin/products"component={AdminProducts} />
-          <PrivateRoute path="/feedback" component={Feedbacks}/>
-          <PrivateRoute path="/admin/orders/statistics" component={AdminOrderStatistics}/>
-          <PrivateRoute path="/admin/BILL" component={BILL}/>
-          <PrivateRoute path="/admin/orders/actions" component={AdminOrderAction}/>
-          <Route path="/admin/signin" component={AdminAccountSignin}/>
-          <Route path="/admin/signup" component={AdminAccountSignup}/>
-          <Route component={PageNotFound}/>
-        </Switch>
-      </Router>
-      <ToastContainer 
-        autoClose= {5000}
-        hideProgressBar= {false}
-        closeOnClick= {true}
-        pauseOnHover= {true}
-        draggable= {true}
-        progress= {undefined}
-      />
-    </div>
+    <>
+      <div className="App">
+        <Router>
+          <Switch>
+            <Route path="/" exact component={Home} />
+            <Route path="/login" exact component={UserAccountSignin} />
+            <Route path="/register" component={UserAccountSignup} />
+            <Route path="/cart" component={Cart} />
+            <Route path="/checkout" component={CheckoutPage} />
+            <Route path="/about" component={About} />
+            <PrivateRouteUser path="/order" component={Order}/>
+            
+            {/* admin starts here */}
+            <PrivateRoute path="/admin/KOT" component={KOT}/>
+            <PrivateRoute path="/admin/home" exact component={AdminHome}/>
+            <PrivateRoute path="/admin/banner" component={AdminBanner} />
+            <PrivateRoute path="/admin/category" component={AdminCategory}/>
+            <PrivateRoute path="/admin/products"component={AdminProducts} />
+            <PrivateRoute path="/feedback" component={Feedbacks}/>
+            <PrivateRoute path="/admin/orders/statistics" component={AdminOrderStatistics}/>
+            <PrivateRoute path="/admin/BILL" component={BILL}/>
+            <PrivateRoute path="/admin/orders/actions" component={AdminOrderAction}/>
+            <Route path="/admin/signin" component={AdminAccountSignin}/>
+            <Route path="/admin/signup" component={AdminAccountSignup}/>
+            <Route component={PageNotFound}/>
+          </Switch>
+        </Router>
+        <ToastContainer 
+          autoClose= {5000}
+          hideProgressBar= {false}
+          closeOnClick= {true}
+          pauseOnHover= {true}
+          draggable= {true}
+          progress= {undefined}
+        />
+      </div>
+      <div>
+        {!check ?<Footer/> : null }
+      </div>
+    </>
   );
 }
 

@@ -77,14 +77,14 @@ const AdminOrderStatistics = (props) => {
     }
 
     return (
-      <Table style={{fontSize: '15px'}} responsive="sm">
+      <Table className="tables" responsive="sm">
         <thead>
           <tr>
             <th>#</th>
             <th>Customer Name</th>
             <th>mobileNumber</th> 
             <th>Total Price</th>
-            <th>Actions</th>
+            <th style={{textAlign:'center'}}>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -97,10 +97,12 @@ const AdminOrderStatistics = (props) => {
                   <td>{order.address_name}</td>
                   <td>{order.address_mobileNumber}</td>
                   <td>{order.totalAmount}</td>
-                  <td>
-                    <button onClick={() => showOrderDetailsModal(order)}>
-                      Details
-                    </button>
+                  <td  style={{width:'15%', textAlign:'center'}}>
+                    <div style={{height:'30px'}}>
+                      <button className="actionBtns" onClick={() => showOrderDetailsModal(order)}>
+                        Details
+                      </button>
+                    </div>
                   </td>
                 </tr>: null
               )
@@ -123,6 +125,8 @@ const AdminOrderStatistics = (props) => {
         show={orderDetailsModal}
         close={() => setOrderDetailsModal(false)}
         modaltitle={'Ordered Details'}
+        btntitle="Close"
+        save={() => setOrderDetailsModal(false)}
         size="lg"
       >
         <Row>
@@ -235,7 +239,7 @@ const AdminOrderStatistics = (props) => {
 
   return(
       <Layout sidebar>
-        <Container>
+        <Container className="orderContainer">
           <Row>
             <Col md={12}>
             <h3 style={{textAlign:'center'}}>Orders Statistics</h3>
@@ -250,7 +254,7 @@ const AdminOrderStatistics = (props) => {
                   <h6>B5: {showIndividualSales(5)}</h6>
                 </div>
 
-                <form style={{textAlign:'center'}}>
+                <form className="dateForm">
                     <span className="dateText">Show Sales as of:</span>
                     <input type="date" name="order" min="2021-01-01" onChange={(e)=> setSelectedDate(e.target.value)} max="2026-01-01" required/>
                     <span className="validity"></span>

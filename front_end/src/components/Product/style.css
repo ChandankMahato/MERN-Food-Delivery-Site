@@ -26,7 +26,7 @@
 
     .categoryContainer{
         width: 60%;
-        height: 200px;
+        height: 12.5em;
         margin-left: 20%;
         margin-top: 2em;
         margin-bottom: 2em;
@@ -39,6 +39,7 @@
     width: 100%;
     height: 2em;
     text-align: center;
+    color: #d56040 
 }
 
 .cardCategory{
@@ -72,17 +73,19 @@
 .categoryImgContainer img:hover{
     width: 32%;
     height: 32%;
+    filter: blur(0) brightness(250%) sepia(0) saturate(10) opacity(1) invert(0) grayscale(0.1) contrast(3) hue-rotate(147deg)
 }
 
 .categoryName{
     text-align: center;
-    font-size: 0.78em;
+    font-size: 0.8em;
     font-weight: bolder;
     cursor: pointer;
 }
 
 .categoryName:hover{
-    font-size: 0.8em;
+    font-size: 0.75em;
+    color: #d56040 
 }
 
 /* category */
@@ -90,9 +93,9 @@
 .product{
     width: 100%;
     height: 2em;
-    background-color: #4d4d4d;
+    background-color: #7a6471;
     text-align: center;
-    color: #e0e0e0;
+    color: #ffba4a;
     border-radius: 15px 15px 0 0;
     box-shadow: rgba(190, 188, 188, 0.815) 0 5px 0 0;
 }
@@ -102,7 +105,7 @@
     margin-top:1em;
     border-radius: 10px;
     border: 2px solid #cecece;
-    background: #fff;
+    background: rgb(250, 249, 249);
     box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 5px 0px !important;
     padding: 1.2em;
 }
@@ -154,29 +157,29 @@
     cursor: pointer;
 }
 
-/* .productInfo:hover{
-    font-size: 1.1em;
-} */
-
+.productInfo:hover{
+    color: #d56040 ;
+    font-size: 0.95em;
+}
 .productPrice{
-    font-size: 0.78em;
+    font-size: 0.8em;
     font-weight: bold;
     margin: 5px 0;
     cursor: pointer;
 }
-
-/* .productPrice:hover{
-    font-size: 0.8em;
-    font-weight: bolder;
-} */
-
+.productPrice:hover{
+    font-size: 0.75em;
+    color: #d56040; 
+}
 .key{
+    color: #2b2621;
     font-size: 1em;
     font-weight: bold;
     font-family: sans-serif;
 }
 
 .value{
+    color:#d56040;
     font-size:0.9em;
     font-family: sans-serif;
 }
@@ -210,8 +213,8 @@
     }
     
     .modalProductImgContainer > img:hover{
-        width:90%;
-        height: 90%;
+        width:75%;
+        height: 75%;
     }
 }
 
@@ -243,8 +246,8 @@
     }
     
     .modalProductImgContainer > img:hover{
-        width:110px;
-        height: 110px;
+        width:95px;
+        height: 95px;
     }
 }
 

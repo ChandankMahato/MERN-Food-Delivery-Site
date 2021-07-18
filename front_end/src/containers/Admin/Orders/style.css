@@ -1,3 +1,16 @@
+.orderContainer{
+    margin-top:1.5em;
+    color:#d04723;
+}
+
+.dateForm{
+    text-align: center;
+}
+
+.dateForm input{ 
+    color: #d56040;
+}
+
 .key{
     font-size: 15px;
     font-weight: bold;
@@ -31,17 +44,10 @@
 .statusSelect{
     width:120px;
     height: 30px;
+    color: #d04723;
+    background-color: #e4dedf;
 }
 
-.statusBtn{
-    width:70px;
-    height:30px
-}
-
-.statusBtn:hover{
-    background-color: #ffba4a;
-    color:#4d4d4d;
-}
 
 /* css for date */
 label {

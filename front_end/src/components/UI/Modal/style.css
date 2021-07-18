@@ -2,9 +2,12 @@
 /* //modal css */
 .modal-header{
     padding: 5px 15px;
-    background-color: #333;
+    background-color: #d56040; 
 }
 
+.modal-body{
+    background-color:#e4ded5;
+}
 .modal-title{
     font-size: 18px;
     color: #fff;
@@ -12,6 +15,7 @@
 
 .modal-footer{
     padding: 5px 15px;
+    background-color:#2b2621;
 }
 
 .actionBtnContainer{
@@ -23,4 +27,12 @@
     border: 0;
     margin: 0 5px;
     font-size: 14px;
+}
+
+.btn-sm{
+    background-color: #d04723;
+}
+
+.btn-sm:hover{
+    background-color: rgb(49, 0, 226);
 }

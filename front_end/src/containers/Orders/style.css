@@ -1,9 +1,17 @@
 
 .BillContainer{
-    min-height: 18em;
     width: 80%;
     margin-left: 10%;
     margin-top: 5em;
+}
+
+.textBillContainer{
+    text-align: center;
+    color: #d56040;
+}
+
+.dateForm input{ 
+    color: #d56040;
 }
 
 @media screen and (max-width: 800px){
@@ -29,12 +37,12 @@
 .BillNo, .BillTime {
     text-align: center;
     height: 2em;
-    background-color: rgba(195, 0, 255, 0.856);
+    background-color: #d56040;
 }
 
 .productsQtyBill{
     width: 100%;
-    background-color: #4d4d4d;
+    background-color: #2b2621;
 }
 
 .productsHeadingBill{
@@ -53,9 +61,11 @@
 }
 
 .itemAndQtyBill{
-    background-color: gray;
+    background-color: #f1f1f1;
     display: flex;
+    color:#d56040;
 }
+
 
 .insideKotItemBill{
     width: 73%;
@@ -73,14 +83,14 @@
 }
 
 .customerDetailsHeading{
-    background-color: #4d4d4d;
+    background-color: #2b2621;
     width: 100%;
     text-align: center;
 }
 
 .customerDetails{
-    background-color: gray;
-    display: flex;
+    background-color: #f1f1f1;
+    color:#d56040;
 }
 
 .title{
@@ -95,7 +105,7 @@
 .status{
     display: flex;
     width: 100%;
-    background-color: green;
+    background-color: #2b2621;
 }
 
 .UserorderStatus{

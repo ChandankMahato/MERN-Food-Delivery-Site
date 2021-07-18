@@ -28,11 +28,9 @@ const orderSchema = new mongoose.Schema({
     },
     address_landmark:{
         type: String,
-        required: true
     },
     address_alternatePhone:{
         type: Number,
-        required: true
     },
     address_addressType:{
         type: String,
@@ -70,7 +68,6 @@ const orderSchema = new mongoose.Schema({
     paymentType:{
         type: String,
         enum: ["COD", "CARD"],
-        required: true,
     },
     dbStatus:[
         {

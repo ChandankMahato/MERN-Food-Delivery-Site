@@ -76,15 +76,15 @@ const renderAdminLoggedInLinks = () => {
             <li className="nav-item">
                 <span className="nav-link" onClick={adminLogout} >Logout</span>
             </li>
-            <li className="sidebar-item"><NavLink to={`/`} exact style={{color:'#ffba4a'}}>Home</NavLink></li>
-            <li className="sidebar-item"><NavLink to={`/admin/banner`} style={{color:'#ffba4a'}}>Banner</NavLink></li>
-            <li className="sidebar-item"><NavLink to={`/admin/category`} style={{color:'#ffba4a'}}>Category</NavLink></li>
-            <li className="sidebar-item"><NavLink to={`/admin/products`} style={{color:'#ffba4a'}}>Products</NavLink></li>
-            <li className="sidebar-item"><NavLink to={`/feedback`} style={{color:'#ffba4a'}}>Feedbacks</NavLink></li>
-            <li className="sidebar-item"><NavLink to={`/admin/orders/statistics`} style={{color:'#ffba4a'}}>Order Statistics</NavLink></li>
-            <li className="sidebar-item"><NavLink to={`/admin/orders/actions`} style={{color:'#ffba4a'}}>Order Actions</NavLink></li>
-            <li className="sidebar-item"><NavLink to={`/admin/KOT`} style={{color:'#ffba4a'}}>KOT</NavLink></li>
-            <li className="sidebar-item"><NavLink to={`/admin/BILL`} style={{color:'#ffba4a'}}>BILL</NavLink></li>
+            <li className="sidebar-item"><NavLink to={`/`} exact>Home</NavLink></li>
+            <li className="sidebar-item"><NavLink to={`/admin/banner`}>Banner</NavLink></li>
+            <li className="sidebar-item"><NavLink to={`/admin/category`}>Category</NavLink></li>
+            <li className="sidebar-item"><NavLink to={`/admin/products`}>Products</NavLink></li>
+            <li className="sidebar-item"><NavLink to={`/feedback`}>Feedbacks</NavLink></li>
+            <li className="sidebar-item"><NavLink to={`/admin/orders/statistics`}>Order Statistics</NavLink></li>
+            <li className="sidebar-item"><NavLink to={`/admin/orders/actions`}>Order Actions</NavLink></li>
+            <li className="sidebar-item"><NavLink to={`/admin/KOT`}>KOT</NavLink></li>
+            <li className="sidebar-item"><NavLink to={`/admin/BILL`}>BILL</NavLink></li>
         </Nav>
     );
 }
@@ -93,10 +93,10 @@ const renderAdminLoggedInLinks = () => {
     return (
         <Nav>
             <li className="nav-item">
-              <a href={`/login`}><span className="nav-link" style={{color:'#ffffff'}}>Login</span></a>
+              <a href={`/login`}><span className="nav-link">Login</span></a>
             </li>
             <li className="nav-item">
-              <a href={`/register`}><span className="nav-link" style={{color:'#ffffff'}}>Register</span></a>
+              <a href={`/register`}><span className="nav-link">Register</span></a>
             </li>
         </Nav>
     );
@@ -106,13 +106,16 @@ const renderUserLoggedInLinks = () => {
     return(
         <Nav>
             <li className="nav-item">
-                <span className="nav-link" onClick={userLogout} style={{color:'#ffffff'}} >Logout</span>
+                <span className="nav-link" onClick={userLogout}>Logout</span>
             </li>
             <li className="nav-item">
-              <a href={`/cart`}><span className="nav-link" style={{color:'#ffffff'}}>Cart</span></a>
+              <a href={`/cart`}><span className="nav-link">Cart</span></a>
             </li>
             <li className="nav-item">
-              <a href={`/order`}><span className="nav-link" style={{color:'#ffffff'}}>Order</span></a>
+              <a href={`/checkout`}><span className="nav-link">Checkout</span></a>
+            </li>
+            <li className="nav-item">
+              <a href={`/order`}><span className="nav-link">Order</span></a>
             </li>
         </Nav>
     );
@@ -120,10 +123,10 @@ const renderUserLoggedInLinks = () => {
 
 return (
   <>
-    <Navbar collapseOnSelect fixed="top" expand="lg" bg="dark" variant="dark" style={{zIndex: 20}}>
+    <Navbar collapseOnSelect className="nav-color" fixed="top" expand="lg" variant="dark" style={{zIndex: 20}}>
         <Container fluid>
-          {check ? (<Link to="/admin/home" className="navbar-brand"><img src={logo} alt="nothing" height={30} width={30}/>Admin Dashboard</Link>) 
-          : (<Link to="/" className="navbar-brand"><img src={logo} alt="nothing" height={30} width={30}/>Get Your Food</Link>)}
+          {check ? (<Link to="/admin/home" className="navbar-brand"><img src={logo} alt="nothing"/><span>Admin Dashboard</span></Link>) 
+          : (<Link to="/" className="navbar-brand"><img src={logo} alt="nothing"/><span>Get Your Food</span></Link>)}
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
                <Nav className="mr-auto">

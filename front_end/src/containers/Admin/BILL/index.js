@@ -86,6 +86,7 @@ const onOrderUpdate = (orderId) =>{
     <Layout sidebar>
        
             <div className="billKotContainer">
+            <h1 style={{textAlign:'center'}}>BILLs</h1>
               {
                 order.orders.map((order,index) => (
                   (order.orderStatus[temp1].isCompleted === true &&

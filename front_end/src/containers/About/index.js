@@ -1,6 +1,5 @@
 import React from 'react';
 import Header from '../../components/Header';
-import Footer from '../../components/Footer';
 import banner from './images/Banner.png';
 import './style.css';
 
@@ -18,22 +17,19 @@ const About = (props) => {
 
           <div className="aboutGetYourFood">
 
-            <div>
-              Get Your Food
-            </div>
-
+          <h1>getyourfood</h1>
             <img src={banner} alt="nothing"/>
 
             <div >
               <p>Food Delivery Service</p>
-              <p style={{margin:'0'}}> GetYourFood is a food delivery service.</p>
+              <p> GetYourFood is a food delivery service.</p>
               <p className="b">
                 Where you can order your food from B-SUDDHA
                 (@getyourfood production house)
                 restaurant in lahan
               </p>
 
-              <p style={{margin: '0'}}>We are located at:</p> 
+              <p>We are located at:</p> 
               <p>
                 Lahan-8.
                 Infront of pashupati ma. bi.
@@ -44,8 +40,6 @@ const About = (props) => {
           </div>
 
         </div>
-
-        <Footer />
     </>
    )
 

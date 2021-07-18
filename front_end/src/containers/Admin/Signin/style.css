@@ -1,0 +1,51 @@
+@media screen and (max-width: 600px){
+    .signinSignupContainer{
+        width: 90%;
+        color: #d56040 
+    }
+
+    .signinSignupRow{ 
+        width: 100%;
+    }
+}
+
+@media screen and (min-width: 600px){
+    .signinSignupContainer{
+        width: 60%;
+        color: #d56040;
+    }
+
+    .signinSignupRow{ 
+        width: 80%;
+        margin-left: 10%;
+    }
+}
+
+
+.signinSignupRow{ 
+    margin-top: 7.5em;
+    margin-bottom: 3em;
+}
+
+.signinSignupBtn{
+    background-color: #d56040;
+}
+
+.signinSignupBtn:hover{
+    background-color:#2b2621;
+}
+
+.eyeIcon{
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 4.0645em;
+    color: #2b2621;
+    
+}
+
+.eyeIconShow{
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 4.0645em;
+    color: #d56040;
+}

@@ -188,16 +188,16 @@ const AdminCategory = (props) => {
 
 return (
     <Layout sidebar>
-        <Container>
+        <Container className="categoryContainerAdmin">
             <Row>
                 <Col md={12}>
                     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                         <h3>Category</h3>
                         <div className="actionBtnContainer">
                             <span>Actions:  </span>
-                            <button onClick={handleShow}><IoIosAdd /><span>Add</span></button>
-                            <button onClick={DeleteCategory}><IoIosTrash /><span>Delete</span></button>
-                            <button onClick={updateCategory}><IoIosCloud /><span>Edit</span></button>
+                            <button className="actionBtns" onClick={handleShow}><IoIosAdd /><span>Add</span></button>
+                            <button className="actionBtns" onClick={DeleteCategory}><IoIosTrash /><span>Delete</span></button>
+                            <button className="actionBtns" onClick={updateCategory}><IoIosCloud /><span>Edit</span></button>
                         </div>
                     </div>
                 </Col>

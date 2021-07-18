@@ -16,13 +16,12 @@ const Bbuttons = (props) => {
         <div style={{
           width: '100%',
           display: 'flex',
-          background: '#4d4d4d',
+          background: '#2b2621',
           justifyContent: 'center',
-          boxShadow: '0 0 10px 10px #eee',
           padding: '10px 0',
           boxSizing: 'border-box',
         }}>
-          <div style={{width: '250px'}}>
+          <div style={{width: '15em'}}>
             <MaterialButton 
               title="PLACE ORDER"
               onClick={() => history.push('/checkout')}

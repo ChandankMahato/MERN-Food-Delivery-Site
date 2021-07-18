@@ -1,27 +1,23 @@
 .about{
     display: flex;
     width: 100%;
-    margin-top: 75px;
+    margin-top: 6em;
+    margin-bottom: 2em;
 }
 
 .aboutGetYourFood{
     width: 80%;
+    height: 100%;
     margin-left: 10%;
     text-align: center;
 }
 
 .aboutGetYourFood img{
-    width: 600px;
-    height: 300px;
-    border-radius: 20px;
+    width: 65%;
 }
 
-.aboutGetYourFood > img:hover{
-    width: 640px;
-    height: 320px;
+.aboutGetYourFood p,h1{
+    margin-bottom: 0;
+    font-size: 1.3em;
 }
 
-
-.aboutGetYourFood p{
-    font-size: 18px;
-}

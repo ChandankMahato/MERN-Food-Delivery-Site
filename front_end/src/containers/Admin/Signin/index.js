@@ -7,6 +7,9 @@ import {adminLogin} from '../../../actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { toast, Zoom } from 'react-toastify';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye } from "@fortawesome/free-solid-svg-icons";
+import './style.css';
 
 /**
 * @author
@@ -17,9 +20,15 @@ const AdminAccountSignin = (props) => {
   
     const [mobile, setMobile] = useState('');
     const [password, setPassword] = useState('');
+    const [passwordShown, setPasswordShown] = useState(false);
+    const eye = <FontAwesomeIcon icon={faEye} />;
     const adminAuth = useSelector(state => state.adminAuth);
   
     const dispatch = useDispatch();
+
+    const togglePasswordVisiblity = () => {
+      setPasswordShown(passwordShown ? false : true);
+    };
   
     const adminAccountLogin = (e) => {
   
@@ -65,34 +74,34 @@ const AdminAccountSignin = (props) => {
   
     return (
       <Layout>
-        <Container>
-          <Row style={{marginTop: '120px'}}>
-            <Col md={{span: 6, offset: 3}}>
-              {/* here userLogin is function */}
+        <Container className="signinSignupContainer">
+          <Row className="signinSignupRow">
+            <Col>
               <Form onSubmit={adminAccountLogin}>
                
                 <Input
                   label="Mobile Number"
-                  placeholder="Mobile"
+                  placeholder="9811771892"
                   value={mobile}
                   type="text"
                   onChange={(e) => setMobile(e.target.value)}
-                  errormessage="we will never share your Mobile Number"
+                  errorMessage="we will never share your Mobile Number"
                 />
   
                 <Input
                   label="Password"
-                  placeholder="password"
+                  placeholder="Enter password"
                   value={password}
-                  type="password"
+                  type={passwordShown ? "text" : "password"}
                   onChange={(e) => setPassword(e.target.value)}
                 />
   
-                <Button variant="primary" type="submit">
+                <Button className="signinSignupBtn" type="submit">
                   Submit
                 </Button>
               </Form>
             </Col>
+            <i className={passwordShown ? "eyeIconShow" : "eyeIcon"} onClick={togglePasswordVisiblity}>{eye}</i>
           </Row>
         </Container>
       </Layout>

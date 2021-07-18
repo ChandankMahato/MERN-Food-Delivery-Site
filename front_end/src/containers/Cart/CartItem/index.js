@@ -46,21 +46,17 @@ const CartItem = (props) => {
                     <h5>Rs. {price}</h5>
                   </Col>
 
-                  <Col md="4"className="cartProDeliveryContainer">
-                   Delivery in 30 minutes
-                  </Col>
-
                 </Row>
 
                 <Row className="cartItemsDetails">
                   
-                  <Col md="2" className="quantityControl" >
+                  <Col md="9" className="quantityControl" >
                     <button onClick={onQuantityDecrement}>-</button>
                     <input value={qty} readOnly/>
                     <button onClick={onQuantityIncrement}>+</button>
                   </Col>
 
-                  <Col md="6">
+                  <Col md="3">
                     <button className="cartActionBtn" onClick={Info}>Save for later</button>
                     <button className="cartActionBtn" onClick={() => props.onRemoveCartItem(_id)}>Remove</button>
                   </Col>

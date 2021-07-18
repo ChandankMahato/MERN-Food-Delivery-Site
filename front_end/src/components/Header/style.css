@@ -1,6 +1,42 @@
+
 .navbar-brand > img{
-    border-radius: 25px;
-    margin-right: 5px;
+    width: 2.3em;
+    height: 2.3em;
+    border-radius: 2em;
+    margin-right: 0.5em;
+}
+
+.navbar-brand span{
+    color: #4d4d4d;
+    font-size: 1.2em;
+    vertical-align: middle;
+}
+
+.navbar-brand span:hover{
+    font-size: 1.15em;
+    color: #d56040 
+}
+
+.nav-color{
+    background-color: #e4ded5;
+}
+
+.nav-link{
+    color: #4d4d4d !important;
+    font-size: 1.1em;
+}
+
+.nav-link:hover{
+    font-size: 1.05em;
+}
+
+.nav-item a{
+    text-decoration: none;
+}
+
+.nav-link:hover{
+    cursor: pointer;
+    color: #d56040 !important;
 }
 
 
@@ -12,7 +48,7 @@
 
 @media screen and (min-width: 770px) {
     
-.sidebar-item{
-    display: none;
-}
+    .sidebar-item{
+        display: none;
+    }
 }

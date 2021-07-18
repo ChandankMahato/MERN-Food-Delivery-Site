@@ -1,0 +1,13 @@
+.tables{
+    font-size: 1em;
+    background-color: rgb(255, 255, 255);
+}
+
+.tables th{
+    color: #ffffff;
+    background-color: #2b2621;
+}
+
+.tables td{
+    border-color: #d04723;
+}

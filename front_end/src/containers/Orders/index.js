@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from '../../components/Header';
-import Footer from '../../components/Footer';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import './style.css'
+import { getUserOrders } from '../../actions';
 
 /**
 * @author
@@ -14,7 +14,7 @@ const Order = (props) => {
   const userOrder = useSelector(state => state.userOrder);
   const auth = useSelector(state => state.auth);
   const [selectedDate, setSelectedDate] = useState(Date());
-
+  const dispatch = useDispatch( );
   const showDate = (date) => {
     var dateObj =new Date(date);
     var dateString = dateObj.toString();
@@ -31,18 +31,25 @@ const Order = (props) => {
     return contribution;
   }
 
+  useEffect(() => {
+    dispatch(getUserOrders());
+  }, [auth.authenticate]);
+  
+
   return(
     <>
         <Header/>
         <div className="BillContainer">
-            <div style={{textAlign:'center'}}>Welcome to getyourfood, {auth.user.fullName}</div>
-            <div style={{textAlign: 'Center'}}>Thank You for your Contribution</div>
-            <div style={{textAlign: 'center'}}>Contribution Point: {showTotalContribution()}</div>
-            <div style={{textAlign:'Center'}}>Show Order History as of:</div>
-            <form style={{textAlign:'center'}}>
-                <input type="date" name="order" min="2021-01-01" onChange={(e)=> setSelectedDate(e.target.value)} max="2026-01-01" required/>
-                <span className="validity"></span>
-            </form>
+          <div className="textBillContainer">
+              <div>Welcome to getyourfood, {auth.user.fullName}</div>
+              <div>Thank You for your Contribution</div>
+              <div>Contribution Point: {showTotalContribution()}</div>
+              <div>Show Order History as of:</div>
+              <form className="dateForm">
+                  <input type="date" name="order" min="2021-01-01" onChange={(e)=> setSelectedDate(e.target.value)} max="2026-01-01" required/>
+                  <span className="validity"></span>
+              </form>
+            </div>
               {
                 userOrder.userOrders.map((order,index) => (
                   (
@@ -111,7 +118,6 @@ const Order = (props) => {
                       ))
                     }
               </div>
-        <Footer/>
     </>
    )
 

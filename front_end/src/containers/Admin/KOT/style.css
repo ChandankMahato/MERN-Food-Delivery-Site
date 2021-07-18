@@ -3,6 +3,8 @@
     width: 95%;
     margin-left: 2.5%;
     margin-top: 2em;
+    margin-top: 1.5em;
+    color:#d04723;
 }
 
 @media screen and (max-width: 600px){
@@ -28,12 +30,12 @@
 .KotBill, .KotTime {
     text-align: center;
     height: 2em;
-    background-color: green;
+    background-color: #d04723;
 }
 
 .productsQty{
     width: 100%;
-    background-color: #4d4d4d;
+    background-color: #2b2621;
 }
 
 .productsHeading{
@@ -46,7 +48,8 @@
 }
 
 .itemAndQty{
-    background-color: gray;
+    background-color: #ffffff;
+    color: #d04723;
     display: flex;
 }
 
@@ -62,13 +65,14 @@
 
 .orderStatus{
     width: 60%;
-    height: 2em;
-    border-style: none;
-    background-color: lightgrey;
 }
 .KotstatusBtn{
-    height: 2em;
     width: 40%;
+}
+
+.KotstatusBtn, .orderStatus{
+    background-color: #2b2621;
+    color: #ffffff;
     border-style: none;
-    background-color: lightgrey;
+    height: 2em;
 }

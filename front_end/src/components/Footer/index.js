@@ -5,7 +5,6 @@ import instagram from './images/social_logos/instagram.png';
 import twitter from './images/social_logos/twitter.svg';
 import logo from './images/Logo/logo.jpg'
 import chandan1 from './images/chandan1.jpg';
-import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import Modal from '../UI/Modal';
 import Input from '../UI/Input';
@@ -26,8 +25,6 @@ const Footer = (props) => {
   const [message, setMessage] = useState('');
 
   const dispatch = useDispatch();
-
-  let history = useHistory();
 
   const showModal = () => {
     setModal(true);
@@ -87,8 +84,6 @@ const Footer = (props) => {
     setFeedbackModal(false);
   }
 
-
-
   return (
     <>
 
@@ -129,14 +124,14 @@ const Footer = (props) => {
           onChange={(e) => setMobile(e.target.value)}
         />
         <p>Message</p>
-        <textarea placeholder="Message..." style={{width:'100%', height:'8em'}} onChange={(e) => setMessage(e.target.value)}></textarea>
+        <textarea placeholder="Message..." className="feedbackMessage" onChange={(e) => setMessage(e.target.value)}></textarea>
       </Modal>
 
 
       <div className="footer">
           <div className="Logo">
-            <img src={logo} onClick={() => history.push('/')} alt="nothing" />
-            <h5 onClick={() => history.push('/')}>Get Your Food</h5>
+            <a href="/"><img src={logo} alt="nothing" /></a>
+            <a href="/"><h5>Get Your Food</h5></a>
           </div>
 
           <div className="textA">
@@ -155,7 +150,7 @@ const Footer = (props) => {
           </div>
 
           <div className="social">
-            <h5 onClick={() => history.push('/about')}>About Us</h5>
+          <a href="/about"><h5>About Us</h5></a>
             <h5>Follow us on</h5>
             <div className="socialImg">
               <a href="https://www.facebook.com/Gety0urf00d" target="_blank" rel="noreferrer"><img src={facebook} alt="nothing" /></a>

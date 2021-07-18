@@ -1,22 +1,29 @@
-.key{
+.productContainerAdmin{
+    margin-top: 1.5em;
+    color:#d04723;
+}
+
+.keyAdmin{
     font-size: 15px;
     font-weight: bold;
     font-family: sans-serif;
+    color:#2b2621;
 }
 
-.value{
+.valueAdmin{
     font-size: 12px;
     font-family: sans-serif;
+    color:#d04723;
 }
 
-.productImgContainer{
+.productImgContainerAdmin{
     width: 100px;
     height: 100px;
     overflow: hidden;
     text-align: center;
 }
 
-.productImgContainer img{
+.productImgContainerAdmin img{
     width: 100%;
     height: 100%;
     object-fit:cover;

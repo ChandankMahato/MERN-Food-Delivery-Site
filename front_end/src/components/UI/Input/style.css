@@ -1,0 +1,23 @@
+.form-control{
+    background-color:#f1f1f1;
+}
+
+.form-control:focus{
+    background-color:#f1f1f1;
+    color:#2b2621;
+    
+}
+
+input.form-control{
+    border-color: #2b2621;
+}
+
+input.form-control:focus{
+    border-color: #d56040;
+    outline:none;
+    box-shadow: none;
+}
+
+label.form-label{
+    color:#d56040;
+}

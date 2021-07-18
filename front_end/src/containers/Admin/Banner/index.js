@@ -20,8 +20,10 @@ import {
 import 'react-checkbox-tree/lib/react-checkbox-tree.css';
 import AddBannerModal from './component/AddBannerModal';
 import DeleteBannerModal from './component/DeleteBannerModal';
-import './style.css'
 import { toast,Zoom } from 'react-toastify';
+import './style.css'
+import '../../Admin/commonStyle/btnStyle.css';
+import '../../Admin/commonStyle/tableStyle.css';
 
 /**
 * @author
@@ -144,15 +146,15 @@ const AdminBanner = (props) => {
 
 return (
     <Layout sidebar>
-        <Container>
+        <Container className="bannerContainer">
             <Row>
                 <Col md={12}>
                     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                         <h3>Banner</h3>
                         <div className="actionBtnContainer">
                             <span>Actions:  </span>
-                            <button onClick={ShowBannerModal}><IoIosAdd /><span>Add</span></button>
-                            <button onClick={DeleteBanner}><IoIosTrash /><span>Delete</span></button>
+                            <button className="actionBtns" onClick={ShowBannerModal}><IoIosAdd /><span>Add</span></button>
+                            <button className="actionBtns" onClick={DeleteBanner}><IoIosTrash /><span>Delete</span></button>
                         </div>
                     </div>
                 </Col>

@@ -6,6 +6,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toast, Zoom } from 'react-toastify';
 import Header from '../../components/Header';
 import { userSignup } from '../../actions';
+import '../Signin/style.css';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye } from "@fortawesome/free-solid-svg-icons";
 
 /**
 * @author
@@ -17,11 +20,14 @@ const UserAccountSignup = (props) => {
   const [mobile, setMobile] = useState('');
   const [password, setPassword] = useState('');
   const [fullName, setFullName] = useState('');
-
+  const [passwordShown, setPasswordShown] = useState(false);
+  const eye = <FontAwesomeIcon icon={faEye} />;
   const auth = useSelector(state => state.auth);
   const user = useSelector(state => state.user);
   const dispatch = useDispatch();
-
+  const togglePasswordVisiblity = () => {
+    setPasswordShown(passwordShown ? false : true);
+  };
   const userAccountSignup = (e) => {
     
     e.preventDefault();
@@ -70,15 +76,15 @@ const UserAccountSignup = (props) => {
   return (
     <>
       <Header/>
-        <Container>
+        <Container className="signinSignupContainer">
           {user.message}
-          <Row  style={{marginTop: '120px'}}>
-            <Col md={{ span: 6, offset: 3 }}>
+          <Row  className="signinSignupRow">
+            <Col>
               <Form onSubmit={userAccountSignup}>
                 
               <Input
-                  label="Full Name"
-                  placeholder="Full Name"
+                   label="Fullname"
+                   placeholder="Enter Your Full Name"
                   value={fullName}
                   type="text"
                   onChange={(e) => setFullName(e.target.value)}
@@ -86,27 +92,28 @@ const UserAccountSignup = (props) => {
               
                 <Input
                   label="Mobile Number"
-                  placeholder="Mobile"
+                  placeholder="Enter Mobile Number"
                   value={mobile}
                   type="text"
                   onChange={(e) => setMobile(e.target.value)}
-                  errormessage="we will never share your Mobile Number"
+                  errorMessage="we will never share your Mobile Number"
                 />
 
                 <Input
                   label="Password"
-                  placeholder="password"
+                  placeholder="Enter Password"
                   value={password}
-                  type="password"
+                  type={passwordShown ? "text" : "password"}
                   onChange={(e) => setPassword(e.target.value)}
                 />
 
-                <Button variant="primary" type="submit">
+                <Button className="signinSignupBtn" type="submit">
                   Register
                 </Button>
 
               </Form>
             </Col>
+            <i className={passwordShown ? "eyeIconShow" : "eyeIcon"} onClick={togglePasswordVisiblity}>{eye}</i>
           </Row>
         </Container>
     </>
