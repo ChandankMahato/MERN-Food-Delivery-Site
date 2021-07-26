@@ -54,7 +54,8 @@ function App() {
        params === "admin/orders/statistics" ||
        params === "admin/orders/actions" ||
        params === "admin/KOT" || 
-       params === "admin/BILL"){
+       params === "admin/BILL" ||
+       params === "admin/signup"){
       setCheck(true);
     }
   },[params])
@@ -99,7 +100,7 @@ function App() {
             <PrivateRoute path="/admin/BILL" component={BILL}/>
             <PrivateRoute path="/admin/orders/actions" component={AdminOrderAction}/>
             <Route path="/admin/signin" component={AdminAccountSignin}/>
-            <Route path="/admin/signup" component={AdminAccountSignup}/>
+            <PrivateRoute path="/admin/signup" component={AdminAccountSignup}/>
             <Route component={PageNotFound}/>
           </Switch>
         </Router>

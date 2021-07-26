@@ -69,10 +69,6 @@ const AdminAccountSignup = (props) => {
     dispatch(adminSignup(admin));
   }
 
-  if(adminAuth.adminAuthenticate){
-    return <Redirect to={`/admin/home`} />
-  }
-
   if(adminAuth.loading){
     return <p>Loading...!</p>
   }

@@ -26,7 +26,6 @@
 
     .categoryContainer{
         width: 60%;
-        height: 12.5em;
         margin-left: 20%;
         margin-top: 2em;
         margin-bottom: 2em;
@@ -39,7 +38,8 @@
     width: 100%;
     height: 2em;
     text-align: center;
-    color: #d56040 
+    color: #d56040;
+    
 }
 
 .cardCategory{
@@ -54,12 +54,15 @@
     text-align: center;
     display: inline-block;
     width: 25%;
+    vertical-align: top;
+    margin-bottom: 1em;
 }
 
 .categroyImgContainer{
     overflow: hidden;
     text-align: center;
     width: 100%;
+   
 }
 
 .categoryImgContainer img{
@@ -118,6 +121,7 @@
     text-align: center;
     display: inline-block;
     margin-bottom: 0.5em;
+    vertical-align: top;
 }
 
 .productContainer .productImgContainer{

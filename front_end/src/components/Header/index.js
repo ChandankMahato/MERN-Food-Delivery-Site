@@ -34,7 +34,8 @@ const Header = (props) => {
        params === "admin/orders/statistics" ||
        params === "admin/orders/actions" || 
        params === "admin/KOT" || 
-       params === "admin/BILL"){
+       params === "admin/BILL" ||
+       params === "admin/signup"){
       setCheck(true);
     }
   },[params])
@@ -63,9 +64,6 @@ const renderAdminNonLoggedInLinks = () => {
             <li className="nav-item">
                 <NavLink to="/admin/signin" className="nav-link">Login</NavLink>
             </li>
-            <li className="nav-item">
-                <NavLink to="/admin/signup" className="nav-link">Register</NavLink>
-            </li>
         </Nav>
     );
 }
@@ -73,6 +71,9 @@ const renderAdminNonLoggedInLinks = () => {
 const renderAdminLoggedInLinks = () => {
     return(
         <Nav>
+            <li className="nav-item">
+                <NavLink to="/admin/signup" className="nav-link">Register</NavLink>
+            </li>
             <li className="nav-item">
                 <span className="nav-link" onClick={adminLogout} >Logout</span>
             </li>
