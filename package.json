@@ -5,13 +5,14 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon ./src/index.server.js",
-    "front_end":"cd front_end && npm start",
-    "gyf":"concurrently \"nodemon ./src/index.server.js\" \"npm run front_end\""
+    "front_end": "cd front_end && npm start",
+    "gyf": "concurrently \"nodemon ./src/index.server.js\" \"npm run front_end\""
   },
   "author": "team cassa",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.0.1",
+    "compression": "^1.7.4",
     "concurrently": "^6.2.0",
     "cors": "^2.8.5",
     "dotenv": "^8.6.0",

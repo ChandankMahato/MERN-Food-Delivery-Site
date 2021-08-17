@@ -3,6 +3,7 @@ const env = require('dotenv');
 const app = express();
 const mongoose = require('mongoose');
 const cors = require('cors');
+const compression = require('compression');
 
 //routes
 const adminAuthRoutes = require('./routes/admin/admin.auth');
@@ -21,6 +22,10 @@ const feedbackRoutes = require('./routes/feedback');
 
 //environment variable or we can say constant
 env.config();
+app.use(compression({
+    level: 6,
+    threshold: 1,
+}));
 
 app.use(express.static(path.join(__dirname, '../front_end/build')));
 
