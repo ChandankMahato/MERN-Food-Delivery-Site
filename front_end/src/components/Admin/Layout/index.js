@@ -28,6 +28,8 @@ const Layout = (props) => {
                                     <li><NavLink to={`/admin/orders/actions`}>Order Actions</NavLink></li>
                                     <li><NavLink to={`/admin/KOT`}>KOT</NavLink></li>
                                     <li><NavLink to={`/admin/BILL`}>BILL</NavLink></li>
+                                    <li><NavLink to={`/admin/customers`}>Customers</NavLink></li>
+                                    <li><NavLink to={`/admin/export`}>Export</NavLink></li>
                                 </ul>
                             </Col>
                             <Col md={10} style={{ marginLeft: 'auto', paddingTop: '60px' }}>

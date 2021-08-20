@@ -12,6 +12,7 @@ import adminAuthReducer from './adminAuth.reducer';
 import userOrderReducer from './userOrder.reducer';
 import bannerReducer from './banner.reducer';
 import feedbackReducer from './feedback.reducer';
+import customerReducer from './customer.reducer';
 
 //creating variable rootReducer
 const rootReducer = combineReducers({
@@ -25,7 +26,8 @@ const rootReducer = combineReducers({
     order : orderReducer,
     userOrder: userOrderReducer,
     banner: bannerReducer,
-    feedback: feedbackReducer
+    feedback: feedbackReducer,
+    customer: customerReducer
 });
 
 export default rootReducer;

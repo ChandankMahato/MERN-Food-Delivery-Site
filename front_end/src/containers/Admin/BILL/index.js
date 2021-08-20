@@ -63,8 +63,6 @@ const BILL = (props) => {
         break;
     }
   }, [adminAuth.admin.mobile]);
-
-  console.log(base);
   
 const showDate = (date) => {
 

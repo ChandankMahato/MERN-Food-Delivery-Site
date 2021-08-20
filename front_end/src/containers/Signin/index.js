@@ -4,8 +4,9 @@ import Input from '../../components/UI/Input';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { toast, Zoom } from 'react-toastify';
+import Modal from '../../components/UI/Modal';
 import Header from '../../components/Header';
-import { userLogin } from '../../actions';
+import { userLogin, resetRequest } from '../../actions';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 import './style.css';
@@ -23,11 +24,67 @@ const UserAccountSignin = (props) => {
     const eye = <FontAwesomeIcon icon={faEye} />;
     const auth = useSelector(state => state.auth);
   
+    const [forgotPasswordModal, setForgotPasswordModal] = useState(false);
+    const [typeCode, setTypeCode] = useState('');
+    const [resetPassword, setResetPassword] = useState('');
+    const [mobileNumber, setMobileNumber] = useState('');
+
+
     const dispatch = useDispatch();
 
     const togglePasswordVisiblity = () => {
       setPasswordShown(passwordShown ? false : true);
     };
+
+    
+  const showForgotPasswordModal = () => {
+    setForgotPasswordModal(true);
+  }
+
+  const sendPasswordResetRequest= () => {
+    if(mobileNumber === '' && typeCode === ''){
+      toast.dark('Enter Mobile Number and Reset-Code', {position: 'top-center', transition: Zoom});
+      return;
+    }else{
+      if(mobileNumber === ''){
+        toast.dark("Enter Mobile Number", {position: 'top-center', transition:Zoom});
+        return;
+      }else if(mobileNumber!==''){
+        if(isNaN(mobileNumber)){
+          toast.dark("Mobile Number must be Number(0-9", {position: 'top-center', transition: Zoom});
+          return;
+        }else if(mobileNumber.length !== 10){
+          toast.dark("Enter 10 digit mobile Number", {position: 'top-center', transition: Zoom});
+          return;
+        }
+      }
+      if(typeCode === ''){
+        toast.dark("Enter Reset-Code", {position: 'top-center', transition: Zoom});
+        return;
+      }
+      if(resetPassword === ''){
+        toast.dark("Enter New Password", {position: 'top-center', transition: Zoom});
+        return;
+      }
+    }
+    const userData = {
+      typeCode,
+      mobileNumber,
+      resetPassword
+    }
+    dispatch(resetRequest(userData));
+    setTypeCode('');
+    setMobileNumber('');
+    setResetPassword('');
+    setForgotPasswordModal(false);
+  }
+
+  const closeFeedbackModal = () => {
+    setTypeCode('');
+    setMobileNumber('');
+    setResetPassword('');
+    setForgotPasswordModal(false);
+  }
   
     const userAccountLogin = (e) => {
   
@@ -72,6 +129,38 @@ const UserAccountSignin = (props) => {
   
     return (
       <>
+      <Modal
+          show={forgotPasswordModal}
+          close={closeFeedbackModal}
+          modaltitle={'Forgot Password'}
+          size="md"
+          save={sendPasswordResetRequest}
+          btntitle={'Reset'}
+        >
+        <Input 
+          label="Reset Code"
+          value={typeCode}
+          placeholder={`Click the Messenger Icon, tap Get Reset Code`}
+          onChange={(e) => setTypeCode(e.target.value)}
+        />
+
+        <Input 
+          label="Mobile Number"
+          type={Number}
+          value={mobileNumber}
+          placeholder={`Enter Your Mobile Number`}
+          onChange={(e) => setMobileNumber(e.target.value)}
+        />
+
+        <Input 
+          label="New Password"
+          type={Number}
+          value={resetPassword}
+          placeholder={`Enter Your New Password`}
+          onChange={(e) => setResetPassword(e.target.value)}
+        />
+        
+      </Modal>
         <Header/>
           <Container className="signinSignupContainer">
             <Row className="signinSignupRow">
@@ -94,7 +183,9 @@ const UserAccountSignin = (props) => {
                     type={passwordShown ? "text" : "password"}
                     onChange={(e) => setPassword(e.target.value)}
                   />
-    
+                  <p className="forgotPassword" onClick={() => showForgotPasswordModal()}>
+                    Forgot Password?
+                  </p>
                   <Button  className="signinSignupBtn" type="submit">
                     Login
                   </Button>

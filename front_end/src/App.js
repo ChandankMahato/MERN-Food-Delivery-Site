@@ -27,7 +27,10 @@ import AdminBanner from './containers/Admin/Banner';
 import UserAccountSignin from './containers/Signin';
 import UserAccountSignup from './containers/Signup';
 import Feedbacks from './containers/Admin/Feedback';
+import MessengerCustomerChat from 'react-messenger-customer-chat';
 import Footer from './components/Footer';
+import Customers from './containers/Admin/Users';
+import ExportData from './containers/Admin/ExportData';
 
 toast.configure();
 
@@ -55,7 +58,9 @@ function App() {
        params === "admin/orders/actions" ||
        params === "admin/KOT" || 
        params === "admin/BILL" ||
-       params === "admin/signup"){
+       params === "admin/signup" ||
+       params === "admin/export" ||
+       params === "admin/customers"){
       setCheck(true);
     }
   },[params])
@@ -101,6 +106,8 @@ function App() {
             <PrivateRoute path="/admin/orders/actions" component={AdminOrderAction}/>
             <Route path="/admin/signin" component={AdminAccountSignin}/>
             <PrivateRoute path="/admin/signup" component={AdminAccountSignup}/>
+            <PrivateRoute path="/admin/customers" component={Customers}/>
+            <PrivateRoute path="/admin/export" component={ExportData}/>
             <Route component={PageNotFound}/>
           </Switch>
         </Router>
@@ -116,6 +123,12 @@ function App() {
       <div>
         {!check ?<Footer/> : null }
       </div>
+      {
+          <MessengerCustomerChat
+          pageId="104806765021176"
+          appId="394716102357646"
+        />
+    }
     </>
   );
 }

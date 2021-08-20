@@ -35,7 +35,9 @@ const Header = (props) => {
        params === "admin/orders/actions" || 
        params === "admin/KOT" || 
        params === "admin/BILL" ||
-       params === "admin/signup"){
+       params === "admin/signup" ||
+       params === "admin/export" ||
+       params === "admin/customers"){
       setCheck(true);
     }
   },[params])
@@ -86,6 +88,8 @@ const renderAdminLoggedInLinks = () => {
             <li className="sidebar-item"><NavLink to={`/admin/orders/actions`}>Order Actions</NavLink></li>
             <li className="sidebar-item"><NavLink to={`/admin/KOT`}>KOT</NavLink></li>
             <li className="sidebar-item"><NavLink to={`/admin/BILL`}>BILL</NavLink></li>
+            <li className="sidebar-item"><NavLink className="nav-link" to={`/admin/customers`}>Customers</NavLink></li>
+            <li className="sidebar-item"><NavLink className="nav-link" to={`/admin/export`}>Export</NavLink></li>
         </Nav>
     );
 }

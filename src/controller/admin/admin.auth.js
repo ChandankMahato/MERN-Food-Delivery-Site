@@ -60,7 +60,7 @@ exports.signin = (req, res) => {
                     role
                 } = admin;
 
-                res.cookie('adminToken', adminToken, { expiresIn: '1h'});
+                res.cookie('adminToken', adminToken, { expiresIn: '30d'});
 
                 res.status(200).json({
                     adminToken,
@@ -76,8 +76,24 @@ exports.signin = (req, res) => {
         }
         else{
             return res.status(206).json({
-                message: 'Asmin Does Not Exist!'
+                message: 'Admin Does Not Exist!'
             });
+        }
+    });
+}
+
+exports.setResetCode =(req, res) => {
+    const {mobileNumber, oneTimePassword} = req.body.payload;
+    console.log(req.body.payload);
+    adminAuth.updateOne({mobile: mobileNumber},
+    {
+        $set:{
+            resetCode:oneTimePassword,
+        },
+    }).exec((error, response)=>{
+        if(error) return res.status(400).json({error});
+        if(response){
+            res.status(201).json({response});
         }
     });
 }
@@ -90,3 +106,10 @@ exports.signout = (req,res) => {
         message: 'Signout Successfully...!'
     })
 }
+
+exports.CustomerDetails= async (req,res) => {
+    const Customers = await adminAuth.find({})
+    .select('fullName mobile role')
+    .exec();
+    res.status(200).json({Customers});
+};

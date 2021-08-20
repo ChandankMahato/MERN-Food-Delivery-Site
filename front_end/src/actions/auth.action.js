@@ -1,6 +1,6 @@
 import {authConstants, cartConstants} from "./constants";
 import axios from "../helpers/axios"
-import { Slide, toast } from "react-toastify";
+import { Slide, toast, Zoom } from "react-toastify";
 
 export const userLogin = (user) => {
     return async (dispatch) => {
@@ -120,6 +120,28 @@ export const userSignout = () => {
             }
         }catch(error){
             console.log(error);
+        }
+    }
+}
+
+
+export const resetRequest = (payload) => {
+    return async dispatch => {
+        try{
+            const res = await axios.post(`/user/resetPassword`, {payload});
+            dispatch({ type: authConstants.RESET_REQUEST});
+            if(res.status === 201){
+                dispatch({type: authConstants.RESET_SUCCESS,
+                });
+                toast.success('Password Reset Successful',{position: "top-center", transition: Zoom});
+            }else{
+                    dispatch({ type: authConstants.RESET_FAILURE,
+                });
+                toast.error('Something Went Wrong',{position: "top-center", transition: Zoom});
+            };
+        }catch(error){
+            console.log(error);
+            toast.error('Something Went Wrong',{position: "top-center", transition: Zoom});
         }
     }
 }

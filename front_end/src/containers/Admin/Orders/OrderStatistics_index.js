@@ -16,8 +16,11 @@ const AdminOrderStatistics = (props) => {
   const [orderDetails, setOrderDetails] = useState(null);
   const [selectedDate, setSelectedDate] = useState(Date());
   const order = useSelector(state => state.order);
-
+  const [check, setCheck] = useState(true);
   
+  const checkToShowAllOrders = () =>{
+    setCheck(true);
+  }
 
   const showTotalOrderReceived = () => {
     var total = 0;
@@ -68,6 +71,12 @@ const AdminOrderStatistics = (props) => {
     }
     return total;
   }
+  
+  const setDateToShowOrder = (e) => {
+    setCheck(false);
+    setSelectedDate(e.target.value);
+  }
+
 
   const renderProducts = () => {
 
@@ -91,7 +100,7 @@ const AdminOrderStatistics = (props) => {
           {order.orders.length > 0
             ? order.orders.map((order, index) => (
               (
-                new Date(order.createdAt).toDateString() === new Date(selectedDate).toString().substring(0,15)? 
+                new Date(order.createdAt).toDateString() === new Date(selectedDate).toString().substring(0,15) && check===false? 
                 <tr key={order._id}>
                   <td>{index+1}</td>
                   <td>{order.address_name}</td>
@@ -104,7 +113,22 @@ const AdminOrderStatistics = (props) => {
                       </button>
                     </div>
                   </td>
-                </tr>: null
+                </tr>:(
+                  check===true ?
+                  <tr key={order._id}>
+                    <td>{index+1}</td>
+                    <td>{order.address_name}</td>
+                    <td>{order.address_mobileNumber}</td>
+                    <td>{order.totalAmount}</td>
+                    <td  style={{width:'15%', textAlign:'center'}}>
+                      <div style={{height:'30px'}}>
+                        <button className="actionBtns" onClick={() => showOrderDetailsModal(order)}>
+                          Details
+                        </button>
+                      </div>
+                    </td>
+                  </tr>:null
+                )
               )
             )) :null
           }
@@ -256,7 +280,7 @@ const AdminOrderStatistics = (props) => {
 
                 <form className="dateForm">
                     <span className="dateText">Show Sales as of:</span>
-                    <input type="date" name="order" min="2021-01-01" onChange={(e)=> setSelectedDate(e.target.value)} max="2026-01-01" required/>
+                    <input type="date" name="order" min="2021-01-01" onChange={setDateToShowOrder} max="2026-01-01" required/>
                     <span className="validity"></span>
                 </form>
               
@@ -268,6 +292,7 @@ const AdminOrderStatistics = (props) => {
                   <h6>B4: {TodayIndividualSales(4)}</h6>
                   <h6>B5: {TodayIndividualSales(5)}</h6>
                 </div>
+                <button onClick={checkToShowAllOrders} className="showAllOrderBtn">Show All Orders</button>
             </Col>
           </Row>
         </Container>

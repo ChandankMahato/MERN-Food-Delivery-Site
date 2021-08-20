@@ -15,7 +15,8 @@ exports.signup = (req, res) => {
         const {
             fullName,
             mobile,
-            password
+            password,
+            resetCode,
         } = req.body;
         const hash_password = await bcrypt.hash(password, 10);
 
@@ -23,6 +24,7 @@ exports.signup = (req, res) => {
             fullName,
             mobile,
             hash_password,
+            resetCode:Math.floor(Math.random()*1000000),
             username: shortid.generate(),
             role: 'user'
         });
@@ -53,7 +55,7 @@ exports.singin = (req, res) => {
         if(user){
             const isPasswordMatch = await user.authenticate(req.body.password);
             if(isPasswordMatch && user.role === 'user'){
-                const token = jwt.sign({ id: user._id, role: user.role, fullName: user.fullName}, process.env.JWT_SECRET, {expiresIn: '1h'});
+                const token = jwt.sign({ id: user._id, role: user.role, fullName: user.fullName}, process.env.JWT_SECRET, {expiresIn: '60d'});
 
                 //creating cookie during signin
                 res.cookie('token', token, {expiresIn: '1h'});
@@ -82,6 +84,27 @@ exports.singin = (req, res) => {
         }
     });
 }
+
+exports.setNewPassword = async (req, res) => {
+    const {resetPassword, mobileNumber, typeCode}= req.body.payload;
+    const newPassword = resetPassword;
+    const hash_new_password = await bcrypt.hash(newPassword, 10)
+    userAuth.updateOne({mobile:mobileNumber, resetCode:typeCode},
+    { 
+        $set:{
+            hash_password:hash_new_password,
+            resetCode:Math.floor(Math.random()*1000000)
+        }
+    }).exec((error, response) => {
+        if(error) return res.status(400).json({error});
+        if(response && response.nModified === 1){
+            res.status(201).json({response});
+        }else{
+            res.status(400).json({response});
+        }
+    });
+}
+
 
 exports.signout = (req, res) => {
     res.clearCookie('token');

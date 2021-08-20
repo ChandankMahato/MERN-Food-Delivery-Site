@@ -7,3 +7,4 @@ export * from './adminAuth.action';
 export * from './order.action';
 export * from './banner.action';
 export * from './feedback';
+export * from './customer.action';

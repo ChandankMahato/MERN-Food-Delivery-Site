@@ -27,6 +27,9 @@ const authSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    resetCode: {
+        type: String
+    },
     role: {
         type: String,
         enum: ['user', 'admin'],

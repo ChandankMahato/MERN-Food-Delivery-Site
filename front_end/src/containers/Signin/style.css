@@ -70,3 +70,15 @@ input.form-control:focus{
     margin-bottom: 4.0645em;
     color: #d56040;
 }
+
+.forgotPassword{
+    float: right;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.forgotPassword:active{
+    font-size: 14px;
+    color: #1d1d1d;
+}
+
