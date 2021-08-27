@@ -95,6 +95,7 @@ html{
 
 .Logo{
     display: flex;
+    height: 100px;
 }
 
 .Logo a > img{

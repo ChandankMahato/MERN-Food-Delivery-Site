@@ -5,6 +5,7 @@ import instagram from './images/social_logos/instagram.png';
 import twitter from './images/social_logos/twitter.svg';
 import logo from './images/Logo/logo.jpg'
 import chandan1 from './images/chandan1.jpg';
+import linkedIn from './images/social_logos/linkedin.png';
 import { useDispatch } from 'react-redux';
 import Modal from '../UI/Modal';
 import Input from '../UI/Input';
@@ -95,10 +96,16 @@ const Footer = (props) => {
         save={closeModal}
         btntitle={'Close'}
       >
-        <img src={chandan1} alt="nothing" style={{ width:'270px', height:'270px'}}/>
+        <img src={chandan1} alt="nothing" style={{ width:'100%'}}/>
         <p style={{marginBottom:'0'}}>Name: Chandan Kumar Mahato</p>
         <p style={{marginBottom:'0'}}>Contact: 9811771892</p>
-        <p style={{marginBottom:'0'}}>Student At KU (CE)</p>
+        <p style={{marginBottom:'0'}}>Student At Kathmandu University</p>
+        <div className="social">
+            <div className="socialImg">
+              <a href="https://www.facebook.com/mahato29/" rel="noreferrer" target="_blank"><img src={facebook} alt="nothing" /></a>
+              <a href="https://www.linkedin.com/in/chandan-mahato-8b824a1a9/" rel="noreferrer" target="_blank"><img src={linkedIn} alt="nothing"/></a>
+            </div>
+          </div>
       </Modal>
 
       <Modal

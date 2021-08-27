@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react';
 import Layout from '../../../components/Admin/Layout';
 import { Container, Row, Col, Table } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { addResetCode, getAllCustomerDetails} from '../../../actions';
+import { addResetCode, deleteCustomerById, getAllCustomerDetails} from '../../../actions';
 import Modal from '../../../components/UI/Modal';
 import './style.css';
+import { Bounce, toast } from 'react-toastify';
 
 /**
 * @author
@@ -14,6 +15,8 @@ import './style.css';
 const Customers = (props) => {
   const [customerDetailsModal, setCustomerDetailsModal] = useState(false);
   const [customerDetails, setCustomerDetails] = useState(null);
+  const [customerId, setCustomerId] = useState('');
+  const [customerAccountDeleteModal, setCustomerAccountDeleteModal] = useState(false);
   const [oneTimePassword, setOneTimePassword] = useState('');
   const [mobileNumber, setMobileNumber] = useState('');
   const dispatch = useDispatch();
@@ -24,6 +27,17 @@ const Customers = (props) => {
   }, []);
 
   const renderCustomerDetails= () => {
+    const showOneTimePasswordSettingModal = (customer) => {
+      setCustomerDetails(customer);
+      setMobileNumber(customer.mobile);
+      setOneTimePassword(Math.floor(Math.random()*1000000));
+      setCustomerDetailsModal(true);
+    }
+  
+    const showCustomerAccountDeleteModel = (customer) => {
+      setCustomerId(customer._id);
+      setCustomerAccountDeleteModal(true);
+    }
     return (
       <Table className="tables" responsive="sm">
         <thead>
@@ -43,10 +57,13 @@ const Customers = (props) => {
                 <td>{customer.fullName}</td>
                 <td>{customer.mobile}</td>
                 <td>{customer.role}</td>
-                <td style={{width:'25%', textAlign:'center'}}>
+                <td style={{width:'30%', textAlign:'center'}}>
                   <div style={{height:'30px'}}>
                     <button className="actionBtns" onClick={() => showOneTimePasswordSettingModal(customer)}>
                       Send
+                    </button>
+                    <button className="actionBtns" onClick={() => showCustomerAccountDeleteModel(customer)}>
+                      Delete
                     </button>
                   </div>
                 </td>
@@ -58,12 +75,50 @@ const Customers = (props) => {
     )
   }
 
-  const showOneTimePasswordSettingModal = (customer) => {
-    setCustomerDetails(customer);
-    setMobileNumber(customer.mobile);
-    setOneTimePassword(Math.floor(Math.random()*1000000));
-    setCustomerDetailsModal(true);
-  }
+  const deleteCustomerAccount = () => {
+    const payload = {
+      CustomerId: customerId,
+    };
+    dispatch(deleteCustomerById(payload))
+    .then(result => {
+      if(result){
+          dispatch(getAllCustomerDetails());
+      }
+  });
+  closeAccountDeleteModal();
+  toast.success('Customer Account Deleted', { position: 'top-center', transition: Bounce});
+}
+
+const closeAccountDeleteModal = () => {setCustomerAccountDeleteModal(false)};
+
+
+const renderAccountDeleteModal = () => {
+
+  return(
+    <Modal
+    show={customerAccountDeleteModal}
+    close={closeAccountDeleteModal}
+    modaltitle={'Delete Order'}
+    buttons = {[
+        {
+            label: 'No',
+            color: 'primary',
+            onClick: closeAccountDeleteModal
+        },
+        {
+            label: 'Yes',
+            color: 'danger',
+            onClick: deleteCustomerAccount
+        }
+      ]}
+      size="sm"
+    >
+      <p>Are You Sure?</p>
+    </Modal>
+  )
+}
+
+
 
   const renderShowMessageDetailsModal = () => {
     if (!customerDetails) {
@@ -137,6 +192,7 @@ const Customers = (props) => {
         </Row>
       </Container>
       {renderShowMessageDetailsModal()}
+      {renderAccountDeleteModal()}
     </Layout>
   )
 

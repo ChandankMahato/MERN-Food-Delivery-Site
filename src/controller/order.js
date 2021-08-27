@@ -105,3 +105,17 @@ exports.getOrder = (req, res) => {
         }
     });
 };
+
+exports.deleteOrder = async (req, res) => {
+    const { OrderId } = req.body.payload;
+    if(OrderId){
+        Order.deleteOne({ _id: OrderId }).exec((error, result) => {
+            if(error) return res.status(400).json({ error });
+            if(result){
+                res.status(202).json({ message: 'Order Deleted'});
+            }
+        });
+    }else{
+        res.status(400).json({ error: "Params requred "});
+    }
+};

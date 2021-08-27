@@ -47,3 +47,29 @@ export const addResetCode = (payload) => {
         }
     }
 }
+
+
+export const deleteCustomerById = (payload) => {
+    return async(dispatch) => {
+        try{
+            dispatch({type: customerConstants.DELETE_ACCOUNT_BY_ID_REQUEST});
+            const res = await adminAxios.post(`/customer/delete`,{
+               payload
+            });
+            if(res.status === 202){
+                dispatch({ type: customerConstants.DELETE_ACCOUNT_BY_ID_SUCCESS});
+                return true;
+            }else{
+                const { error } = res.data;
+                dispatch({
+                    type: customerConstants.DELETE_ACCOUNT_BY_ID_FAILURE,
+                    payload: {
+                        error,
+                    }
+                });
+            }
+        }catch(error){
+            console.log(error);
+        }
+    }
+}

@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import Layout from '../../../components/Admin/Layout';
 import {Container, Row, Col, Table} from 'react-bootstrap';
-import {useSelector } from 'react-redux';
+import {useDispatch, useSelector } from 'react-redux';
 import Modal from '../../../components/UI/Modal';
 import './style.css';
+import { deleteOrderById, getUserInitialData } from '../../../actions';
+import { Bounce, toast } from 'react-toastify';
+
 
 /**
 * @author
@@ -15,8 +18,11 @@ const AdminOrderStatistics = (props) => {
   const [orderDetailsModal, setOrderDetailsModal] = useState(false);
   const [orderDetails, setOrderDetails] = useState(null);
   const [selectedDate, setSelectedDate] = useState(Date());
-  const order = useSelector(state => state.order);
+  const [orderDeleteModal, setOrderDeleteModal] = useState(false);
   const [check, setCheck] = useState(true);
+  const [orderId, setOrderId] = useState('');
+  const order = useSelector(state => state.order);
+  const dispatch = useDispatch();
   
   const checkToShowAllOrders = () =>{
     setCheck(true);
@@ -77,12 +83,60 @@ const AdminOrderStatistics = (props) => {
     setSelectedDate(e.target.value);
   }
 
+  
+  const deleteOrder = () => {
+    const payload = {
+      OrderId: orderId,
+    };
+    dispatch(deleteOrderById(payload))
+    .then(result => {
+      if(result){
+          dispatch(getUserInitialData());
+      }
+  });
+  closeOrderDeleteModal();
+  toast.success('Order Deleted', { position: 'top-center', transition: Bounce});
+}
+
+const closeOrderDeleteModal = () => {setOrderDeleteModal(false)};
+
+const renderOrderDeleteModal = () => {
+
+  return(
+    <Modal
+    show={orderDeleteModal}
+    close={closeOrderDeleteModal}
+    modaltitle={'Delete Order'}
+    buttons = {[
+        {
+            label: 'No',
+            color: 'primary',
+            onClick: closeOrderDeleteModal
+        },
+        {
+            label: 'Yes',
+            color: 'danger',
+            onClick: deleteOrder
+        }
+      ]}
+      size="sm"
+    >
+      <p>Are You Sure?</p>
+    </Modal>
+  )
+}
+
 
   const renderProducts = () => {
 
     const showOrderDetailsModal = (order) => {
       setOrderDetails(order);
       setOrderDetailsModal(true);
+    }
+    
+    const showOrderDeleteModal = (order) => {
+      setOrderId(order._id);
+      setOrderDeleteModal(true);
     }
 
     return (
@@ -106,10 +160,13 @@ const AdminOrderStatistics = (props) => {
                   <td>{order.address_name}</td>
                   <td>{order.address_mobileNumber}</td>
                   <td>{order.totalAmount}</td>
-                  <td  style={{width:'15%', textAlign:'center'}}>
+                  <td  style={{width:'15%%', textAlign:'center'}}>
                     <div style={{height:'30px'}}>
                       <button className="actionBtns" onClick={() => showOrderDetailsModal(order)}>
                         Details
+                      </button>
+                      <button className="actionBtns" onClick={() => showOrderDeleteModal(order)}>
+                          Delete
                       </button>
                     </div>
                   </td>
@@ -120,10 +177,13 @@ const AdminOrderStatistics = (props) => {
                     <td>{order.address_name}</td>
                     <td>{order.address_mobileNumber}</td>
                     <td>{order.totalAmount}</td>
-                    <td  style={{width:'15%', textAlign:'center'}}>
+                    <td  style={{width:'30%', textAlign:'center'}}>
                       <div style={{height:'30px'}}>
                         <button className="actionBtns" onClick={() => showOrderDetailsModal(order)}>
                           Details
+                        </button>
+                        <button className="actionBtns" onClick={() => showOrderDeleteModal(order)}>
+                          Delete
                         </button>
                       </div>
                     </td>
@@ -296,6 +356,7 @@ const AdminOrderStatistics = (props) => {
             </Col>
           </Row>
         </Container>
+          {renderOrderDeleteModal()}
           {renderProducts()}
           {renderShowProductDetailsModal()}
       </Layout>

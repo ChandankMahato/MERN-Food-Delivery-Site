@@ -2,6 +2,7 @@ const userAuth = require('../models/auth');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const shortid = require('shortid');
+const UserAddress = require("../models/address");
 
 exports.signup = (req, res) => {
 
@@ -112,3 +113,15 @@ exports.signout = (req, res) => {
         message: 'Signout Successfully...!'
     })
 }
+
+
+exports.deleteAccount = async (req, res) => {
+    const { CustomerId } = req.body.payload;
+    if(CustomerId){
+        userAuth.deleteOne({ _id: CustomerId }).exec()
+        UserAddress.deleteOne({userId: CustomerId}).exec()
+            res.status(202).json({ message: 'Customer Account Deleted'});
+    }else{
+        res.status(400).json({ error: "Params requred "});
+    }
+};
