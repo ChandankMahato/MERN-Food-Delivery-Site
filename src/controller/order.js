@@ -1,72 +1,83 @@
 const Order = require("../models/order");
 const Cart = require("../models/cart");
 const Address = require("../models/address");
+const userAuth = require('../models/auth');
 
 exports.addOrder = (req, res) => {
 
-    Cart.deleteOne({ user: req.auth.id})
-    .exec((error, result) => {
-        if(error) return res.status(400).json({error});
-        if(result){
-            req.body.userId = req.auth.id;
-            req.body.dbStatus = [
-                {
-                    dbtype: "CR",
-                    isSelected: true,
-                },
-                {
-                    dbtype: "B1",
-                    isSelected: false,
-                },
-                {
-                    dbtype: "B2",
-                    isSelected: false,
-                },
-                {
-                    dbtype: "B3",
-                    isSelected: false,
-                },
-                {
-                    dbtype: "B4",
-                    isSelected: false,
-                },
-                {
-                    dbtype: "B5",
-                    isSelected: false,
-                }
-            ];
-            req.body.orderStatus = [
-                {
-                    type: "ORDERED",
-                    date: new Date(),
-                    isCompleted: true,
-                },
-                {
-                    type: "COOKED",
-                    isCompleted: false,
-                },
-                {
-                    type: 'PACKED',
-                    isCompleted: false,
-                },
-                {
-                    type: 'ON THE WAY',
-                    isCompleted: false,
-                },
-                {
-                    type: 'DELIVERED',
-                    isCompleted: false,
-                }
-            ];
-            const order = new Order(req.body);
-            order.save((error, order) => {
+    userAuth.findOne({_id : req.auth.id})
+    .exec(async(error, user) => {
+        if(error){
+            res.status(400).json({error});
+        }
+        if(user){
+            Cart.deleteOne({ user: req.auth.id})
+            .exec((error, result) => {
                 if(error) return res.status(400).json({error});
-                if(order){
-                    res.status(201).json({order});
+                if(result){
+                    req.body.userId = req.auth.id;
+                    req.body.dbStatus = [
+                        {
+                            dbtype: "CR",
+                            isSelected: true,
+                        },
+                        {
+                            dbtype: "B1",
+                            isSelected: false,
+                        },
+                        {
+                            dbtype: "B2",
+                            isSelected: false,
+                        },
+                        {
+                            dbtype: "B3",
+                            isSelected: false,
+                        },
+                        {
+                            dbtype: "B4",
+                            isSelected: false,
+                        },
+                        {
+                            dbtype: "B5",
+                            isSelected: false,
+                        }
+                    ];
+                    req.body.orderStatus = [
+                        {
+                            type: "ORDERED",
+                            date: new Date(),
+                            isCompleted: true,
+                        },
+                        {
+                            type: "COOKED",
+                            isCompleted: false,
+                        },
+                        {
+                            type: 'PACKED',
+                            isCompleted: false,
+                        },
+                        {
+                            type: 'ON THE WAY',
+                            isCompleted: false,
+                        },
+                        {
+                            type: 'DELIVERED',
+                            isCompleted: false,
+                        }
+                    ];
+                    const order = new Order(req.body);
+                    order.save((error, order) => {
+                        if(error) return res.status(400).json({error});
+                        if(order){
+                            res.status(201).json({order});
+                        }
+                    });
                 }
             });
+        }else{
+            res.status(500).json('Something Went Wrong!');
         }
-    });
+    })
 };
 
 exports.getUserOrders = (req, res) => {

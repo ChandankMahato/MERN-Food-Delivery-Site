@@ -1,3 +1,4 @@
+import { Slide, toast } from "react-toastify";
 import axios from "../helpers/axios";
 import { cartConstants, userConstants } from "./constants";
 
@@ -63,10 +64,8 @@ export const addOrder = (payload) => {
     return async (dispatch) => {
         try {
             const res = await axios.post(`/addOrder`, payload);
-            console.log(res);
             dispatch({type: userConstants.ADD_USER_ORDER_REQUEST});
             if(res.status === 201){
-                console.log(res);
                 const { order} = res.data;
                 dispatch({
                     type: cartConstants.RESET_CART,
@@ -75,12 +74,14 @@ export const addOrder = (payload) => {
                     type: userConstants.ADD_USER_ORDER_SUCCESS,
                     payload: {order},
                 });
+                toast.success('Thank You, Your Order Received', {position: 'top-left', transition:Slide});
             }else{
                 const {error} = res.data;
                 dispatch({
                     type: userConstants.ADD_USER_ORDER_FAILURE,
                     payload: {error},
                 });
+                toast.success('Something Went Wrong!', {position: 'top-left', transition:Slide});
             }
         }catch(error) {
             console.log(error);

@@ -3,6 +3,7 @@ import axios from 'axios';
 import { api } from '../urlConfig';
 import store from '../store';
 import { authConstants } from '../actions/constants';
+import { Slide, toast } from 'react-toastify';
 
 const token = window.localStorage.getItem('token');
 
@@ -31,6 +32,7 @@ axiosIntance.interceptors.response.use((res) => {
     if(status === 500) {
       localStorage.clear();
       store.dispatch({ type: authConstants.USER_LOGOUT_SUCCESS});
+      toast.success('Something Went Wrong!', {position: 'top-left', transition:Slide});
     }
   }catch(error){
     return Promise.reject(error);

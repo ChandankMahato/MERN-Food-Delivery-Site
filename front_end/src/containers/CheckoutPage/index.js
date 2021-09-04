@@ -9,7 +9,7 @@ import AddressForm from './AddressForm';
 import './style.css';
 import Price from '../Cart/Price/price';
 import { useHistory } from 'react-router-dom';
-import {Slide, toast, Zoom} from 'react-toastify';
+import {toast, Zoom} from 'react-toastify';
 
 /**
 * @author
@@ -248,7 +248,6 @@ const CheckoutPage = (props) => {
     console.log(payload);
     dispatch(addOrder(payload));
     setConfirmOrder(true);
-    toast.success('Thank You, Your Order Received', {position: 'top-left', transition:Slide});
     history.push('/order');
   };
 
