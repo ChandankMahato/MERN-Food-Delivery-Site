@@ -4,8 +4,8 @@
   "description": "laptey is fooddelivery website for partial fullfilment of our semester project",
   "main": "index.js",
   "scripts": {
-    "heroku-postbuild":"cd front_end && npm install && npm install --only=dev --no-shrinkwrap && npm run build",
-    "start": "nodemon ./src/index.server.js",
+    "heroku-postbuild": "cd front_end && npm install && npm install --only=dev --no-shrinkwrap && npm run build",
+    "start": "node ./src/index.server.js",
     "front_end": "cd front_end && npm start",
     "gyf": "concurrently \"nodemon ./src/index.server.js\" \"npm run front_end\""
   },
@@ -14,18 +14,18 @@
   "dependencies": {
     "bcrypt": "^5.0.1",
     "compression": "^1.7.4",
-    "concurrently": "^6.2.0",
+    "concurrently": "^6.2.1",
     "cors": "^2.8.5",
     "dotenv": "^8.6.0",
     "express": "^4.17.1",
-    "express-validator": "^6.11.1",
+    "express-validator": "^6.12.1",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.12.8",
-    "multer": "^1.4.2",
+    "mongoose": "^5.13.9",
+    "multer": "^1.4.3",
     "shortid": "^2.2.16",
-    "slugify": "^1.5.3"
+    "slugify": "^1.6.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.7"
+    "nodemon": "^2.0.12"
   }
 }
