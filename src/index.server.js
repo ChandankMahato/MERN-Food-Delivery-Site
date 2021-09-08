@@ -27,11 +27,11 @@ app.use(compression({
     threshold: 1,
 }));
 
-app.use(express.static(path.join(__dirname, '../front_end/build')));
+// app.use(express.static(path.join(__dirname, '../front_end/build')));
 
-app.get('/', function(req, res){
-    res.sendFile(path.join(__dirname, '../front_end/build', 'index.html'));
-});
+// app.get('/', function(req, res){
+//     res.sendFile(path.join(__dirname, '../front_end/build', 'index.html'));
+// });
 
 //mongodb connection
 //mongodb+srv://root:<password>@cluster0.lkbiy.mongodb.net/<dbname>?retryWrites=true&w=majority
