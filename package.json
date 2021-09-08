@@ -4,6 +4,7 @@
   "description": "laptey is fooddelivery website for partial fullfilment of our semester project",
   "main": "index.js",
   "scripts": {
+    "heroku-postbuild":"cd front_end && npm install && npm install --only=dev --no-shrinkwrap && npm run build",
     "start": "nodemon ./src/index.server.js",
     "front_end": "cd front_end && npm start",
     "gyf": "concurrently \"nodemon ./src/index.server.js\" \"npm run front_end\""
