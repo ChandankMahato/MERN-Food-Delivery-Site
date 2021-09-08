@@ -44,7 +44,6 @@ function App() {
 
   var currentUrl = window.location.href;
   var params = currentUrl.split('3000/')[1];
-  console.log('hello');
   
   useEffect(() => {
     if(params === "admin/signin" || 
