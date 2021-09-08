@@ -63,17 +63,6 @@ app.use('/api', initialdata);
 app.use('/api',bannerRoutes);
 app.use('/api', feedbackRoutes);
 
-if(process.env.NODE_ENV === 'production'){
-    app.use(express.static(path.join(__dirname, '../front_end/build')));
-    app.get('*', function(req,res){
-        res.sendFile(path.join(__dirname, '../front_end/build', 'index.html'));
-    });
-}
-
-// app.get("/*", (req, res) => {
-//     res.sendFile(path.resolve(__dirname, "../front_end", "build", "index.html"));
-// })
-
 //listen on port ####
 app.listen(process.env.PORT, () => {
     console.log(`Server is running on port ${process.env.PORT}`);
