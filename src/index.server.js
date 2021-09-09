@@ -27,11 +27,19 @@ app.use(compression({
     threshold: 1,
 }));
 
-// app.use(express.static(path.join(__dirname, '../front_end/build')));
-
-// app.get('/', function(req, res){
-//     res.sendFile(path.join(__dirname, '../front_end/build', 'index.html'));
-// });
+const whitelist = ['http://localhost:3000', 'http://localhost:2000', 'https://bs-gyf.herokuapp.com']
+const corsOptions = {
+    origin: function(orgin, callback){
+        console.log("** Orgin of request " + origin)
+        if(whitelist.indexOf(orgin) !== -1 || !origin){
+            console.log("Orgin acceptable")
+            callback(null, true)
+        }else{
+            console.log("Origin rejected")
+            callback(new Error('Not Allowed by Cors'))
+        }
+    }
+}
 
 //mongodb connection
 //mongodb+srv://root:<password>@cluster0.lkbiy.mongodb.net/<dbname>?retryWrites=true&w=majority
@@ -48,6 +56,7 @@ mongoose.connect(
 
 //middleware
 app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use('/public',express.static(path.join(__dirname, 'uploads')));
 app.use('/api', adminAuthRoutes);
@@ -62,6 +71,13 @@ app.use('/api', adminOrderRoute);
 app.use('/api', initialdata);
 app.use('/api',bannerRoutes);
 app.use('/api', feedbackRoutes);
+
+if(process.env.NODE_ENV === 'production'){
+    app.use(express.static(path.join(__dirname, '../front_end/build')));
+    app.get('*', function(req, res) {
+        res.sendFile(path.join(__dirname, '../front_end/build', 'index.html'));
+    });
+}
 
 //listen on port ####
 app.listen(process.env.PORT, () => {
