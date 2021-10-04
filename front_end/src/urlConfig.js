@@ -5,7 +5,7 @@
 // }
 
 
-const baseUrl = "https://bs-gyf.herokuapp.com";
+const baseUrl = "https://bs-gyf.herokuapp.com || http://localhost:2000";
 export const api = `${baseUrl}/api`;
 export const generatePublicUrl = (fileName) => {
     return `${baseUrl}/public/${fileName}`;

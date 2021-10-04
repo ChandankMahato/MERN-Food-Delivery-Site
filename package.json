@@ -4,10 +4,8 @@
   "description": "laptey is fooddelivery website for partial fullfilment of our semester project",
   "main": "index.js",
   "scripts": {
-    "heroku-postbuild":"cd front_end && npm install && npm install --only=dev --no-shrinkwrap && npm run build",
     "start": "node ./src/index.server.js",
-    "front_end": "cd front_end && npm start",
-    "gyf": "concurrently \"nodemon ./src/index.server.js\" \"npm run front_end\""
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix front_end && npm run build --prefix front_end"
   },
   "author": "team cassa",
   "license": "ISC",
