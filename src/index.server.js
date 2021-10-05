@@ -23,6 +23,20 @@ const feedbackRoutes = require('./routes/feedback');
 //environment variable or we can say constant
 env.config();
 
+const whitelist = ['https://www.facebook.com/plugins/customer_chat/facade_gating/?page_id=104806765021176&suppress_http_code=1','https://bs-gyf.herokuapp.com']
+const corsOptions = {
+    origin: function(origin, callback){
+        console.log("** Orgin of request " + origin)
+        if(whitelist.indexOf(origin) !== -1 || !origin){
+            console.log("Origin acceptable")
+            callback(null, true)
+        }else{
+            console.log("Origin rejected")
+            callback(new Error('Not allowed by CORS'))
+        }
+    }
+}
+
 //mongodb connection
 //mongodb+srv://root:<password>@cluster0.lkbiy.mongodb.net/<dbname>?retryWrites=true&w=majority
 mongoose.connect(
@@ -38,6 +52,7 @@ mongoose.connect(
 
 //middleware
 app.use(cors());
+app.use(cors(corsOptions));
 app.use(compression({
     level: 6,
     threshold: 1,
