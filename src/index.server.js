@@ -60,7 +60,7 @@ app.use('/api', feedbackRoutes);
 
 
 if(process.env.NODE_ENV == "production"){
-    app.use(express.static("../front_end/build"));
+   app.use(express.static(path.join(__dirname, '../front_end/build')));
 }
 
 const PORT = process.env.PORT || 2000;
