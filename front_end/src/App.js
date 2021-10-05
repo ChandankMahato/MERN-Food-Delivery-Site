@@ -43,7 +43,7 @@ function App() {
   const [check, setCheck] = useState(false);
 
   var currentUrl = window.location.href;
-  var params = currentUrl.split('3000/')[1];
+  var params = currentUrl.split('bs-gyf.herokuapp.com/')[1];
   
   useEffect(() => {
     if(params === "admin/signin" || 
