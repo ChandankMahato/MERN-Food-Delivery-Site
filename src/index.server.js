@@ -22,11 +22,6 @@ const feedbackRoutes = require('./routes/feedback');
 
 //environment variable or we can say constant
 env.config();
-app.use(compression({
-    level: 6,
-    threshold: 1,
-}));
-
 
 //mongodb connection
 //mongodb+srv://root:<password>@cluster0.lkbiy.mongodb.net/<dbname>?retryWrites=true&w=majority
@@ -43,6 +38,10 @@ mongoose.connect(
 
 //middleware
 app.use(cors());
+app.use(compression({
+    level: 6,
+    threshold: 1,
+}));
 app.use(express.json());
 app.use('/public',express.static(path.join(__dirname, 'uploads')));
 app.use('/api', adminAuthRoutes);
