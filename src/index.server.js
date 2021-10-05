@@ -62,7 +62,7 @@ app.use('/api', feedbackRoutes);
 if(process.env.NODE_ENV == "production"){
    app.use(express.static("../front_end/build"));
     app.get("*", (req, res) => {
-        res.sendFile(path.resolve(__dirname, 'front_end', 'build', 'index.html')
+        res.sendFile(path.resolve(__dirname, '../front_end', 'build', 'index.html')
 );
     })
 }
