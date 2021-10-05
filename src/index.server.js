@@ -23,7 +23,7 @@ const feedbackRoutes = require('./routes/feedback');
 //environment variable or we can say constant
 env.config();
 
-const whitelist = ['https://www.facebook.com/plugins/customer_chat/facade_gating/?page_id=104806765021176&suppress_http_code=1','https://bs-gyf.herokuapp.com']
+const whitelist = ['https://www.facebook.com','https://bs-gyf.herokuapp.com']
 const corsOptions = {
     origin: function(origin, callback){
         console.log("** Orgin of request " + origin)
