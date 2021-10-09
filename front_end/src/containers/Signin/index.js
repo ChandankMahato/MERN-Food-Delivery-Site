@@ -140,7 +140,7 @@ const UserAccountSignin = (props) => {
         <Input 
           label="Reset Code"
           value={typeCode}
-          placeholder={`Click the Messenger Icon, tap Get Reset Code`}
+          placeholder={`Ask Reset Code in Get Your Food Facebook page!`}
           onChange={(e) => setTypeCode(e.target.value)}
         />
 
