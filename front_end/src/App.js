@@ -122,12 +122,12 @@ function App() {
       <div>
         {!check ?<Footer/> : null }
       </div>
-      {
-          <MessengerCustomerChat
-          pageId="104806765021176"
-          appId="394716102357646"
-        />
-    }
+//       {
+//           <MessengerCustomerChat
+//           pageId="104806765021176"
+//           appId="394716102357646"
+//         />
+//     }
     </>
   );
 }
