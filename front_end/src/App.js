@@ -27,7 +27,6 @@ import AdminBanner from './containers/Admin/Banner';
 import UserAccountSignin from './containers/Signin';
 import UserAccountSignup from './containers/Signup';
 import Feedbacks from './containers/Admin/Feedback';
-import MessengerCustomerChat from 'react-messenger-customer-chat';
 import Footer from './components/Footer';
 import Customers from './containers/Admin/Users';
 import ExportData from './containers/Admin/ExportData';
@@ -122,13 +121,6 @@ function App() {
       <div>
         {!check ?<Footer/> : null }
       </div>
-//       {
-//           <MessengerCustomerChat
-//           pageId="104806765021176"
-//           appId="394716102357646"
-//         />
-//     }
-    </>
   );
 }
 
