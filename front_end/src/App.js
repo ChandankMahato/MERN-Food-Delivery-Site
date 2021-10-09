@@ -121,6 +121,7 @@ function App() {
       <div>
         {!check ?<Footer/> : null }
       </div>
+ </>
   );
 }
 
