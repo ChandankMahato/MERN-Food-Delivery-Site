@@ -38,6 +38,7 @@ mongoose.connect(
 
 //middleware
 app.use(cors());
+app.options('*', cors());
 app.use(compression({
     level: 6,
     threshold: 1,
