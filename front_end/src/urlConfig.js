@@ -5,7 +5,7 @@
 // }
 
 
-const baseUrl = "https://bs-gyf.herokuapp.com";
+const baseUrl = "https://buddha-suddha.herokuapp.com";
 export const api = `${baseUrl}/api`;
 export const generatePublicUrl = (fileName) => {
     return `${baseUrl}/public/${fileName}`;

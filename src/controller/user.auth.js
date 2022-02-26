@@ -98,7 +98,7 @@ exports.setNewPassword = async (req, res) => {
         }
     }).exec((error, response) => {
         if(error) return res.status(400).json({error});
-        if(response && response.nModified === 1){
+        if(response && response.modifiedCount === 1){
             res.status(201).json({response});
         }else{
             res.status(400).json({response});
