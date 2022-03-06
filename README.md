@@ -1,5 +1,4 @@
 # Get Your Food
-https://buddha-suddha.com/
 
 Food Delivery Website "Get Your Food" has been initiated and completed as a self-learning project with the motive of learning the MERN stack.
 
