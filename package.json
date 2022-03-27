@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "node ./src/index.server.js",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix front_end && npm run build --prefix front_end"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix front_end && npm run build --prefix front_end",
+    "front_end": "cd front_end && npm start",
+    "gyf": "concurrently \"nodemon ./src/index.server.js\" \"npm run front_end\""
   },
   "author": "team cassa",
   "license": "ISC",

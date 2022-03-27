@@ -67,6 +67,12 @@ if(process.env.NODE_ENV == "production"){
     });
 }
 
+// app.use(express.static(path.join(__dirname, '../front_end/build')));
+
+// app.get('/', function(req, res){
+//     res.sendFile(path.join(__dirname, '../front_end/build', 'index.html'));
+// });
+
 const PORT = process.env.PORT || 2000;
 //listen on port ####
 app.listen(PORT, () => {
